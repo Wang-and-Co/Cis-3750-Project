@@ -1,13 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
 import { Button } from '@mui/material';
-import NiceModal from '@ebay/nice-modal-react';
-import { SampleModal } from './shared-components/modals';
+import { showConfirmationModal } from './shared-components/modals';
 
 const App = () => {
-  const showModal = () => {
-    NiceModal.show(SampleModal, { name: 'test' });
-  };
   return (
     <div className="App">
       <header className="App-header">
@@ -23,7 +19,15 @@ const App = () => {
         >
           Learn React
         </a>
-        <Button variant="contained" onClick={showModal}>
+        <Button
+          variant="contained"
+          onClick={() =>
+            showConfirmationModal({
+              title: 'among us alert!',
+              description: 'sussy',
+            })
+          }
+        >
           Show Modal
         </Button>
       </header>
