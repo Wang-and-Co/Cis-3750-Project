@@ -1,4 +1,5 @@
 import { Typography, Stack, Button, Dialog, Box } from '@mui/material';
+import { PropTypes } from '@mui/material';
 const style = {
   // position: 'absolute',
   top: '50%',
@@ -10,6 +11,23 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
+
+/**
+ * @typedef GenericModalProps
+ * @type {object}
+ * @property {string} name
+ * @property {string} title
+ * @property {string} body
+ * @property {string} id
+ * @property {function} onClose
+ * @property {boolean} open
+ */
+
+/**
+ * A generic modal that should be a base for other modals
+ * @param {GenericModalProps} props
+ * @returns
+ */
 const GenericModal = ({ name, title, body, id, onClose, open }) => (
   <Dialog name={name} open={open}>
     <Box sx={style}>
@@ -27,4 +45,5 @@ const GenericModal = ({ name, title, body, id, onClose, open }) => (
     </Box>
   </Dialog>
 );
+
 export default GenericModal;

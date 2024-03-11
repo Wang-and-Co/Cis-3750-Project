@@ -3,15 +3,6 @@ import GenericModal from './GenericModal';
 import { create } from 'react-test-renderer';
 import TestProvider from '../../TestProvider';
 
-jest.mock('react-dom', () => {
-  const original = jest.requireActual('react-dom');
-
-  return {
-    ...original,
-    createPortal: (node) => node,
-  };
-});
-
 const props = {
   name: 'test',
   title: 'title',
