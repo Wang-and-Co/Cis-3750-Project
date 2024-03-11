@@ -1,43 +1,45 @@
 module.exports = {
-    env: {
-      browser: true,
-      es2021: true,
-    },
-    parser: '@babel/eslint-parser',
-  
-    extends: [
-      'eslint:recommended',
-      'plugin:react/recommended',
-      'plugin:react-hooks/recommended',
-    ],
-    overrides: [
-      {
-        env: {
-          node: true,
-        },
-        files: ['.eslintrc.{js,cjs}'],
-        parserOptions: {
-          sourceType: 'script',
-        },
+  plugins: ['jest'],
+  env: {
+    browser: true,
+    es2021: true,
+    'jest/globals': true,
+  },
+  parser: '@babel/eslint-parser',
+
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+  ],
+  overrides: [
+    {
+      env: {
+        node: true,
       },
-    ],
-    parserOptions: {
-      ecmaVersion: '6',
-      requireConfigFile: false,
-      babelOptions: {
-        presets: ['@babel/preset-react'],
+      files: ['.eslintrc.{js,cjs}'],
+      parserOptions: {
+        sourceType: 'script',
       },
     },
-    rules: {
-      quotes: [2, 'single', { avoidEscape: true, allowTemplateLiterals: true }],
-      'func-style': ['error', 'declaration', { allowArrowFunctions: true }],
-      'no-unused-vars': ['warn', { vars: 'all' }],
-      'react/react-in-jsx-scope': 0,
-      'react/destructuring-assignment': 2,
-      'react/function-component-definition': [
-        2,
-        { namedComponents: 'arrow-function' },
-      ],
-      'react/prop-types': 0,
+  ],
+  parserOptions: {
+    ecmaVersion: '6',
+    requireConfigFile: false,
+    babelOptions: {
+      presets: ['@babel/preset-react'],
     },
-  };
+  },
+  rules: {
+    quotes: [2, 'single', { avoidEscape: true, allowTemplateLiterals: true }],
+    'func-style': ['error', 'declaration', { allowArrowFunctions: true }],
+    'no-unused-vars': ['warn', { vars: 'all' }],
+    'react/react-in-jsx-scope': 0,
+    'react/destructuring-assignment': 2,
+    'react/function-component-definition': [
+      2,
+      { namedComponents: 'arrow-function' },
+    ],
+    'react/prop-types': 0,
+  },
+};
