@@ -24,7 +24,7 @@ const App = () => {
           onClick={() =>
             showConfirmationModal({
               title: 'among us alert!',
-              description: 'sussy',
+              description: 'Raw men and maximum samuel',
             })
           }
         >
