@@ -26,7 +26,7 @@ const style = {
 /**
  * A generic modal that should be a base for other modals
  * @param {GenericModalProps} props
- * @returns
+ * @type {import('react').FC<GenericModalProps>}
  */
 const GenericModal = ({ name, title, body, id, onClose, open }) => (
   <Dialog name={name} open={open}>
