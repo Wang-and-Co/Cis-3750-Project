@@ -1,5 +1,4 @@
 import { Typography, Stack, Button, Dialog, Box } from '@mui/material';
-
 const style = {
   // position: 'absolute',
   top: '50%',
