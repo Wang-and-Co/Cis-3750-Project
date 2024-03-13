@@ -1,0 +1,20 @@
+# Screens folder
+
+## File organization strategry
+
+```
+📁Screen
+|-🖹 Screen.js
+|-🖹 Screen.unit.test.js
+|-🖹 utils.js
+|-📁Component A
+| |- Component A.js
+| |- Component A.unit.test.js
+|-📁hooks
+| |-useHook.js
+| |-useHook.js
+|-🖹 index.js
+```
+
+The default export of a screen will be what is rendered.
+The navigation/headers will already be included, this will only be the main content
