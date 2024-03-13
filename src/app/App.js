@@ -4,6 +4,7 @@ import { Button } from '@mui/material';
 import { showConfirmationModal } from '../shared-components/modals';
 import Layout from './Layout';
 import Providers from './Providers';
+import toast from 'react-hot-toast';
 
 const App = () => {
   return (
@@ -33,6 +34,12 @@ const App = () => {
               }
             >
               Show Modal
+            </Button>
+            <Button
+              variant="contained"
+              onClick={() => toast('Executed the entire population of gamers')}
+            >
+              test2
             </Button>
           </header>
         </div>
