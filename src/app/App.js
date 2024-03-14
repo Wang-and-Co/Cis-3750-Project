@@ -4,6 +4,7 @@ import { Button } from '@mui/material';
 import { showConfirmationModal } from '../shared-components/modals';
 import Layout from './Layout';
 
+// create app functional component that returns a <layout>
 const App = () => {
   return (
     <Layout>
