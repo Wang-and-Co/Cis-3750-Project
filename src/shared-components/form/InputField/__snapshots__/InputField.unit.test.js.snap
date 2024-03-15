@@ -7,7 +7,7 @@ exports[`Generic Modal renders correctly 1`] = `
   onSubmit={[Function]}
 >
   <div
-    className="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
+    className="MuiFormControl-root MuiTextField-root css-1u6ro6r-MuiFormControl-root-MuiTextField-root"
   >
     <label
       className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-filled MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-filled css-e4w4as-MuiFormLabel-root-MuiInputLabel-root"
@@ -22,6 +22,7 @@ exports[`Generic Modal renders correctly 1`] = `
       onClick={[Function]}
     >
       <input
+        aria-describedby="input-test-helper-text"
         aria-invalid={false}
         autoFocus={false}
         className="MuiInputBase-input MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
@@ -36,6 +37,12 @@ exports[`Generic Modal renders correctly 1`] = `
         type="text"
       />
     </div>
+    <p
+      className="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained css-1wc848c-MuiFormHelperText-root"
+      id="input-test-helper-text"
+    >
+      among us
+    </p>
   </div>
 </form>
 `;

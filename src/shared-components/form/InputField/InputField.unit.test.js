@@ -8,12 +8,8 @@ const props = {
   name: 'test',
   label: 'Hello there',
   required: false,
+  helperText: 'among us',
   variant: 'filled',
-};
-
-const formikProps = {
-  initalValues: { name: '' },
-  onSubmit: jest.fn(),
 };
 
 let inputFieldRenderer;
@@ -34,6 +30,7 @@ describe('Generic Modal', () => {
     expect(GetInputProp('name')).toBe(props.name);
     expect(GetInputProp('label')).toBe(props.label);
     expect(GetInputProp('required')).toBe(props.required);
+    expect(GetInputProp('helperText')).toBe(props.helperText);
     expect(GetInputProp('variant')).toBe(props.variant);
   });
 });

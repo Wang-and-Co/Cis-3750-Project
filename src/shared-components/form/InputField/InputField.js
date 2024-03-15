@@ -29,6 +29,7 @@ const InputField = ({
 InputField.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
+  helperText: PropTypes.string,
   required: PropTypes.bool,
   variant: PropTypes.oneOf(['', 'filled', 'standard']),
 };
