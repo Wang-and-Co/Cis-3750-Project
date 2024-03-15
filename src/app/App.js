@@ -5,44 +5,13 @@ import { showConfirmationModal } from '../shared-components/modals';
 import Layout from './Layout';
 import Providers from './Providers';
 import toast from 'react-hot-toast';
+import AppRoutes from './AppRoutes';
 
 const App = () => {
   return (
     <Providers>
       <Layout>
-        <div className="App">
-          <header className="App-header">
-            <img src={require('../assets/leSus.png')} className="App-logo" alt="logo" />
-            <p>
-              Edit <code>src/App.js</code> and save to reload.
-            </p>
-            <a
-              className="App-link"
-              href="https://reactjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn React
-            </a>
-            <Button
-              variant="contained"
-              onClick={() =>
-                showConfirmationModal({
-                  title: 'among us alert!',
-                  description: 'Raw men and maximum samuel',
-                })
-              }
-            >
-              Show Modal
-            </Button>
-            <Button
-              variant="contained"
-              onClick={() => toast('Executed the entire population of gamers')}
-            >
-              test2
-            </Button>
-          </header>
-        </div>
+        <AppRoutes />
       </Layout>
     </Providers>
   );
