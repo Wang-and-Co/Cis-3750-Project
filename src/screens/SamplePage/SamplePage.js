@@ -1,9 +1,18 @@
 import { showConfirmationModal } from '../../shared-components/modals';
 import toast from 'react-hot-toast';
 import logo from './../../logo.svg';
-import { Button } from '@mui/material';
 
-const SamplePage = () => {
+import { Button,
+  Grid,
+  Container,
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+  CssBaseline,
+  CardActions} from '@mui/material';
+
+const SamplePage = () => {  
   return (
     <div className="App">
       <header className="App-header">
@@ -33,9 +42,56 @@ const SamplePage = () => {
         <Button
           variant="contained"
           onClick={() => toast('Executed the entire population of gamers')}
+          style={{marginTop: '10px'}}
         >
           test2
         </Button>
+
+        <Container style={{marginTop: '10px'}}>
+            <Grid container spacing={1} justifyContent="center" style={{ textAlign: 'left' }}> 
+              <Grid item>
+                <Card>
+                  <CardMedia />
+                  <CssBaseline />
+                  <CardContent>
+                    <Typography variant='h4'>Test title</Typography>
+                    <Typography variant='h5'>Test description</Typography>
+                  </CardContent>
+                  <CardActions>
+                  <Button
+                    variant='outlined'>View</Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+              <Grid item>
+                <Card>
+                  <CardMedia />
+                  <CssBaseline />
+                  <CardContent>
+                    <Typography variant='h4'>Test title</Typography>
+                    <Typography variant='h5'>Test description</Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button variant='outlined'>View</Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+              <Grid item>
+                <Card>
+                  <CardMedia />
+                  <CssBaseline />
+                  <CardContent>
+                    <Typography variant='h4'>Test title</Typography>
+                    <Typography variant='h5'>Test description</Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button variant='outlined'>View</Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+            </Grid>
+          </Container>
+
       </header>
     </div>
   );

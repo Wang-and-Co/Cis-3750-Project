@@ -51,6 +51,7 @@ const Layout = ({ children }) => {
           <Typography variant='h2'>text covered ^</Typography>
           {/* TODO add a real My Events section*/}
       </Drawer>
+      
       <main>{children}</main>
     </>
   );
