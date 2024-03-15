@@ -27,7 +27,7 @@ const Layout = ({ children }) => {
       <Drawer variant="permanent" anchor="left">
         {/* TODO add a real sidebar*/}
         <List>
-          <ListItem key={'test'}>
+          <ListItem key={'test'} sx={{ marginTop: '2rem' }}>
             <ListItemButton>
               <ListItemIcon>
                 <IcecreamOutlined></IcecreamOutlined>

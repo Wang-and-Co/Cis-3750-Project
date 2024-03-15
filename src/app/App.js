@@ -3,39 +3,18 @@ import './../App.css';
 import { Button } from '@mui/material';
 import { showConfirmationModal } from '../shared-components/modals';
 import Layout from './Layout';
+import Providers from './Providers';
+import toast from 'react-hot-toast';
+import AppRoutes from './AppRoutes';
 
 // create app functional component that returns a <layout>
 const App = () => {
   return (
-    <Layout>
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          <Button
-            variant="contained"
-            onClick={() =>
-              showConfirmationModal({
-                title: 'among us alert!',
-                description: 'Raw men and maximum samuel',
-              })
-            }
-          >
-            Show Modal
-          </Button>
-        </header>
-      </div>
-    </Layout>
+    <Providers>
+      <Layout>
+        <AppRoutes />
+      </Layout>
+    </Providers>
   );
 };
 

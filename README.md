@@ -66,3 +66,5 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
   For rendering different paths
 - [Formik](https://formik.org/docs/overview)
   Form manager that handles errors and form submission
+- [React Hot Toast](https://react-hot-toast.com/docs/toaster)
+  Handles toasts
