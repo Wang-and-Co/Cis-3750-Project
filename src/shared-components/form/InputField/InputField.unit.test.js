@@ -30,16 +30,15 @@ describe('Generic Modal', () => {
   it('renders correctly', () => {
     expect(inputFieldRenderer.toJSON()).toMatchSnapshot();
   });
-  xit('passes the correct props', () => {
-    expect(getModalProp('name')).toBe(props.name);
-    expect(getModalProp('title')).toBe(props.title);
-    expect(getModalProp('body')).toBe(props.body);
-    expect(getModalProp('id')).toBe(props.id);
-    expect(getModalProp('open')).toBe(props.open);
+  it('passes the correct props', () => {
+    expect(GetInputProp('name')).toBe(props.name);
+    expect(GetInputProp('label')).toBe(props.label);
+    expect(GetInputProp('required')).toBe(props.required);
+    expect(GetInputProp('variant')).toBe(props.variant);
   });
 });
 
-const getModalProp = (prop) =>
+const GetInputProp = (prop) =>
   inputFieldInstance.findByType(InputField).props[prop];
 
 const renderGenericModal = async (editorProps) => {
