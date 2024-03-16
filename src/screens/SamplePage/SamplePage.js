@@ -1,9 +1,9 @@
-import logo from './logo.svg';
-import './App.css';
+import { showConfirmationModal } from '../../shared-components/modals';
+import toast from 'react-hot-toast';
+import logo from './../../logo.svg';
 import { Button } from '@mui/material';
-import { showConfirmationModal } from './shared-components/modals';
 
-const App = () => {
+const SamplePage = () => {
   return (
     <div className="App">
       <header className="App-header">
@@ -30,9 +30,14 @@ const App = () => {
         >
           Show Modal
         </Button>
+        <Button
+          variant="contained"
+          onClick={() => toast('Executed the entire population of gamers')}
+        >
+          test2
+        </Button>
       </header>
     </div>
   );
 };
-
-export default App;
+export default SamplePage;
