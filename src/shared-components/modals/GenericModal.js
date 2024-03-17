@@ -5,9 +5,12 @@ const style = {
   // transform: 'translate(-50%, -50%)',
   width: 400,
   // bgcolor: 'background.paper',
-  border: '2px solid #000',
   boxShadow: 24,
   p: 4,
+
+  // made edges curved
+  // border: '2px solid #000',
+  outline: 'none',
 };
 
 /**
@@ -26,6 +29,7 @@ const style = {
  * @param {GenericModalProps} props
  * @type {import('react').FC<GenericModalProps>}
  */
+
 const GenericModal = ({ name, title, body, id, onClose, open }) => (
   <Dialog name={name} open={open}>
     <Box sx={style}>
