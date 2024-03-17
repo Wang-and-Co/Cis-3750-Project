@@ -66,7 +66,7 @@ const GenericModal = ({
           {title}
         </Typography>
       )}
-      {body}
+      <Box sx={{ marginTop: '1.5rem' }}>{body}</Box>
     </Box>
   </Dialog>
 );
