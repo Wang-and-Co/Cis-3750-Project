@@ -3,7 +3,17 @@ import { initialValues } from './utils';
 import { getLoginFormValidationSchema } from './validations';
 import { InputField } from '../InputField';
 import { Button, Stack } from '@mui/material';
+/**
+ * @typedef {Object} LoginFormProps
+ * @property {function} onSuccess function handler after form is successfully submitted. Should handle the endpoint calls
+ * with Backend for logging in.
+ */
 
+/**
+ * A login form that contains everything required for logins, including the submit button.
+ * @param {LoginFormProps} props - {@link LoginFormProps} object
+ * @type {React.FC<LoginFormProps>}
+ */
 const LoginForm = ({ onSuccess }) => {
   const validationSchema = getLoginFormValidationSchema(); // get the validation schema from validations file
   return (
