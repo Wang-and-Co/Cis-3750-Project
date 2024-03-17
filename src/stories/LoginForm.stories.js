@@ -1,17 +1,8 @@
 import { fn } from '@storybook/test';
-import InputField from '../shared-components/form/InputField/InputField';
-import { Formik } from 'formik';
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
-import { object, string } from 'yup';
 import { ThemeProvider } from '@mui/material';
 import { theme } from '../app/themeUtils';
 import { LoginForm } from '../shared-components/form/LoginForm';
-
-let validationSchem = object({
-  name: string().required('Enter a name please'),
-  password: string().required('Enter a password'),
-});
-let initialValues = { name: '', password: '' };
 
 export default {
   title: 'FORMIK/LoginForm',
@@ -34,7 +25,7 @@ export default {
     backgroundColor: { control: 'color' },
   },
   // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
-  args: { onSubmit: fn() },
+  args: { onSuccess: fn() },
 };
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args

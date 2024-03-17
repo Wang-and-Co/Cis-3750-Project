@@ -1,14 +1,9 @@
 import { fn } from '@storybook/test';
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
-import { object, string } from 'yup';
-import { ThemeProvider, Button } from '@mui/material';
+import { ThemeProvider } from '@mui/material';
 import { theme } from '../app/themeUtils';
 import { ModalButton } from './storyUtils';
-import {
-  showLoginModal,
-  hideLoginModal,
-  LoginModal,
-} from '../shared-components/modals/LoginModal';
+import { showLoginModal } from '../shared-components/modals/LoginModal';
 import NiceModal from '@ebay/nice-modal-react';
 
 export default {

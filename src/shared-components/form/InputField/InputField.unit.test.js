@@ -1,4 +1,3 @@
-import { render } from '@testing-library/react';
 import { create } from 'react-test-renderer';
 import TestProvider from '../../../TestProvider';
 import { Form, Formik } from 'formik';

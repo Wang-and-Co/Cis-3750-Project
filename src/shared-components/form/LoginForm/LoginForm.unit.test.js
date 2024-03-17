@@ -1,9 +1,6 @@
-import { create, act } from 'react-test-renderer';
+import { create } from 'react-test-renderer';
 import TestProvider from '../../../TestProvider';
-import { Form, Formik } from 'formik';
 import LoginForm from './LoginForm';
-import { initialValues } from './utils';
-import { Button } from '@mui/material';
 
 jest.mock('./utils', () => ({
   _esModule: true,

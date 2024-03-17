@@ -1,12 +1,5 @@
 import { Clear } from '@mui/icons-material';
-import {
-  Typography,
-  Stack,
-  Button,
-  Dialog,
-  Box,
-  IconButton,
-} from '@mui/material';
+import { Typography, Dialog, Box, IconButton } from '@mui/material';
 const style = {
   top: '50%',
   left: '50%',
