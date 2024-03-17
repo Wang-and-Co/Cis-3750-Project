@@ -8,6 +8,7 @@ exports[`Generic Modal renders correctly 1`] = `
 >
   <div
     className="MuiFormControl-root MuiTextField-root css-1u6ro6r-MuiFormControl-root-MuiTextField-root"
+    onKeyDown={[Function]}
   >
     <label
       className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-filled MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-filled css-e4w4as-MuiFormLabel-root-MuiInputLabel-root"
