@@ -1,5 +1,5 @@
 import { TextField } from '@mui/material';
-import { useField } from 'formik';
+import { useField, useFormikContext } from 'formik';
 import PropTypes from 'prop-types';
 const InputField = ({
   name,
@@ -9,6 +9,13 @@ const InputField = ({
   variant,
   ...otherProps
 }) => {
+  const { submitForm } = useFormikContext();
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      submitForm();
+    }
+  };
   const [field, meta] = useField({ name });
   return (
     <TextField
@@ -19,6 +26,7 @@ const InputField = ({
       required={required}
       {...(variant ? { variant: variant } : {})}
       {...field}
+      onKeyDown={handleKeyDown}
       name={name}
       sx={{ minHeight: '5rem' }}
       {...otherProps}
