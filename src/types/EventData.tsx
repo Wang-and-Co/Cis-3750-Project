@@ -3,7 +3,8 @@ type EventData = {
   description: string;
   startDateTime: Date;
   endDateTime: Date;
-  location: { latitude: number; longitude: number };
+  location: string;
+  isOnline: boolean;
   attendees: { current: number; max: number };
   volunteers: { current: number; max: number };
   wellnessType: WellnessType;
