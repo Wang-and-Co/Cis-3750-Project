@@ -1,9 +1,12 @@
 import { showConfirmationModal } from '../../shared-components/modals';
 import toast from 'react-hot-toast';
 import logo from './../../logo.svg';
-import { Button } from '@mui/material';
+import { Button, Stack } from '@mui/material';
+import { useCookies } from 'react-cookie';
+import { showLoginModal } from '../../shared-components/modals/LoginModal';
 
 const SamplePage = () => {
+  const [cookies, setCookies, removeCookie] = useCookies(['auth']);
   return (
     <div className="App">
       <header className="App-header">
@@ -36,6 +39,22 @@ const SamplePage = () => {
         >
           test2
         </Button>
+        <Stack>
+          <Button
+            variant="contained"
+            onClick={() =>
+              showLoginModal({
+                onSubmit: (values) => setCookies('auth', values),
+              })
+            }
+          >
+            Login
+          </Button>
+          <Button onClick={() => removeCookie('auth')}>Logout</Button>
+        </Stack>
+        {cookies?.auth
+          ? `Logged in. Cookies have: {name: ${cookies.auth.name}, password: ${cookies.auth.password}}`
+          : 'not logged in'}
       </header>
     </div>
   );
