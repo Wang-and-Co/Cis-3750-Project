@@ -28,7 +28,7 @@ const LoginForm = ({ onSuccess }) => {
         }, 1000);
       }}
     >
-      {(props) => (
+      {(formikProps) => (
         <Form>
           <Stack spacing={1} sx={{ marginTop: '1.5rem' }}>
             <InputField
@@ -45,9 +45,9 @@ const LoginForm = ({ onSuccess }) => {
               autoComplete="current-password"
             ></InputField>
             <Button
-              onClick={props.handleSubmit}
+              onClick={formikProps.handleSubmit}
               variant="contained"
-              disabled={props.isSubmitting}
+              disabled={formikProps.isSubmitting}
             >
               Login
             </Button>
