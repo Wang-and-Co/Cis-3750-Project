@@ -1,4 +1,4 @@
-enum WellnessType {
+export enum WellnessType {
   Physical,
   Emotional,
   Social,
