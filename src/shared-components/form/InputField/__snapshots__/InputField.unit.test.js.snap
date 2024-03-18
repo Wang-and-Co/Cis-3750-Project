@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Generic Modal renders correctly 1`] = `
+<form
+  action="#"
+  onReset={[Function]}
+  onSubmit={[Function]}
+>
+  <div
+    className="MuiFormControl-root MuiTextField-root css-1u6ro6r-MuiFormControl-root-MuiTextField-root"
+    onKeyDown={[Function]}
+  >
+    <label
+      className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-filled MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-filled css-e4w4as-MuiFormLabel-root-MuiInputLabel-root"
+      data-shrink={false}
+      htmlFor="input-test"
+      id="input-test-label"
+    >
+      Hello there
+    </label>
+    <div
+      className="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root"
+      onClick={[Function]}
+    >
+      <input
+        aria-describedby="input-test-helper-text"
+        aria-invalid={false}
+        autoFocus={false}
+        className="MuiInputBase-input MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
+        disabled={false}
+        id="input-test"
+        name="test"
+        onAnimationStart={[Function]}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        required={false}
+        type="text"
+      />
+    </div>
+    <p
+      className="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained css-1wc848c-MuiFormHelperText-root"
+      id="input-test-helper-text"
+    >
+      among us
+    </p>
+  </div>
+</form>
+`;
