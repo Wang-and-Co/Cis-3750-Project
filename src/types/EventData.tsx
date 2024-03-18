@@ -18,3 +18,5 @@ type EventData = {
   cost: number;
   imageUri: string;
 };
+
+export default EventData;
