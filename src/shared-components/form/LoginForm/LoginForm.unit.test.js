@@ -11,14 +11,14 @@ jest.mock('./utils', () => ({
 }));
 
 const props = {
-  onSubmit: jest.fn(),
+  onSuccess: jest.fn(),
 };
 
 let loginFormRenderer;
 let loginFormInstance;
 
 beforeEach(async () => {
-  await renderGenericModal(props);
+  await renderLoginForm(props);
 });
 
 afterEach(() => {
@@ -29,14 +29,14 @@ describe('Generic Modal', () => {
     expect(loginFormRenderer.toJSON()).toMatchSnapshot();
   });
   it('passes the correct props', () => {
-    expect(GetFormProp('onSubmit')).toBe(props.onSubmit);
+    expect(GetFormProp('onSuccess')).toBe(props.onSuccess);
   });
 });
 
 const GetFormProp = (prop) =>
   loginFormInstance.findByType(LoginForm).props[prop];
 
-const renderGenericModal = async (editorProps) => {
+const renderLoginForm = async (editorProps) => {
   loginFormRenderer = await create(
     <TestProvider>
       <LoginForm {...editorProps}></LoginForm>
