@@ -9,8 +9,9 @@ import {
 import PropTypes from 'prop-types';
 import dateFormat from 'dateformat';
 import getEventDurationString from '../../utils/getEventDurationString';
+import { CheckCircleOutline } from '@mui/icons-material';
 
-const MinimizedEventCard = ({ id, event, onClick }) => {
+const MinimizedEventCard = ({ id, event, onClick, registrationType }) => {
   const {
     title,
     description,
@@ -26,24 +27,52 @@ const MinimizedEventCard = ({ id, event, onClick }) => {
   } = event;
 
   const dateString = `${dateFormat(startDateTime, 'dd/mm/yyyy hh:mm TT')}`;
+  const registrationTypeString = {
+    Volunteer: 'Registered as Volunteer',
+    Attendee: 'Registered as Attendee',
+    Hosting: 'Hosting this event',
+  }[registrationType];
+
   return (
     <Card>
       <CardActionArea onClick={onClick}>
         <CardContent>
           <Typography
-            sx={{ lineHeight: 'normal' }}
+            sx={{ lineHeight: 'normal', fontSize: 15 }}
             variant="subtitle1"
             component="div"
           >
             {title}
           </Typography>
           <Typography
-            sx={{ marginTop: 1 }}
+            sx={{ marginTop: 1, fontSize: 12 }}
             variant="body2"
             color="text.secondary"
           >
             {`${dateString}`}
           </Typography>
+
+          <Grid container spacing={0} sx={{ marginTop: 1 }}>
+            <Grid item xs={2} sx={{ justifySelf: 'center' }}>
+              <CheckCircleOutline
+                sx={{ justifySelf: 'center' }}
+                fontSize={'small'}
+              />
+            </Grid>
+            <Grid item xs={10} sx={{ justifySelf: 'center' }}>
+              <Typography
+                sx={{
+                  textAlign: 'left',
+                  justifySelf: 'baseline',
+                  fontSize: 12,
+                }}
+                variant="body2"
+                color="text.primary"
+              >
+                {registrationTypeString}
+              </Typography>
+            </Grid>
+          </Grid>
         </CardContent>
       </CardActionArea>
     </Card>

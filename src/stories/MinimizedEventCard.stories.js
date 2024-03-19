@@ -59,6 +59,7 @@ export const Primary = {
     onClick: () => {
       alert('Lol haha cringe you are! What a 100Z3R');
     },
+    registrationType: 'Attendee',
   },
 };
 
@@ -88,5 +89,66 @@ export const ShortTitle = {
     onClick: () => {
       alert('Lol haha cringe you are! What a 100Z3R');
     },
+    registrationType: 'Attendee',
+  },
+};
+
+export const Volunteer = {
+  args: {
+    event: {
+      title: 'Short Title!',
+      description:
+        'This is the event description! Here you can learn all about the event. This is a really cool event. It is a good event. This is an event. It is a good event. It is really cool.',
+      startDateTime: Date.now(),
+      endDateTime: Date.now(),
+      location: {
+        address: 1,
+        road: 'Example Rd',
+        city: 'Guelph',
+        province: 'ON',
+        postalCode: 'A1A 1A1',
+        extraInstructions: 'Haha none',
+      },
+      isOnline: false,
+      attendees: { current: 1, max: 55 },
+      volunteers: { current: 5, max: 5 },
+      wellnessType: 'Good',
+      cost: 999,
+      imageUri: '',
+    },
+    onClick: () => {
+      alert('Lol haha cringe you are! What a 100Z3R');
+    },
+    registrationType: 'Volunteer',
+  },
+};
+
+export const Host = {
+  args: {
+    event: {
+      title: 'Short Title!',
+      description:
+        'This is the event description! Here you can learn all about the event. This is a really cool event. It is a good event. This is an event. It is a good event. It is really cool.',
+      startDateTime: Date.now(),
+      endDateTime: Date.now(),
+      location: {
+        address: 1,
+        road: 'Example Rd',
+        city: 'Guelph',
+        province: 'ON',
+        postalCode: 'A1A 1A1',
+        extraInstructions: 'Haha none',
+      },
+      isOnline: false,
+      attendees: { current: 1, max: 55 },
+      volunteers: { current: 5, max: 5 },
+      wellnessType: 'Good',
+      cost: 999,
+      imageUri: '',
+    },
+    onClick: () => {
+      alert('Lol haha cringe you are! What a 100Z3R');
+    },
+    registrationType: 'Hosting',
   },
 };
