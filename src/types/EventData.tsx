@@ -1,4 +1,4 @@
-import { WellnessType } from "./WellnessType";
+import { WellnessType } from './WellnessType';
 
 export type EventData = {
   title: string;
@@ -20,5 +20,3 @@ export type EventData = {
   cost: number;
   imageUri: string;
 };
-
-export default EventData;
