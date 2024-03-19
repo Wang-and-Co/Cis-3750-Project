@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 import logo from './../../logo.svg';
 import { Button } from '@mui/material';
 import React, { useState } from 'react';
-import EventDescription from '../../shared-components/event-display/eventDescription';
+import EventDescription from '../../shared-components/event-display/EventDescription';
 
 const SamplePage = () => {
   const [isEventDescriptionOpen, setIsEventDescriptionOpen] = useState(false);
