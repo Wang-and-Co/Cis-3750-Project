@@ -11,7 +11,12 @@ export default {
   decorators: [
     (Story) => (
       <ThemeProvider theme={theme}>
-        <Grid container spacing={2}>
+        <Grid
+          sx={{ maxWidth: '30%', backgroundColor: '#cdcdcd', padding: 5 }}
+          container
+          spacing={1}
+          direction={'column'}
+        >
           <Grid item xs={3}>
             <Story />
           </Grid>
