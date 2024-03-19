@@ -1,22 +1,18 @@
 from flask import Flask, request
-import sqlite3
-
+import EventSQL 
 app = Flask(__name__)
 
-connect = sqlite3.connect('database.db')
-
-with open('schema.sql') as f:
-    connect.executescript(f.read())
-
-cur = connect.cursor()
+db = EventSQL.Database(reset=True) 
 
 # API Routes
-@app.route('/events', methods=['GET'])
+@app.route('/events', methods=['GET', 'POST'])
 def get_events():
-    cur.execute("SELECT * FROM Events").fetchall()
+    someData = request.get_json()
+    return {'Hello' : 5}
 
 
 
-connect.close()
+
+#connect.close()
 
     
