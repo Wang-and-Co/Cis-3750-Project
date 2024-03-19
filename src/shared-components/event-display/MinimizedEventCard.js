@@ -10,6 +10,10 @@ import PropTypes from 'prop-types';
 import dateFormat from 'dateformat';
 import getEventDurationString from '../../utils/getEventDurationString';
 import { CheckCircleOutline } from '@mui/icons-material';
+import {
+  getRegistrationTypeColour,
+  getRegistrationTypeMessage,
+} from '../../types/types';
 
 const MinimizedEventCard = ({ id, event, onClick, registrationType }) => {
   const {
@@ -27,14 +31,11 @@ const MinimizedEventCard = ({ id, event, onClick, registrationType }) => {
   } = event;
 
   const dateString = `${dateFormat(startDateTime, 'dd/mm/yyyy hh:mm TT')}`;
-  const registrationTypeString = {
-    Volunteer: 'Registered as Volunteer',
-    Attendee: 'Registered as Attendee',
-    Hosting: 'Hosting this event',
-  }[registrationType];
+  const registrationTypeString = getRegistrationTypeMessage(registrationType);
+  const backgroundColour = getRegistrationTypeColour(registrationType);
 
   return (
-    <Card>
+    <Card sx={{ backgroundColor: backgroundColour }}>
       <CardActionArea onClick={onClick}>
         <CardContent>
           <Typography
