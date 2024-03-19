@@ -8,24 +8,30 @@ import {
 } from '@mui/material';
 import PropTypes from 'prop-types';
 import dateFormat from 'dateformat';
+import getEventDurationString from '../../utils/getEventDurationString';
 
-const GetEventDurationString = (start, end) => {
-  let duration = (end - start) / 1000;
-
-  let hours = duration / 3600;
-
-  return `${hours} hours`;
-};
-const EventCard = ({ event, onClick }) => {
-  const locationString = event.isOnline
+const EventCard = ({ id, event, onClick }) => {
+  const {
+    title,
+    description,
+    startDateTime,
+    endDateTime,
+    location,
+    isOnline,
+    attendees,
+    volunteers,
+    wellnessType,
+    cost,
+    imageUri,
+  } = event;
+  const locationString = isOnline
     ? 'Online'
-    : `${event.location.address} ${event.location.road}, ${event.location.city} ${event.location.province}, ${event.location.postalCode}`;
+    : `${location.address} ${location.road}, ${location.city} ${location.province}, ${location.postalCode}`;
 
-  const dateString = `${dateFormat(event.startDateTime, 'dd/mm/yyyy hh:mm TT')}`;
-  const lengthString = GetEventDurationString(
-    event.startDateTime,
-    event.endDateTime,
-  );
+  const dateString = `${dateFormat(startDateTime, 'dd/mm/yyyy hh:mm TT')}`;
+  const lengthString = getEventDurationString(startDateTime, endDateTime);
+
+  const maxDescriptionLength = 70;
 
   return (
     <Card>
@@ -34,14 +40,13 @@ const EventCard = ({ event, onClick }) => {
           component="img"
           height="140"
           image={
-            event.imageUri != ''
-              ? event.imageUri
-              : 'https://i0.wp.com/voyagecomics.com/wp-content/uploads/2021/10/smaug_dragon.webp?fit=1782%2C937&ssl=1'
+            imageUri ??
+            'https://i0.wp.com/voyagecomics.com/wp-content/uploads/2021/10/smaug_dragon.webp?fit=1782%2C937&ssl=1'
           }
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {event.title}
+            {title}
           </Typography>
           <Typography variant="subtitle2" color="text.primary">
             {`${dateString}, ${lengthString}`}
@@ -49,8 +54,7 @@ const EventCard = ({ event, onClick }) => {
           <Typography variant="subtitle2" color="text.primary">
             {locationString}
           </Typography>
-          {event.location.extraInstructions &&
-          event.location.extraInstructions.length > 0 ? (
+          {location?.extraInstructions && (
             <Typography
               sx={{
                 marginTop: 0,
@@ -60,26 +64,26 @@ const EventCard = ({ event, onClick }) => {
               }}
               color="text.primary"
             >
-              {`Extra Directions: ${event.location.extraInstructions}`}
+              {`Extra Directions: ${location.extraInstructions}`}
             </Typography>
-          ) : (
-            ''
           )}
           <Typography variant="body2" color="text.secondary">
-            {event.description}
+            {description.length > maxDescriptionLength
+              ? description.slice(0, maxDescriptionLength) + '...'
+              : description}
           </Typography>
           <Typography variant="body2" color="text.primary">
-            Cost to attend: ${event.cost}
+            Cost to attend: ${cost}
           </Typography>
           <Grid container spacing={3}>
             <Grid item xs={6}>
               <Typography variant="body2" color="text.primary">
-                Attendees: {event.attendees.current} / {event.attendees.max}
+                Attendees: {attendees.current} / {attendees.max}
               </Typography>
             </Grid>
             <Grid item xs={6}>
               <Typography variant="body2" color="text.primary">
-                Volunteers: {event.volunteers.current} / {event.volunteers.max}
+                Volunteers: {volunteers.current} / {volunteers.max}
               </Typography>
             </Grid>
           </Grid>

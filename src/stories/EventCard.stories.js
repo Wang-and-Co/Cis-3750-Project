@@ -64,6 +64,7 @@ export const Primary = {
 
 export const NoExtraDirections = {
   args: {
+    id: 1,
     event: {
       title: 'Test Event',
       description:

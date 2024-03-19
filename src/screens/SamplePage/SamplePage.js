@@ -6,10 +6,10 @@ import React, { useState } from 'react';
 import EventDescription from '../../shared-components/event-display/eventDescription';
 
 const SamplePage = () => {
-  const [open, setOpen] = useState(false);
+  const [isEventDescriptionOpen, setEventDescriptionOpen] = useState(false);
 
   const handleOpenDrawer = () => {
-    setOpen(true);
+    setEventDescriptionOpen(true);
   };
 
   return (
@@ -45,14 +45,14 @@ const SamplePage = () => {
           test2
         </Button>
         <Button variant="contained" onClick={handleOpenDrawer}>
-        Open Drawer
-      </Button>
-      <EventDescription
-        open={open}
-        setOpen={setOpen}
-        title="Test Event Title"
-        description="This is a test event description."
-      />
+          Open Drawer
+        </Button>
+        <EventDescription
+          open={isEventDescriptionOpen}
+          setOpen={setEventDescriptionOpen}
+          title="Test Event Title"
+          description="This is a test event description."
+        />
       </header>
     </div>
   );
