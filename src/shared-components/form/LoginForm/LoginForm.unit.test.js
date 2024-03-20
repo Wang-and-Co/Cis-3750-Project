@@ -5,7 +5,7 @@ import LoginForm from './LoginForm';
 jest.mock('./utils', () => ({
   _esModule: true,
   initialValues: {
-    name: 'test',
+    email: 'test@test.com',
     password: 'this',
   },
 }));

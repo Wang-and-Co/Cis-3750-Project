@@ -1,4 +1,6 @@
-type EventData = {
+import { WellnessType } from './WellnessType';
+
+export type EventData = {
   title: string;
   description: string;
   startDateTime: Date;
