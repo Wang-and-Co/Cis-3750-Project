@@ -5,10 +5,11 @@ import { forwardRef } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import { CalendarMonth } from '@mui/icons-material';
 import { isNaN } from 'formik';
+
+// We need to make a forward ref to use this input within the date picker component
 //https://stackoverflow.com/questions/74499549/time-is-set-automatically-if-selecting-date-in-react-datepicker
-const ExampleCustomInput = forwardRef(
+const InnerMUIInputField = forwardRef(
   ({ value, name, onKeyDown, onClick, onFocus, ...otherProps }, ref) => {
-    console.log(value);
     return (
       <TextField
         value={value}
@@ -28,12 +29,10 @@ const ExampleCustomInput = forwardRef(
     );
   },
 );
-ExampleCustomInput.displayName = 'test';
+InnerMUIInputField.displayName = 'test';
+
 const DatePickerField = ({ name, label, helperText, variant, ...props }) => {
   const [field, meta, helpers] = useField(name);
-  const consoleDebug = (value) => {
-    console.log(value);
-  };
 
   return (
     <DatePicker
@@ -41,7 +40,7 @@ const DatePickerField = ({ name, label, helperText, variant, ...props }) => {
       value={field.value ? field.value.toString() : undefined}
       {...field}
       variant={'filled'}
-      onSelect={consoleDebug}
+      onSelect={() => {}}
       {...props}
       name={{
         label: label,
@@ -51,7 +50,7 @@ const DatePickerField = ({ name, label, helperText, variant, ...props }) => {
         variant: variant,
       }}
       placeholderText="mm/dd/yyyy"
-      customInput={<ExampleCustomInput />}
+      customInput={<InnerMUIInputField />}
       onChange={(newDate) => helpers.setValue(newDate, true)}
       // onChangeRaw={field.onChange}
     ></DatePicker>
