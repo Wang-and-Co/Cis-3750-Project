@@ -1,15 +1,18 @@
-import { fn } from '@storybook/test';
-import InputField from '../shared-components/form/InputField/InputField';
 import { Formik } from 'formik';
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
-import { object, string } from 'yup';
+import * as yup from 'yup';
 import { ThemeProvider } from '@mui/material';
 import { theme } from '../app/themeUtils';
 import NumberField from '../shared-components/form/MaskedInputField/NumberField';
 
-let validationSchem = object({
-  name: string().required('Enter a name please'),
-  password: string().required('Enter a password'),
+let validationSchem = yup.object({
+  name: yup.string().required('Enter a name please'),
+  password: yup.string().required('Enter a password'),
+  age: yup
+    .number()
+    .required('Enter an age')
+    .min(0, 'Age cannot be negative!')
+    .integer('Must be an integer.'),
 });
 let initialValues = { name: '', password: '' };
 
@@ -42,15 +45,12 @@ export default {
     },
   },
   // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
-  args: { onClick: fn() },
+  args: { maxLength: 80, name: 'age', label: 'Number', type: 'text' },
 };
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Primary = {
   args: {
-    name: 'name',
-    label: 'Name',
-    type: 'text',
     variant: undefined,
     required: true,
   },
@@ -58,9 +58,6 @@ export const Primary = {
 
 export const Filled = {
   args: {
-    name: 'name',
-    label: 'Name',
-    type: 'text',
     variant: 'filled',
     required: true,
   },
@@ -68,9 +65,6 @@ export const Filled = {
 
 export const Standard = {
   args: {
-    name: 'name',
-    label: 'Name',
-    type: 'text',
     variant: 'standard',
     required: true,
   },
