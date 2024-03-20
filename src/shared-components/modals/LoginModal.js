@@ -25,7 +25,9 @@ const LoginModal = ({ onSubmit, ...otherProps }) => {
       toast(getResponseStatus(status));
       return;
     }
-    return { ...data };
+    console.log(data);
+    otherProps.onClose();
+    onSubmit(data);
   };
 
   const loginBody = (

@@ -62,7 +62,7 @@ const SamplePage = () => {
           <Button onClick={() => removeCookie('auth')}>Logout</Button>
         </Stack>
         {cookies?.auth
-          ? `Logged in. Cookies have: {name: ${cookies.auth.name}, password: ${cookies.auth.password}}`
+          ? `Logged in. Cookies have: {email: ${cookies.auth.email}, password: ${cookies.auth.password}}`
           : 'not logged in'}
         <Button
           onClick={() => {
