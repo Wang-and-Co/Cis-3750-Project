@@ -12,19 +12,21 @@ class Database():
         connect = sqlite3.connect('database.db')
         cursor = connect.cursor()
         # If we can figure out a method to use the schema.sql, we can replace it here, otherwise we will follow previous style
-        cursor.execute(""" CREATE TABLE IF NOT EXISTS Events 
-                    ( ID                INTEGER     NOT NULL,
+        cursor.execute(""" CREATE TABLE IF NOT EXISTS Events (
+                      ID                INTEGER     PRIMARY KEY     AUTOINCREMENT,
                       CREATED           TIMESTAMP   NOT NULL        DEFAULT CURRENT_TIMESTAMP,
                       TITLE             TEXT        NOT NULL,
-                      START_TIME        INTEGER     NOT NULL,
-                      END_TIME          INTEGER     NOT NULL,
+                      START_TIME        TEXT        NOT NULL,
+                      END_TIME          TEXT        NOT NULL,
                       LOCATION          TEXT        NOT NULL,
                       DESCRIPTION       TEXT        NOT NULL,
                       MAX_ATTENDEES     INTEGER     NOT NULL,
                       MAX_VOLUNTEERS    INTEGER,
                       COST              INTEGER,
-                      IMAGE             BLOB,
-                      PRIMARY KEY       (ID) );""")
+                      IMAGE             BLOB );""")
+        
+        connect.commit()
+        connect.close()
         
     def get_events(self):
         connect = sqlite3.connect('database.db')
@@ -49,7 +51,6 @@ class Database():
     
         connect.commit()
         connect.close()
-        return
         
     
 
