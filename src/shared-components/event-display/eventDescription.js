@@ -1,8 +1,33 @@
-import {Button, Drawer, IconButton, iconButton, Typography } from '@mui/material';
+import {Button, CardMedia, Grid, Drawer, IconButton, iconButton, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import React from 'react';
+import PropTypes from 'prop-types';
+import getEventDurationString from '../../utils/getEventDurationString';
+import dateFormat from 'dateformat';
 
-const EventDescription = ({ open, setOpen, title, description }) => {
+const EventDescription = ({ open, setOpen, event }) => {
+
+  const {
+    title,
+    description,
+    startDateTime,
+    endDateTime,
+    location,
+    isOnline,
+    attendees,
+    volunteers,
+    wellnessType,
+    cost,
+    imageUri,
+  } = event;
+
+  const locationString = isOnline
+    ? 'Online'
+    : `${location.address} ${location.road}, ${location.city} ${location.province}, ${location.postalCode}`;
+
+  const dateString = `${dateFormat(startDateTime, 'dd/mm/yyyy hh:mm TT')}`;
+  const lengthString = getEventDurationString(startDateTime, endDateTime);
+
   const styling = {
     myEventsWidth: 480,
     topBarHeight: '64px',
@@ -30,22 +55,87 @@ const EventDescription = ({ open, setOpen, title, description }) => {
         open={open}
       >
         <div style={{ padding: '1rem'}}>
-          <div style={{ display: 'flex', justifyContent: 'flex-end', paddingRight: '8px' }}>
-
-            <IconButton onClick={handleDrawerClose}>
+          <div style={{ position: 'relative'}}>
+            <IconButton
+              onClick={handleDrawerClose}
+              style={{ position: 'absolute', top: '8px', right: '8px', backgroundColor: 'rgba(255, 255, 255, 0.5)' }}
+            >
               <CloseIcon />
             </IconButton>
+            <CardMedia
+              component="img"
+              height="200"
+              image={
+                imageUri ??
+                'https://i0.wp.com/voyagecomics.com/wp-content/uploads/2021/10/smaug_dragon.webp?fit=1782%2C937&ssl=1'
+              }
+              style={{ width: '100%' }}
+            />
           </div>
-          <Typography variant="h2" sx={{ padding: '10px' }}>
+          <Typography gutterBottom variant="h3" component="div">
             {title}
           </Typography>
-          <Typography variant="body1" sx={{ marginLeft: '10px' }}>
+          <Typography variant="subtitle1" color="text.primary">
+            {`${dateString}, ${lengthString}`}
+          </Typography>
+          <Typography variant="subtitle1" color="text.primary">
+            {locationString}
+          </Typography>
+          {location?.extraInstructions && (
+            <Typography
+              variant="subtitle1"
+              color="text.primary"
+            >
+              {`Extra Directions: ${location.extraInstructions}`}
+            </Typography>
+          )}
+          <Typography variant="body1" color="text.primary" sx={{ marginTop: '16px' }}>
+            Cost to attend: ${cost}
+          </Typography>
+          <Typography variant="body1" color="text.primary">
+            Attendees: {attendees.current} / {attendees.max}
+          </Typography>
+          <Typography variant="body1" color="text.primary">
+            Volunteers: {volunteers.current} / {volunteers.max}
+          </Typography>
+          <Typography variant="body1" color="text.primary" sx={{ marginTop: '16px' }}>
             {description}
           </Typography>
         </div>
       </Drawer>
     </div>
   );
+};
+
+EventDescription.propTypes = {
+  open: PropTypes.bool,
+  setOpen: PropTypes.func,
+  event: PropTypes.exact({
+    title: PropTypes.string,
+    description: PropTypes.string,
+    startDateTime: PropTypes.Date,
+    endDateTime: PropTypes.Date,
+    location: {
+      address: PropTypes.number,
+      road: PropTypes.string,
+      city: PropTypes.string,
+      province: PropTypes.string,
+      postalCode: PropTypes.string,
+      extraInstructions: PropTypes.string,
+    },
+    isOnline: PropTypes.bool,
+    attendees: PropTypes.exact({
+      current: PropTypes.number,
+      max: PropTypes.number,
+    }),
+    volunteers: PropTypes.exact({
+      current: PropTypes.number,
+      max: PropTypes.number,
+    }),
+    wellnessType: PropTypes.string,
+    cost: PropTypes.number,
+    imageUri: PropTypes.string,
+  }),
 };
 
 export default EventDescription;
