@@ -1,8 +1,7 @@
 import { create } from 'react-test-renderer';
 import TestProvider from '../../../TestProvider';
 import { Form, Formik } from 'formik';
-import InputField from './InputField';
-
+import NumberField from './NumberField';
 const props = {
   name: 'test',
   label: 'Hello there',
@@ -21,7 +20,7 @@ beforeEach(async () => {
 afterEach(() => {
   inputFieldRenderer.unmount();
 });
-describe('InputField', () => {
+describe('NumberField', () => {
   it('renders correctly', () => {
     expect(inputFieldRenderer.toJSON()).toMatchSnapshot();
   });
@@ -35,14 +34,14 @@ describe('InputField', () => {
 });
 
 const GetInputProp = (prop) =>
-  inputFieldInstance.findByType(InputField).props[prop];
+  inputFieldInstance.findByType(NumberField).props[prop];
 
 const renderGenericModal = async (editorProps) => {
   inputFieldRenderer = await create(
     <TestProvider>
       <Formik>
         <Form>
-          <InputField {...editorProps}></InputField>
+          <NumberField {...editorProps}></NumberField>
         </Form>
       </Formik>
     </TestProvider>,
