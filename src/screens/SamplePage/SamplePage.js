@@ -2,8 +2,16 @@ import { showConfirmationModal } from '../../shared-components/modals';
 import toast from 'react-hot-toast';
 import logo from './../../logo.svg';
 import { Button } from '@mui/material';
+import React, { useState } from 'react';
+import EventDescription from '../../shared-components/event-display/EventDescription';
 
 const SamplePage = () => {
+  const [isEventDescriptionOpen, setIsEventDescriptionOpen] = useState(false);
+
+  const handleOpenDrawer = () => {
+    setIsEventDescriptionOpen(true);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -36,6 +44,15 @@ const SamplePage = () => {
         >
           test2
         </Button>
+        <Button variant="contained" onClick={handleOpenDrawer}>
+          Open Drawer
+        </Button>
+        <EventDescription
+          open={isEventDescriptionOpen}
+          setOpen={setIsEventDescriptionOpen}
+          title="Test Event Title"
+          description="This is a test event description."
+        />
       </header>
     </div>
   );
