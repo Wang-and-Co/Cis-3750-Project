@@ -15,16 +15,16 @@ class Database():
         cursor.execute(""" CREATE TABLE IF NOT EXISTS Events (
                       EVENT_ID          INTEGER     PRIMARY KEY     AUTOINCREMENT,
                       TITLE             TEXT        NOT NULL,
-                      START_TIME        TEXT        NOT NULL,
-                      END_TIME          TEXT        NOT NULL,
+                      START_TIME        INTEGER     NOT NULL,
+                      END_TIME          INTEGER     NOT NULL,
                       LOCATION          TEXT        NOT NULL,
                       DESCRIPTION       TEXT        NOT NULL,
                       MAX_ATTENDEES     INTEGER     NOT NULL,
-                      MAX_VOLUNTEERS    INTEGER
-                      WELLNESS_TYPE     TEXT
+                      MAX_VOLUNTEERS    INTEGER,
+                      WELLNESS_TYPE     TEXT,
                       ISONLINE          BOOLEAN     NOT NULL,
                       ORGANIZER_ID      INTEGER     NOT NULL,
-                      COST              INTEGER
+                      COST              INTEGER,
                       IMAGE             TEXT );""")
         
 
