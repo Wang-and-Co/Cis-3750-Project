@@ -68,19 +68,6 @@ const EventCard = ({ id, event, onClick }) => {
           <Typography variant="subtitle2" color="text.primary">
             {locationString}
           </Typography>
-          {location?.extraInstructions && (
-            <Typography
-              sx={{
-                marginTop: 0,
-                paddingTop: 0,
-                fontSize: 12,
-                fontStyle: 'italic',
-              }}
-              color="text.primary"
-            >
-              {`Extra Directions: ${location.extraInstructions}`}
-            </Typography>
-          )}
           <Typography variant="body2" color="text.secondary">
             {description.length > maxDescriptionLength
               ? description.slice(0, maxDescriptionLength) + '...'
