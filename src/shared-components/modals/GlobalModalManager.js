@@ -3,7 +3,7 @@ const ModalWrapper = (ModalComponent) => {
   const ModalizedComponent = (props) => {
     const { visible, hide } = useModal();
     return (
-      <ModalComponent onClose={hide} open={visible} {...props}></ModalComponent>
+      <ModalComponent {...props} onClose={hide} open={visible}></ModalComponent>
     );
   };
   return NiceModal.create((props) => (

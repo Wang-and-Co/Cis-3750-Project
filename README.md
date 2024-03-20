@@ -19,6 +19,33 @@ yarn
 
 This should install all modules, and should take a few minutes.
 
+## How to enter the virtual environment for the back-end
+
+```
+cd backend
+```
+
+If the venv folder does not already exist, run the following command 
+```
+python -m venv venv
+```
+
+then run
+```
+venv\Scripts\activate
+```
+
+From here, ensure to install Flask and python-dotenv
+```
+pip install flask python-dotenv
+```
+
+Now you can finally run the program with the following command
+```
+yarn start-server
+```
+
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -30,6 +57,13 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
+
+### `yarn start-server`
+
+Runs the backend Flask server in development mode.\
+Open [http://localhost:5000](http://localhost:5000) to view it in your browser. 
+
+Make sure to run this in a seperate terminal from the frontend.
 
 ### `yarn test`
 
@@ -66,5 +100,7 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
   For rendering different paths
 - [Formik](https://formik.org/docs/overview)
   Form manager that handles errors and form submission
+- [Yup](https://github.com/jquense/yup?tab=readme-ov-file#yup)
+  Validation schemas used for formik validations
 - [React Hot Toast](https://react-hot-toast.com/docs/toaster)
   Handles toasts

@@ -1,4 +1,5 @@
-import { Typography, Stack, Button, Dialog, Box } from '@mui/material';
+import { Clear } from '@mui/icons-material';
+import { Typography, Dialog, Box, IconButton } from '@mui/material';
 const style = {
   top: '50%',
   left: '50%',
@@ -19,6 +20,7 @@ const style = {
  * @property {string} id
  * @property {function} onClose
  * @property {boolean} open
+ * @property {boolean} showExitButton
  */
 
 /**
@@ -26,20 +28,39 @@ const style = {
  * @param {GenericModalProps} props
  * @type {import('react').FC<GenericModalProps>}
  */
-const GenericModal = ({ name, title, body, id, onClose, open }) => (
+const GenericModal = ({
+  name,
+  title,
+  body,
+  onClose,
+  showExitButton,
+  id,
+  open,
+}) => (
   <Dialog name={name} open={open}>
     <Box sx={style}>
+      {showExitButton && (
+        <IconButton
+          sx={{
+            position: 'absolute',
+            display: 'block',
+            right: '1rem',
+            top: '10px',
+            height: '2.5rem',
+            width: '2.5rem',
+          }}
+          aria-label="close"
+          onClick={onClose}
+        >
+          <Clear />
+        </IconButton>
+      )}
       {title && (
         <Typography id={`modal-${id}-title`} variant="h3">
           {title}
         </Typography>
       )}
-      {body}
-      <Stack spacing={2} direction="row-reverse">
-        <Button variant="contained" onClick={onClose}>
-          Close
-        </Button>
-      </Stack>
+      <Box sx={{ marginTop: '1.5rem' }}>{body}</Box>
     </Box>
   </Dialog>
 );
