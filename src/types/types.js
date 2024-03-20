@@ -1,4 +1,4 @@
-import { WellnessType } from './WellnessType';
+// import { WellnessType } from './WellnessType';
 
 export const USER_TYPES = {
   VOLUNTEER: 'Volunteer',

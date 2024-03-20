@@ -3,7 +3,7 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import { ThemeProvider } from '@mui/material';
 import { theme } from '../app/themeUtils';
-import NumberField from '../shared-components/form/MaskedInputField/NumberField';
+import NumberField from '../shared-components/form/NumberField/NumberField';
 
 let validationSchem = yup.object({
   name: yup.string().required('Enter a name please'),
