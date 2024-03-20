@@ -23,9 +23,9 @@ class Database():
                       MAX_VOLUNTEERS    INTEGER
                       WELLNESS_TYPE     TEXT
                       ISONLINE          BOOLEAN     NOT NULL,
-                      ORGANIZED_ID      INTEGER     NOT NULL,
+                      ORGANIZER_ID      INTEGER     NOT NULL,
                       COST              INTEGER
-                      IMAGE             BLOB );""")
+                      IMAGE             TEXT );""")
         
 
         cursor.execute(""" CREATE TABLE IF NOT EXISTS EventBookings (
@@ -36,7 +36,7 @@ class Database():
 
         cursor.execute(""" CREATE TABLE IF NOT EXISTS Accounts (
                        USER_ID          INTEGER     PRIMARY KEY    AUTOINCREMENT,
-                       USERNAME         TEXT        NOT NULL,
+                       EMAIL            TEXT        NOT NULL,
                        PASSWORD         TEXT        NOT NULL, 
                        FNAME            TEXT        NOT NULL,
                        LNAME            TEXT        NOT NULL );""")
