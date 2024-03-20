@@ -4,9 +4,16 @@ import logo from './../../logo.svg';
 import { Button, Stack } from '@mui/material';
 import { useCookies } from 'react-cookie';
 import { showLoginModal } from '../../shared-components/modals/LoginModal';
+import React, { useState } from 'react';
+import EventDescription from '../../shared-components/event-display/EventDescription';
 
 const SamplePage = () => {
   const [cookies, setCookies, removeCookie] = useCookies(['auth']);
+  const [isEventDescriptionOpen, setIsEventDescriptionOpen] = useState(false);
+
+  const handleOpenDrawer = () => {
+    setIsEventDescriptionOpen(true);
+  };
   return (
     <div className="App">
       <header className="App-header">
@@ -55,6 +62,15 @@ const SamplePage = () => {
         {cookies?.auth
           ? `Logged in. Cookies have: {name: ${cookies.auth.name}, password: ${cookies.auth.password}}`
           : 'not logged in'}
+        <Button variant="contained" onClick={handleOpenDrawer}>
+          Open Drawer
+        </Button>
+        <EventDescription
+          open={isEventDescriptionOpen}
+          setOpen={setIsEventDescriptionOpen}
+          title="Test Event Title"
+          description="This is a test event description."
+        />
       </header>
     </div>
   );
