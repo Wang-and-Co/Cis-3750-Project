@@ -19,6 +19,33 @@ yarn
 
 This should install all modules, and should take a few minutes.
 
+## How to enter the virtual environment for the back-end
+
+```
+cd backend
+```
+
+If the venv folder does not already exist, run the following command 
+```
+python -m venv venv
+```
+
+then run
+```
+venv\Scripts\activate
+```
+
+From here, ensure to install Flask and python-dotenv
+```
+pip install flask python-dotenv
+```
+
+Now you can finally run the program with the following command
+```
+yarn start-server
+```
+
+
 ## Available Scripts
 
 In the project directory, you can run:
