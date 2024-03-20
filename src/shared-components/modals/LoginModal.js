@@ -6,9 +6,13 @@ import { GetModalUtils } from './GlobalModalManager';
 import { createAccount, login } from '../../app/api/accounts';
 import toast from 'react-hot-toast';
 import { getResponseStatus } from '../../app/api/statusTypes';
+import useAsyncResponse from '../axios/useAsyncResponse';
 
 const LoginModal = ({ onSubmit, ...otherProps }) => {
   const [modalState, setModalState] = useState('Login');
+  const { callAsyncFunctionPromise, isLoading } = useAsyncResponse(
+    modalState === 'Login' ? login : createAccount,
+  );
 
   const submissionHandler = async (values, actions) => {
     const { verifyPassword, ...formValues } = values;
@@ -18,8 +22,7 @@ const LoginModal = ({ onSubmit, ...otherProps }) => {
       return;
     }
 
-    const apiCall = modalState === 'Login' ? login : createAccount;
-    const { data, status } = await apiCall(formValues);
+    const { data, status } = await callAsyncFunctionPromise(formValues);
     actions.setSubmitting(false);
     if (status !== 200) {
       toast(getResponseStatus(status));
@@ -29,17 +32,13 @@ const LoginModal = ({ onSubmit, ...otherProps }) => {
     otherProps.onClose();
     onSubmit(data);
   };
+  useAsyncResponse(
+    modalState === 'Login' ? login : createAccount,
+    submissionHandler,
+  );
 
   const loginBody = (
     <LoginForm
-      onSuccess={async (values) => {
-        // console.log(values);
-        //login here
-        await onSubmit(values);
-        // console.log('closing');
-        otherProps.onClose();
-        return;
-      }}
       handleSubmit={submissionHandler}
       footerOnClick={() => {
         setModalState('Sign up');
@@ -49,11 +48,6 @@ const LoginModal = ({ onSubmit, ...otherProps }) => {
 
   const signupBody = (
     <SignupForm
-      onSuccess={async (values) => {
-        await onSubmit(values);
-        otherProps.onClose();
-        return;
-      }}
       handleSubmit={submissionHandler}
       footerOnClick={() => {
         setModalState('Login');
@@ -66,6 +60,7 @@ const LoginModal = ({ onSubmit, ...otherProps }) => {
       title={modalState}
       body={modalState === 'Login' ? loginBody : signupBody}
       showExitButton={true}
+      disabled={isLoading}
       {...otherProps}
     />
   );

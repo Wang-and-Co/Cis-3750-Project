@@ -69,7 +69,12 @@ const SignupForm = ({ handleSubmit, footerOnClick }) => {
               <Typography inline variant={'subtitle2'}>
                 Already have an account?&nbsp;
               </Typography>
-              <Link inline variant={'subtitle2'} onClick={footerOnClick}>
+              <Link
+                inline
+                variant={'subtitle2'}
+                onClick={footerOnClick}
+                disabled={formikProps.isSubmitting}
+              >
                 Sign in
               </Link>
             </div>

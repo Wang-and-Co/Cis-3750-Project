@@ -51,7 +51,12 @@ const LoginForm = ({ onSuccess, handleSubmit, footerOnClick }) => {
               <Typography inline variant={'subtitle2'}>
                 First time here?&nbsp;
               </Typography>
-              <Link inline variant={'subtitle2'} onClick={footerOnClick}>
+              <Link
+                inline
+                variant={'subtitle2'}
+                onClick={footerOnClick}
+                disabled={formikProps.isSubmitting}
+              >
                 Sign up
               </Link>
             </div>
