@@ -4,10 +4,11 @@ import { IconButton, InputAdornment, TextField } from '@mui/material';
 import { forwardRef } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import { CalendarMonth } from '@mui/icons-material';
-
+import { isNaN } from 'formik';
+//https://stackoverflow.com/questions/74499549/time-is-set-automatically-if-selecting-date-in-react-datepicker
 const ExampleCustomInput = forwardRef(
   ({ value, name, onKeyDown, onClick, onFocus, ...otherProps }, ref) => {
-    console.log(otherProps);
+    console.log(value);
     return (
       <TextField
         value={value}
@@ -33,9 +34,11 @@ const DatePickerField = ({ name, label, helperText, variant, ...props }) => {
   const consoleDebug = (value) => {
     console.log(value);
   };
+
   return (
     <DatePicker
-      selected={field.value}
+      selected={field.value ? new Date(field.value) : null}
+      value={field.value ? field.value.toString() : undefined}
       {...field}
       variant={'filled'}
       onSelect={consoleDebug}
@@ -47,10 +50,10 @@ const DatePickerField = ({ name, label, helperText, variant, ...props }) => {
         error: !!meta.error && meta.touched,
         variant: variant,
       }}
-      placeholder={helperText}
-      title={label}
+      placeholderText="mm/dd/yyyy"
       customInput={<ExampleCustomInput />}
       onChange={(newDate) => helpers.setValue(newDate, true)}
+      // onChangeRaw={field.onChange}
     ></DatePicker>
   );
 };

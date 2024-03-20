@@ -11,7 +11,8 @@ let validationSchem = yup.object({
   startDate: yup
     .date('must be date')
     .required('AUGNHHHH GRRR')
-    .min(new Date(), 'Date cannot start before today'),
+    .min(new Date(), 'Date cannot start before today')
+    .max('01/01/2025', 'Cannot be too far in the future'),
 });
 let initialValues = { name: '', password: '', startDate: '' };
 
