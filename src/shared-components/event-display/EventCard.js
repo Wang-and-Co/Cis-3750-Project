@@ -17,6 +17,8 @@ import {
 
 const EventCard = ({ id, event, onClick }) => {
   const {
+    eventID,
+    organizerID,
     title,
     description,
     startDateTime,
@@ -43,7 +45,11 @@ const EventCard = ({ id, event, onClick }) => {
 
   return (
     <Card id={id}>
-      <CardActionArea onClick={onClick}>
+      <CardActionArea
+        onClick={() => {
+          onClick(event);
+        }}
+      >
         <CardMedia
           component="img"
           height="140"
@@ -114,6 +120,8 @@ const EventCard = ({ id, event, onClick }) => {
 
 EventCard.propTypes = {
   event: PropTypes.exact({
+    eventID: PropTypes.number,
+    organizerID: PropTypes.number,
     title: PropTypes.string,
     description: PropTypes.string,
     startDateTime: PropTypes.Date,

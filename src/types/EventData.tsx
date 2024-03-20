@@ -1,4 +1,6 @@
 export type EventData = {
+  eventID: number;
+  organizerID: number;
   title: string;
   description: string;
   startDateTime: Date;
@@ -17,4 +19,5 @@ export type EventData = {
   wellnessType: string;
   cost: number;
   imageUri: string;
+  registrationType: string;
 };

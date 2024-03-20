@@ -36,6 +36,8 @@ export default {
 export const Primary = {
   args: {
     event: {
+      eventID: 1,
+      organizerID: 0,
       title: 'Test Event',
       description:
         'This is the event description! Here you can learn all about the event. This is a really cool event. It is a good event. This is an event. It is a good event. It is really cool.',
@@ -57,7 +59,7 @@ export const Primary = {
       imageUri:
         'https://i0.wp.com/voyagecomics.com/wp-content/uploads/2021/10/smaug_dragon.webp?fit=1782%2C937&ssl=1',
     },
-    onClick: () => {
+    onClick: (eventData) => {
       alert('Lol haha cringe you are! What a 100Z3R');
     },
   },
@@ -67,6 +69,8 @@ export const NoExtraDirections = {
   args: {
     id: 1,
     event: {
+      eventID: 1,
+      organizerID: 0,
       title: 'Test Event',
       description:
         'This is the event description! Here you can learn all about the event. This is a really cool event. It is a good event. This is an event. It is a good event. It is really cool.',
@@ -88,7 +92,7 @@ export const NoExtraDirections = {
       imageUri: '',
       registrationType: 'None',
     },
-    onClick: () => {
+    onClick: (eventData) => {
       alert('Lol haha cringe you are! What a 100Z3R');
     },
   },
@@ -97,6 +101,8 @@ export const NoExtraDirections = {
 export const Attendee = {
   args: {
     event: {
+      eventID: 1,
+      organizerID: 0,
       title: 'Test Event',
       description:
         'This is the event description! Here you can learn all about the event. This is a really cool event. It is a good event. This is an event. It is a good event. It is really cool.',
@@ -119,7 +125,7 @@ export const Attendee = {
         'https://i0.wp.com/voyagecomics.com/wp-content/uploads/2021/10/smaug_dragon.webp?fit=1782%2C937&ssl=1',
       registrationType: 'Attendee',
     },
-    onClick: () => {
+    onClick: (eventData) => {
       alert('Lol haha cringe you are! What a 100Z3R');
     },
   },
@@ -128,6 +134,8 @@ export const Attendee = {
 export const Volunteer = {
   args: {
     event: {
+      eventID: 1,
+      organizerID: 0,
       title: 'Test Event',
       description:
         'This is the event description! Here you can learn all about the event. This is a really cool event. It is a good event. This is an event. It is a good event. It is really cool.',
@@ -150,7 +158,7 @@ export const Volunteer = {
         'https://i0.wp.com/voyagecomics.com/wp-content/uploads/2021/10/smaug_dragon.webp?fit=1782%2C937&ssl=1',
       registrationType: 'Volunteer',
     },
-    onClick: () => {
+    onClick: (eventData) => {
       alert('Lol haha cringe you are! What a 100Z3R');
     },
   },
@@ -159,6 +167,8 @@ export const Volunteer = {
 export const Host = {
   args: {
     event: {
+      eventID: 1,
+      organizerID: 0,
       title: 'Test Event',
       description:
         'This is the event description! Here you can learn all about the event. This is a really cool event. It is a good event. This is an event. It is a good event. It is really cool.',
@@ -181,7 +191,7 @@ export const Host = {
         'https://i0.wp.com/voyagecomics.com/wp-content/uploads/2021/10/smaug_dragon.webp?fit=1782%2C937&ssl=1',
       registrationType: 'Host',
     },
-    onClick: () => {
+    onClick: (eventData) => {
       alert('Lol haha cringe you are! What a 100Z3R');
     },
   },

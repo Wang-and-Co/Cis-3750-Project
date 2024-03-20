@@ -4,6 +4,7 @@ import { fn } from '@storybook/test';
 import { theme } from '../app/themeUtils';
 import { ThemeProvider } from '@emotion/react';
 import { Grid } from '@mui/material';
+import * as sampleEvents from './sampleEvents';
 
 export default {
   title: 'Events/MinimizedEventCard',
@@ -41,6 +42,8 @@ export default {
 export const Primary = {
   args: {
     event: {
+      eventID: 1,
+      organizerID: 0,
       title: 'Test Event - With a longer title - That you can use - Very cool!',
       description:
         'This is the event description! Here you can learn all about the event. This is a really cool event. It is a good event. This is an event. It is a good event. It is really cool.',
@@ -62,7 +65,7 @@ export const Primary = {
       imageUri: '',
       registrationType: 'Attendee',
     },
-    onClick: () => {
+    onClick: (eventData) => {
       alert('Lol haha cringe you are! What a 100Z3R');
     },
   },
@@ -71,6 +74,8 @@ export const Primary = {
 export const ShortTitle = {
   args: {
     event: {
+      eventID: 1,
+      organizerID: 0,
       title: 'Short Title!',
       description:
         'This is the event description! Here you can learn all about the event. This is a really cool event. It is a good event. This is an event. It is a good event. It is really cool.',
@@ -92,7 +97,7 @@ export const ShortTitle = {
       imageUri: '',
       registrationType: 'Attendee',
     },
-    onClick: () => {
+    onClick: (eventData) => {
       alert('Lol haha cringe you are! What a 100Z3R');
     },
   },
@@ -101,6 +106,8 @@ export const ShortTitle = {
 export const Volunteer = {
   args: {
     event: {
+      eventID: 1,
+      organizerID: 0,
       title: 'Short Title!',
       description:
         'This is the event description! Here you can learn all about the event. This is a really cool event. It is a good event. This is an event. It is a good event. It is really cool.',
@@ -122,7 +129,7 @@ export const Volunteer = {
       imageUri: '',
       registrationType: 'Volunteer',
     },
-    onClick: () => {
+    onClick: (eventData) => {
       alert('Lol haha cringe you are! What a 100Z3R');
     },
   },
@@ -130,29 +137,8 @@ export const Volunteer = {
 
 export const Host = {
   args: {
-    event: {
-      title: 'Short Title!',
-      description:
-        'This is the event description! Here you can learn all about the event. This is a really cool event. It is a good event. This is an event. It is a good event. It is really cool.',
-      startDateTime: Date.now(),
-      endDateTime: Date.now(),
-      location: {
-        address: 1,
-        road: 'Example Rd',
-        city: 'Guelph',
-        province: 'ON',
-        postalCode: 'A1A 1A1',
-        extraInstructions: 'Haha none',
-      },
-      isOnline: false,
-      attendees: { current: 1, max: 55 },
-      volunteers: { current: 5, max: 5 },
-      wellnessType: 'Good',
-      cost: 999,
-      imageUri: '',
-      registrationType: 'Host',
-    },
-    onClick: () => {
+    event: sampleEvents.hostingEvent,
+    onClick: (eventData) => {
       alert('Lol haha cringe you are! What a 100Z3R');
     },
   },

@@ -17,6 +17,8 @@ import {
 
 const MinimizedEventCard = ({ id, event, onClick }) => {
   const {
+    eventID,
+    organizerID,
     title,
     description,
     startDateTime,
@@ -37,7 +39,11 @@ const MinimizedEventCard = ({ id, event, onClick }) => {
 
   return (
     <Card sx={{ backgroundColor: backgroundColour }}>
-      <CardActionArea onClick={onClick}>
+      <CardActionArea
+        onClick={() => {
+          onClick(event);
+        }}
+      >
         <CardContent>
           <Typography
             sx={{ lineHeight: 'normal', fontSize: 15 }}
@@ -83,6 +89,8 @@ const MinimizedEventCard = ({ id, event, onClick }) => {
 
 MinimizedEventCard.propTypes = {
   event: PropTypes.exact({
+    eventID: PropTypes.number,
+    organizerID: PropTypes.number,
     title: PropTypes.string,
     description: PropTypes.string,
     startDateTime: PropTypes.Date,
