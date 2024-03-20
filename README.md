@@ -31,6 +31,13 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+### `yarn start-server`
+
+Runs the backend Flask server in development mode.\
+Open [http://localhost:5000](http://localhost:5000) to view it in your browser. 
+
+Make sure to run this in a seperate terminal from the frontend.
+
 ### `yarn test`
 
 Launches the test runner in the interactive watch mode.\
