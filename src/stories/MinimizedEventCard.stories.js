@@ -60,11 +60,11 @@ export const Primary = {
       wellnessType: 'Good',
       cost: 999,
       imageUri: '',
+      registrationType: 'Attendee',
     },
     onClick: () => {
       alert('Lol haha cringe you are! What a 100Z3R');
     },
-    registrationType: 'Attendee',
   },
 };
 
@@ -90,11 +90,11 @@ export const ShortTitle = {
       wellnessType: 'Good',
       cost: 999,
       imageUri: '',
+      registrationType: 'Attendee',
     },
     onClick: () => {
       alert('Lol haha cringe you are! What a 100Z3R');
     },
-    registrationType: 'Attendee',
   },
 };
 
@@ -120,11 +120,11 @@ export const Volunteer = {
       wellnessType: 'Good',
       cost: 999,
       imageUri: '',
+      registrationType: 'Volunteer',
     },
     onClick: () => {
       alert('Lol haha cringe you are! What a 100Z3R');
     },
-    registrationType: 'Volunteer',
   },
 };
 
@@ -150,10 +150,10 @@ export const Host = {
       wellnessType: 'Good',
       cost: 999,
       imageUri: '',
+      registrationType: 'Host',
     },
     onClick: () => {
       alert('Lol haha cringe you are! What a 100Z3R');
     },
-    registrationType: 'Hosting',
   },
 };

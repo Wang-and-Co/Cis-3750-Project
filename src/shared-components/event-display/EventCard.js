@@ -9,6 +9,11 @@ import {
 import PropTypes from 'prop-types';
 import dateFormat from 'dateformat';
 import getEventDurationString from '../../utils/getEventDurationString';
+import { CheckCircleOutline } from '@mui/icons-material';
+import {
+  getRegistrationTypeColour,
+  getRegistrationTypeMessage,
+} from '../../types/types';
 
 const EventCard = ({ id, event, onClick }) => {
   const {
@@ -23,6 +28,7 @@ const EventCard = ({ id, event, onClick }) => {
     wellnessType,
     cost,
     imageUri,
+    registrationType,
   } = event;
   const locationString = isOnline
     ? 'Online'
@@ -30,6 +36,8 @@ const EventCard = ({ id, event, onClick }) => {
 
   const dateString = `${dateFormat(startDateTime, 'dd/mm/yyyy hh:mm TT')}`;
   const lengthString = getEventDurationString(startDateTime, endDateTime);
+  const registrationTypeString = getRegistrationTypeMessage(registrationType);
+  const backgroundColour = getRegistrationTypeColour(registrationType);
 
   const maxDescriptionLength = 70;
 
@@ -44,7 +52,7 @@ const EventCard = ({ id, event, onClick }) => {
             'https://i0.wp.com/voyagecomics.com/wp-content/uploads/2021/10/smaug_dragon.webp?fit=1782%2C937&ssl=1'
           }
         />
-        <CardContent>
+        <CardContent sx={{ backgroundColor: backgroundColour }}>
           <Typography gutterBottom variant="h5" component="div">
             {title}
           </Typography>
@@ -72,21 +80,32 @@ const EventCard = ({ id, event, onClick }) => {
               ? description.slice(0, maxDescriptionLength) + '...'
               : description}
           </Typography>
-          <Typography variant="body2" color="text.primary">
-            Cost to attend: ${cost}
-          </Typography>
-          <Grid container spacing={3}>
-            <Grid item xs={6}>
-              <Typography variant="body2" color="text.primary">
-                Attendees: {attendees.current} / {attendees.max}
-              </Typography>
+
+          {registrationType != null && registrationType !== 'None' ? (
+            <Grid container spacing={0} sx={{ marginTop: 1 }}>
+              <Grid item xs={2} sx={{ justifySelf: 'center' }}>
+                <CheckCircleOutline
+                  sx={{ justifySelf: 'center' }}
+                  fontSize={'small'}
+                />
+              </Grid>
+              <Grid item xs={10} sx={{ justifySelf: 'center' }}>
+                <Typography
+                  sx={{
+                    textAlign: 'left',
+                    justifySelf: 'baseline',
+                    fontSize: 12,
+                  }}
+                  variant="body2"
+                  color="text.primary"
+                >
+                  {registrationTypeString}
+                </Typography>
+              </Grid>
             </Grid>
-            <Grid item xs={6}>
-              <Typography variant="body2" color="text.primary">
-                Volunteers: {volunteers.current} / {volunteers.max}
-              </Typography>
-            </Grid>
-          </Grid>
+          ) : (
+            <></>
+          )}
         </CardContent>
       </CardActionArea>
     </Card>
@@ -119,6 +138,7 @@ EventCard.propTypes = {
     wellnessType: PropTypes.string,
     cost: PropTypes.number,
     imageUri: PropTypes.string,
+    registrationType: PropTypes.string,
   }),
   onClick: PropTypes.func,
 };
