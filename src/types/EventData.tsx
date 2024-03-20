@@ -1,5 +1,3 @@
-import { WellnessType } from './WellnessType';
-
 export type EventData = {
   title: string;
   description: string;
@@ -16,7 +14,7 @@ export type EventData = {
   isOnline: boolean;
   attendees: { current: number; max: number };
   volunteers: { current: number; max: number };
-  wellnessType: WellnessType;
+  wellnessType: string;
   cost: number;
   imageUri: string;
 };
