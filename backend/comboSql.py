@@ -13,18 +13,34 @@ class Database():
         cursor = connect.cursor()
         # If we can figure out a method to use the schema.sql, we can replace it here, otherwise we will follow previous style
         cursor.execute(""" CREATE TABLE IF NOT EXISTS Events (
-                      ID                INTEGER     PRIMARY KEY     AUTOINCREMENT,
-                      CREATED           TIMESTAMP   NOT NULL        DEFAULT CURRENT_TIMESTAMP,
+                      EVENT_ID          INTEGER     PRIMARY KEY     AUTOINCREMENT,
                       TITLE             TEXT        NOT NULL,
                       START_TIME        TEXT        NOT NULL,
                       END_TIME          TEXT        NOT NULL,
                       LOCATION          TEXT        NOT NULL,
                       DESCRIPTION       TEXT        NOT NULL,
                       MAX_ATTENDEES     INTEGER     NOT NULL,
-                      MAX_VOLUNTEERS    INTEGER,
-                      COST              INTEGER,
+                      MAX_VOLUNTEERS    INTEGER
+                      WELLNESS_TYPE     TEXT
+                      ISONLINE          BOOLEAN     NOT NULL,
+                      ORGANIZED_ID      INTEGER     NOT NULL,
+                      COST              INTEGER
                       IMAGE             BLOB );""")
         
+
+        cursor.execute(""" CREATE TABLE IF NOT EXISTS EventBookings (
+                       EVENT_ID         INTEGER    NOT NULL,
+                       USER_ID          INTEGER    NOT NULL,
+                       TYPE             TEXT );""")
+
+
+        cursor.execute(""" CREATE TABLE IF NOT EXISTS Accounts (
+                       USER_ID          INTEGER     PRIMARY KEY    AUTOINCREMENT,
+                       USERNAME         TEXT        NOT NULL,
+                       PASSWORD         TEXT        NOT NULL, 
+                       FNAME            TEXT        NOT NULL,
+                       LNAME            TEXT        NOT NULL );""")
+
         connect.commit()
         connect.close()
         

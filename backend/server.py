@@ -1,5 +1,5 @@
 from flask import Flask, request
-import backend.comboSql as comboSql 
+import comboSql as comboSql 
 import json
 app = Flask(__name__)
 
