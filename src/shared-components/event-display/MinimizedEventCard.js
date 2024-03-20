@@ -15,7 +15,7 @@ import {
   getRegistrationTypeMessage,
 } from '../../types/types';
 
-const MinimizedEventCard = ({ id, event, onClick, registrationType }) => {
+const MinimizedEventCard = ({ id, event, onClick }) => {
   const {
     title,
     description,
@@ -28,6 +28,7 @@ const MinimizedEventCard = ({ id, event, onClick, registrationType }) => {
     wellnessType,
     cost,
     imageUri,
+    registrationType,
   } = event;
 
   const dateString = `${dateFormat(startDateTime, 'dd/mm/yyyy hh:mm TT')}`;
@@ -106,6 +107,7 @@ MinimizedEventCard.propTypes = {
     wellnessType: PropTypes.string,
     cost: PropTypes.number,
     imageUri: PropTypes.string,
+    registrationType: PropTypes.string,
   }),
   onClick: PropTypes.func,
 };
