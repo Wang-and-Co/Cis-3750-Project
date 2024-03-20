@@ -4,16 +4,24 @@ import { object, string, ref } from 'yup';
 export const getLoginFormValidationSchema = () =>
   object({
     email: string()
-      .email('Please enter a valid email address')
-      .required('A value is required'),
+      .email('Email address is not valid.')
+      .required('Please provide an email address'),
     password: string()
-      .required('A value is required')
-      .min(8, 'Required 8 characters'),
-    verifyPassword: string()
-      .oneOf([ref('password'), null], 'Password must match'),
-    firstName: string()
-      .required('A value is required'),
-    lastName: string()
-      .required('A value is required')    
-
+      .required('A password is required to login.')
+      .min(8, 'Password must be at least 8 characters long.'),
+  });
+export const getSignUpFormValidationSchema = () =>
+  object({
+    email: string()
+      .email('Email cannot be empty.')
+      .required('Email address is required.'),
+    password: string()
+      .required('Password cannot be empty.')
+      .min(8, 'Password must be 8 characters long.'),
+    verifyPassword: string().oneOf(
+      [ref('password'), null],
+      'Password must match',
+    ),
+    firstName: string().required('First name cannot be empty.'),
+    lastName: string().required('Last name cannot be empty.'),
   });

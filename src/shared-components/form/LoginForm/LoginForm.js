@@ -30,13 +30,11 @@ const LoginForm = ({ onSuccess, handleSubmit, footerOnClick }) => {
             <InputField
               name="email"
               label="Email"
-              required
               autoComplete="email"
             ></InputField>
             <InputField
               name="password"
               label="Password"
-              required
               type="password"
               autoComplete="current-password"
             ></InputField>
@@ -48,11 +46,10 @@ const LoginForm = ({ onSuccess, handleSubmit, footerOnClick }) => {
               Login
             </Button>
             <div style={{ display: 'flex' }}>
-              <Typography inline variant={'subtitle2'}>
+              <Typography variant={'subtitle2'}>
                 First time here?&nbsp;
               </Typography>
               <Link
-                inline
                 variant={'subtitle2'}
                 onClick={footerOnClick}
                 disabled={formikProps.isSubmitting}
