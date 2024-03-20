@@ -15,19 +15,14 @@ import { Button, Stack, Typography, Link } from '@mui/material';
  * @param {LoginFormProps} props - {@link LoginFormProps} object
  * @type {React.FC<LoginFormProps>}
  */
-const LoginForm = ({ onSuccess, footerOnClick }) => {
+const LoginForm = ({ onSuccess, handleSubmit, footerOnClick }) => {
   const validationSchema = getLoginFormValidationSchema(); // get the validation schema from validations file
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
       validateOnChange={false}
-      onSubmit={(values, actions) => {
-        setTimeout(() => {
-          actions.setSubmitting(false);
-          onSuccess(values);
-        }, 1000);
-      }}
+      onSubmit={handleSubmit}
     >
       {(formikProps) => (
         <Form>
@@ -52,9 +47,13 @@ const LoginForm = ({ onSuccess, footerOnClick }) => {
             >
               Login
             </Button>
-            <div style={{display: 'flex'}}>
-              <Typography inline variant={'subtitle2'}>First time here?&nbsp;</Typography>
-              <Link inline variant={'subtitle2'} onClick={footerOnClick}>Sign up</Link>
+            <div style={{ display: 'flex' }}>
+              <Typography inline variant={'subtitle2'}>
+                First time here?&nbsp;
+              </Typography>
+              <Link inline variant={'subtitle2'} onClick={footerOnClick}>
+                Sign up
+              </Link>
             </div>
           </Stack>
         </Form>

@@ -3,10 +3,31 @@ import { LoginForm } from '../form/LoginForm';
 import { SignupForm } from '../form/SignupForm';
 import GenericModal from './GenericModal';
 import { GetModalUtils } from './GlobalModalManager';
+import { createAccount, login } from '../../app/api/accounts';
+import toast from 'react-hot-toast';
+import { getResponseStatus } from '../../app/api/statusTypes';
 
 const LoginModal = ({ onSubmit, ...otherProps }) => {
-  const [modalState, setModalState] = useState('Login')
-  
+  const [modalState, setModalState] = useState('Login');
+
+  const submissionHandler = async (values, actions) => {
+    const { verifyPassword, ...formValues } = values;
+    if (verifyPassword && values.password !== verifyPassword) {
+      actions.setFieldError('verifyPassword', 'Password must match');
+      actions.setSubmitting(false);
+      return;
+    }
+
+    const apiCall = modalState === 'Login' ? login : createAccount;
+    const { data, status } = await apiCall(formValues);
+    actions.setSubmitting(false);
+    if (status !== 200) {
+      toast(getResponseStatus(status));
+      return;
+    }
+    return { ...data };
+  };
+
   const loginBody = (
     <LoginForm
       onSuccess={async (values) => {
@@ -17,7 +38,10 @@ const LoginModal = ({ onSubmit, ...otherProps }) => {
         otherProps.onClose();
         return;
       }}
-      footerOnClick={() => {setModalState('Sign up')}}  
+      handleSubmit={submissionHandler}
+      footerOnClick={() => {
+        setModalState('Sign up');
+      }}
     ></LoginForm>
   );
 
@@ -25,14 +49,24 @@ const LoginModal = ({ onSubmit, ...otherProps }) => {
     <SignupForm
       onSuccess={async (values) => {
         await onSubmit(values);
-        otherProps.onClose()
+        otherProps.onClose();
         return;
       }}
-      footerOnClick={() => {setModalState('Login')}}  
+      handleSubmit={submissionHandler}
+      footerOnClick={() => {
+        setModalState('Login');
+      }}
     ></SignupForm>
-  )
+  );
 
-  return <GenericModal title={modalState} body={modalState === 'Login' ? loginBody : signupBody} showExitButton={true} {...otherProps} />;
+  return (
+    <GenericModal
+      title={modalState}
+      body={modalState === 'Login' ? loginBody : signupBody}
+      showExitButton={true}
+      {...otherProps}
+    />
+  );
 };
 
 const { showModal: showLoginModal, hideModal: hideLoginModal } =

@@ -6,6 +6,7 @@ import { useCookies } from 'react-cookie';
 import { showLoginModal } from '../../shared-components/modals/LoginModal';
 import React, { useState } from 'react';
 import EventDescription from '../../shared-components/event-display/EventDescription';
+import { retrieveEvents } from '../../app/api/events';
 
 const SamplePage = () => {
   const [cookies, setCookies, removeCookie] = useCookies(['auth']);
@@ -51,7 +52,8 @@ const SamplePage = () => {
             variant="contained"
             onClick={() =>
               showLoginModal({
-                onSubmit: (values) => setCookies('auth', values),
+                onSubmit: (values) =>
+                  setCookies('auth', { ...values, id: '123' }),
               })
             }
           >
@@ -62,6 +64,13 @@ const SamplePage = () => {
         {cookies?.auth
           ? `Logged in. Cookies have: {name: ${cookies.auth.name}, password: ${cookies.auth.password}}`
           : 'not logged in'}
+        <Button
+          onClick={() => {
+            retrieveEvents(cookies, { type: 'text' });
+          }}
+        >
+          Send Request
+        </Button>
         <Button variant="contained" onClick={handleOpenDrawer}>
           Open Drawer
         </Button>
