@@ -34,7 +34,7 @@ const EventCard = ({ id, event, onClick }) => {
   const maxDescriptionLength = 70;
 
   return (
-    <Card>
+    <Card id={id}>
       <CardActionArea onClick={onClick}>
         <CardMedia
           component="img"
