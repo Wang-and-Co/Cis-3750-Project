@@ -8,8 +8,8 @@ import toast from 'react-hot-toast';
 import { getResponseStatus } from '../../app/api/statusTypes';
 import useAsyncResponse from '../axios/useAsyncResponse';
 
-const LoginModal = ({ onSubmit, ...otherProps }) => {
-  const [modalState, setModalState] = useState('Login');
+const LoginModal = ({ onSubmit, initalForm = 'Login', ...otherProps }) => {
+  const [modalState, setModalState] = useState(initalForm);
   const { callAsyncFunctionPromise, isLoading } = useAsyncResponse(
     modalState === 'Login' ? login : createAccount,
   );
@@ -61,6 +61,7 @@ const LoginModal = ({ onSubmit, ...otherProps }) => {
       body={modalState === 'Login' ? loginBody : signupBody}
       showExitButton={true}
       disabled={isLoading}
+      titleAlign={'center'}
       {...otherProps}
     />
   );
