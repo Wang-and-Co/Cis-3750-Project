@@ -1,9 +1,9 @@
 from flask import Flask, request
-import EventSQL 
+import backend.comboSql as comboSql 
 import json
 app = Flask(__name__)
 
-db = EventSQL.Database(reset=True)
+db = comboSql.Database(reset=True)
 
 # API Routes
 @app.route('/events', methods=['GET', 'POST'])
