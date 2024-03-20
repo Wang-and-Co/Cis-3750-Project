@@ -3,25 +3,27 @@ import CloseIcon from '@mui/icons-material/Close';
 import React from 'react';
 
 const EventDescription = ({ open, setOpen, title, description }) => {
-  const myEventsWidth = 480;
-  const topBarHeight = '64px';
-  const myEventsHeight = window.innerHeight - topBarHeight;
+  const styling = {
+    myEventsWidth: 480,
+    topBarHeight: '64px',
+    myEventsHeight: window.innerHeight - self.topBarHeight,
+  };
 
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  
+
   return (
     <div>
       <Drawer
         sx={{
-            width: myEventsWidth,
-            flexShrink: 0,
-            '& .MuiDrawer-paper': { 
-                width: myEventsWidth, 
-                height: myEventsHeight,
-                marginTop: topBarHeight, 
-            },
+          width: styling.myEventsWidth,
+          flexShrink: 0,
+          '& .MuiDrawer-paper': {
+            width: styling.myEventsWidth,
+            height: styling.myEventsHeight,
+            marginTop: styling.topBarHeight,
+          },
         }}
         variant="persistent"
         anchor="right"

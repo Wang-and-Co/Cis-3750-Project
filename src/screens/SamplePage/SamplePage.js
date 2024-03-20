@@ -6,10 +6,10 @@ import React, { useState } from 'react';
 import EventDescription from '../../shared-components/event-display/eventDescription';
 
 const SamplePage = () => {
-  const [open, setOpen] = useState(false);
+  const [isEventDescriptionOpen, setIsEventDescriptionOpen] = useState(false);
 
   const handleOpenDrawer = () => {
-    setOpen((prevOpen) => !prevOpen);
+    setIsEventDescriptionOpen(true);
   };
 
   return (
@@ -48,8 +48,8 @@ const SamplePage = () => {
           Open Drawer
         </Button>
         <EventDescription
-          open={open}
-          setOpen={setOpen}
+          open={isEventDescriptionOpen}
+          setOpen={setIsEventDescriptionOpen}
           title="Test Event Title"
           description="This is a test event description."
         />
