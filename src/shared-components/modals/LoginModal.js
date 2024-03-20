@@ -16,7 +16,7 @@ const LoginModal = ({ onSubmit, initalForm = 'Login', ...otherProps }) => {
 
   const submissionHandler = async (values, actions) => {
     const { verifyPassword, ...formValues } = values;
-    if (verifyPassword && values.password !== verifyPassword) {
+    if (verifyPassword !== undefined && values.password !== verifyPassword) {
       actions.setFieldError('verifyPassword', 'Password must match');
       actions.setSubmitting(false);
       return;

@@ -18,10 +18,9 @@ export const getSignUpFormValidationSchema = () =>
     password: string()
       .required('Password cannot be empty.')
       .min(8, 'Password must be 8 characters long.'),
-    verifyPassword: string().oneOf(
-      [ref('password'), null],
-      'Password must match',
-    ),
+    verifyPassword: string()
+      .oneOf([ref('password'), null], 'Password must match')
+      .required('Enter the password again'),
     firstName: string().required('First name cannot be empty.'),
     lastName: string().required('Last name cannot be empty.'),
   });

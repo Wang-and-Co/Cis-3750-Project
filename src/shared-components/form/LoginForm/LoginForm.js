@@ -1,8 +1,9 @@
 import { Form, Formik } from 'formik';
-import { initialValues } from './utils';
+import { loginFormInitialValues } from './utils';
 import { getLoginFormValidationSchema } from './validations';
 import { InputField } from '../InputField';
 import { Button, Stack, Typography, Link } from '@mui/material';
+import { ConnectedFocusError } from 'focus-formik-error';
 /**
  * @typedef {Object} LoginFormProps
  * @property {function} onSuccess function handler after form is successfully submitted. Should handle the endpoint calls
@@ -19,13 +20,15 @@ const LoginForm = ({ onSuccess, handleSubmit, footerOnClick }) => {
   const validationSchema = getLoginFormValidationSchema(); // get the validation schema from validations file
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={loginFormInitialValues}
       validationSchema={validationSchema}
       validateOnChange={false}
       onSubmit={handleSubmit}
     >
       {(formikProps) => (
         <Form>
+          <ConnectedFocusError />
+
           <Stack spacing={1} sx={{ marginTop: '1.5rem' }}>
             <InputField
               name="email"

@@ -1,11 +1,9 @@
 import { Form, Formik } from 'formik';
-import { initialValues } from './utils';
-import {
-  getLoginFormValidationSchema,
-  getSignUpFormValidationSchema,
-} from './validations';
+import { getSignUpFormValidationSchema } from './validations';
 import { InputField } from '../InputField';
-import { Button, Grid, Link, Stack, Typography } from '@mui/material';
+import { Button, Link, Stack, Typography } from '@mui/material';
+import { ConnectedFocusError } from 'focus-formik-error';
+import { signUpFormInitialValues } from '../LoginForm/utils';
 /**
  * @typedef {Object} SignupFormProps
  * @property {function} onSuccess function handler after form is successfully submitted. Should handle the endpoint calls
@@ -23,7 +21,7 @@ const SignupForm = ({ handleSubmit, footerOnClick }) => {
 
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={signUpFormInitialValues}
       validationSchema={validationSchema}
       validateOnChange
       validateOnBlur
@@ -31,6 +29,7 @@ const SignupForm = ({ handleSubmit, footerOnClick }) => {
     >
       {(formikProps) => (
         <Form>
+          <ConnectedFocusError />
           <Stack spacing={1} sx={{ marginTop: '1.5rem' }}>
             <div>
               <Typography variant="subtitle2">
@@ -38,11 +37,13 @@ const SignupForm = ({ handleSubmit, footerOnClick }) => {
                 <Link
                   href={'http://localhost:3000/legal/terms-of-service'}
                   target="_blank"
+                  aria-label="Go to terms and service"
                 >
                   Terms of Service
                 </Link>{' '}
                 {' and acknowledge you have read our '}
                 <Link
+                  aria-label="Go to privacy policy"
                   href={'http://localhost:3000/legal/terms-of-service'}
                   target="_blank"
                 >
@@ -79,7 +80,6 @@ const SignupForm = ({ handleSubmit, footerOnClick }) => {
               name="verifyPassword"
               label="Verify Password"
               required
-              autoComplete="current-password"
             ></InputField>
             <Button
               onClick={formikProps.handleSubmit}
@@ -88,19 +88,19 @@ const SignupForm = ({ handleSubmit, footerOnClick }) => {
             >
               Sign Up
             </Button>
-            <div style={{ display: 'flex' }}>
-              <Typography inline variant={'subtitle2'}>
-                Already have an account?&nbsp;
-              </Typography>
+            <Typography variant="subtitle2">
+              {'Already have an account? '}
               <Link
-                inline
-                variant={'subtitle2'}
+                aria-label="Login to existing account"
+                variant="subtitle2"
+                component="button"
+                target="_blank"
                 onClick={footerOnClick}
                 disabled={formikProps.isSubmitting}
               >
                 Sign in
               </Link>
-            </div>
+            </Typography>
           </Stack>
         </Form>
       )}
