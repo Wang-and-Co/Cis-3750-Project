@@ -16,10 +16,10 @@ exports[`Generic Modal renders correctly 1`] = `
       <label
         className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled Mui-required MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
         data-shrink={true}
-        htmlFor="input-name"
-        id="input-name-label"
+        htmlFor="input-email"
+        id="input-email-label"
       >
-        Username
+        Email
         <span
           aria-hidden={true}
           className="MuiFormLabel-asterisk MuiInputLabel-asterisk css-wgai2y-MuiFormLabel-asterisk"
@@ -34,19 +34,19 @@ exports[`Generic Modal renders correctly 1`] = `
       >
         <input
           aria-invalid={false}
-          autoComplete="name"
+          autoComplete="email"
           autoFocus={false}
           className="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
           disabled={false}
-          id="input-name"
-          name="name"
+          id="input-email"
+          name="email"
           onAnimationStart={[Function]}
           onBlur={[Function]}
           onChange={[Function]}
           onFocus={[Function]}
           required={true}
           type="text"
-          value="test"
+          value="test@test.com"
         />
         <fieldset
           aria-hidden={true}
@@ -56,7 +56,7 @@ exports[`Generic Modal renders correctly 1`] = `
             className="css-14lo706"
           >
             <span>
-              Username
+              Email
                
               *
             </span>
@@ -140,6 +140,28 @@ exports[`Generic Modal renders correctly 1`] = `
     >
       Login
     </button>
+    <div
+      style={
+        Object {
+          "display": "flex",
+        }
+      }
+    >
+      <h6
+        className="MuiTypography-root MuiTypography-subtitle2 css-ati914-MuiTypography-root"
+        inline={true}
+      >
+        First time here? 
+      </h6>
+      <a
+        className="MuiTypography-root MuiTypography-subtitle2 MuiLink-root MuiLink-underlineAlways css-66npy3-MuiTypography-root-MuiLink-root"
+        inline={true}
+        onBlur={[Function]}
+        onFocus={[Function]}
+      >
+        Sign up
+      </a>
+    </div>
   </div>
 </form>
 `;
