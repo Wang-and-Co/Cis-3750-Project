@@ -2,6 +2,7 @@
   "name": "cis-3750-project",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:5000",
   "dependencies": {
     "@babel/eslint-parser": "^7.23.10",
     "@babel/preset-react": "^7.23.3",
@@ -34,6 +35,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start-server": "cd backend && venv\\Scripts\\flask run --no-debugger",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
