@@ -1,6 +1,9 @@
 import { Form, Formik } from 'formik';
 import { initialValues } from './utils';
-import { getLoginFormValidationSchema } from './validations';
+import {
+  getLoginFormValidationSchema,
+  getSignUpFormValidationSchema,
+} from './validations';
 import { InputField } from '../InputField';
 import { Button, Grid, Link, Stack, Typography } from '@mui/material';
 /**
@@ -16,36 +19,37 @@ import { Button, Grid, Link, Stack, Typography } from '@mui/material';
  * @type {React.FC<SignupFormProps>}
  */
 const SignupForm = ({ handleSubmit, footerOnClick }) => {
-  const validationSchema = getLoginFormValidationSchema();
+  const validationSchema = getSignUpFormValidationSchema();
 
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      validateOnChange={true}
+      validateOnChange
+      validateOnBlur
       onSubmit={handleSubmit}
     >
       {(formikProps) => (
         <Form>
           <Stack spacing={1} sx={{ marginTop: '1.5rem' }}>
-            <InputField
-              name="email"
-              label="Email"
-              required
-              autoComplete="email"
-            ></InputField>
-            <InputField
-              name="password"
-              label="Password"
-              required
-              autoComplete="current-password"
-            ></InputField>
-            <InputField
-              name="verifyPassword"
-              label="Verify Password"
-              required
-              autoComplete="current-password"
-            ></InputField>
+            <div>
+              <Typography variant="subtitle2">
+                {'By clicking “Sign up”, you agree to our '}
+                <Link
+                  href={'http://localhost:3000/legal/terms-of-service'}
+                  target="_blank"
+                >
+                  Terms of Service
+                </Link>{' '}
+                {' and acknowledge you have read our '}
+                <Link
+                  href={'http://localhost:3000/legal/terms-of-service'}
+                  target="_blank"
+                >
+                  privacy policy
+                </Link>
+              </Typography>
+            </div>
             <InputField
               name="firstName"
               label="First Name"
@@ -57,6 +61,25 @@ const SignupForm = ({ handleSubmit, footerOnClick }) => {
               label="Last Name"
               required
               autoComplete=""
+            ></InputField>
+            <InputField
+              name="email"
+              label="Email"
+              required
+              autoComplete="email"
+            ></InputField>
+            <InputField
+              name="password"
+              label="Password"
+              required
+              helperText="Password must be 8 characters long."
+              autoComplete="current-password"
+            ></InputField>
+            <InputField
+              name="verifyPassword"
+              label="Verify Password"
+              required
+              autoComplete="current-password"
             ></InputField>
             <Button
               onClick={formikProps.handleSubmit}
