@@ -1,5 +1,5 @@
 import { Axios } from '../../shared-components/axios/Axios';
-const retrieveEvents = async (cookies, params) => {
+const retrieveEvents = async (params, cookies) => {
   try {
     const id = cookies?.auth?.id;
     const options = id
