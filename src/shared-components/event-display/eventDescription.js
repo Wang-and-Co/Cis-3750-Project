@@ -1,4 +1,5 @@
-import {Button, Drawer, Typography } from '@mui/material';
+import {Button, Drawer, IconButton, iconButton, Typography } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 import React from 'react';
 
 const EventDescription = ({ open, setOpen, title, description }) => {
@@ -28,10 +29,10 @@ const EventDescription = ({ open, setOpen, title, description }) => {
       >
         <div style={{ padding: '1rem'}}>
           <div style={{ display: 'flex', justifyContent: 'flex-end', paddingRight: '8px' }}>
-            {/*add real icon*/}
-            <Button variant="contained" onClick={handleDrawerClose}>
-                x
-            </Button>
+
+            <IconButton onClick={handleDrawerClose}>
+              <CloseIcon />
+            </IconButton>
           </div>
           <Typography variant="h2" sx={{ padding: '10px' }}>
             {title}

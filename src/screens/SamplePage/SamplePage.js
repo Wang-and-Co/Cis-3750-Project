@@ -9,7 +9,7 @@ const SamplePage = () => {
   const [open, setOpen] = useState(false);
 
   const handleOpenDrawer = () => {
-    setOpen(true);
+    setOpen((prevOpen) => !prevOpen);
   };
 
   return (
@@ -45,14 +45,14 @@ const SamplePage = () => {
           test2
         </Button>
         <Button variant="contained" onClick={handleOpenDrawer}>
-        Open Drawer
-      </Button>
-      <EventDescription
-        open={open}
-        setOpen={setOpen}
-        title="Test Event Title"
-        description="This is a test event description."
-      />
+          Open Drawer
+        </Button>
+        <EventDescription
+          open={open}
+          setOpen={setOpen}
+          title="Test Event Title"
+          description="This is a test event description."
+        />
       </header>
     </div>
   );

@@ -37,7 +37,7 @@ const navBarLeft = (
           <ListItemIcon>
             <IcecreamOutlined></IcecreamOutlined>
           </ListItemIcon>
-          <ListItemText primary="lol covered ^"></ListItemText>
+          <ListItemText primary="lol 2"></ListItemText>
         </ListItemButton>
       </ListItem>
     </List>
@@ -105,6 +105,7 @@ const Layout = ({ children }) => {
       
         {/*body*/}
         <Box component="main" sx={{ flexGrow: 1, marginRight: `${myEventsWidth}px`}}>
+          {children}
           {children}
         </Box>
       </Box>
