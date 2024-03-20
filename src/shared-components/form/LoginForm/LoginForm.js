@@ -2,11 +2,12 @@ import { Form, Formik } from 'formik';
 import { initialValues } from './utils';
 import { getLoginFormValidationSchema } from './validations';
 import { InputField } from '../InputField';
-import { Button, Stack } from '@mui/material';
+import { Button, Stack, Typography, Link } from '@mui/material';
 /**
  * @typedef {Object} LoginFormProps
  * @property {function} onSuccess function handler after form is successfully submitted. Should handle the endpoint calls
  * with Backend for logging in.
+ * @property {function} footerOnClick
  */
 
 /**
@@ -14,7 +15,7 @@ import { Button, Stack } from '@mui/material';
  * @param {LoginFormProps} props - {@link LoginFormProps} object
  * @type {React.FC<LoginFormProps>}
  */
-const LoginForm = ({ onSuccess }) => {
+const LoginForm = ({ onSuccess, footerOnClick }) => {
   const validationSchema = getLoginFormValidationSchema(); // get the validation schema from validations file
   return (
     <Formik
@@ -32,10 +33,10 @@ const LoginForm = ({ onSuccess }) => {
         <Form>
           <Stack spacing={1} sx={{ marginTop: '1.5rem' }}>
             <InputField
-              name="name"
-              label="Username"
+              name="email"
+              label="Email"
               required
-              autoComplete="name"
+              autoComplete="email"
             ></InputField>
             <InputField
               name="password"
@@ -51,6 +52,10 @@ const LoginForm = ({ onSuccess }) => {
             >
               Login
             </Button>
+            <div style={{display: 'flex'}}>
+              <Typography inline variant={'subtitle2'}>First time here?&nbsp;</Typography>
+              <Link inline variant={'subtitle2'} onClick={footerOnClick}>Sign up</Link>
+            </div>
           </Stack>
         </Form>
       )}
