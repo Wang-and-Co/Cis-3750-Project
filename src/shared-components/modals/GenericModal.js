@@ -20,6 +20,7 @@ const style = {
  * @property {string} id
  * @property {function} onClose
  * @property {boolean} open
+ * @property {boolean} showExitButton
  */
 
 /**
@@ -32,13 +33,13 @@ const GenericModal = ({
   title,
   body,
   onClose,
-  hideExitButton = false,
+  showExitButton,
   id,
   open,
 }) => (
   <Dialog name={name} open={open}>
     <Box sx={style}>
-      {hideExitButton && (
+      {showExitButton && (
         <IconButton
           sx={{
             position: 'absolute',
