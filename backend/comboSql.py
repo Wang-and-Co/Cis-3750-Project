@@ -8,6 +8,18 @@ class Database():
             os.remove('database.db')
         self.create_tables()
 
+    def __setitem__(self, table, values):
+        connect = sqlite3.connect('database.db')
+        cursor = connect.cursor()
+        tempString = "( " + "?, "* (len(values)-1) + "?)"
+
+        cursor.execute(f"""INSERT OR IGNORE
+                           INTO     {table}
+                           VALUES   {tempString} ;""", values)
+
+        connect.commit()
+        connect.close()
+
     def create_tables(self): 
         connect = sqlite3.connect('database.db')
         cursor = connect.cursor()
@@ -67,8 +79,33 @@ class Database():
     
         connect.commit()
         connect.close()
+
+    def add_booking(self, bookingInfo):
+        print("Does not do anything yet")
+
+    def select_booking(self, userID):
+        connect = sqlite3.connect('database.db')
+        cursor = connect.cursor()
+
+        table = cursor.execute(f""" SELECT * FROM EventBookings
+                                         WHERE USER_ID = {userID};""").fetchall()
         
-    
+
+        connect.commit()
+        connect.close()
+
+        return table
+
+
+        
+#TESTING PURPOSES ONLY
+# db = Database(reset=True)
+#  db.__setitem__("EventBookings", (1, 2, "Attendee"))
+#  db.__setitem__("EventBookings", (4, 2, "Volunteer"))
+#  db.__setitem__("EventBookings", (2, 3, "Volunteer"))
+
+# db.select_booking(2)
+
 
 
         

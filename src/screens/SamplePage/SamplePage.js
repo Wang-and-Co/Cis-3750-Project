@@ -3,10 +3,13 @@ import toast from 'react-hot-toast';
 import logo from './../../logo.svg';
 import { Button } from '@mui/material';
 import React, { useState } from 'react';
-import EventDescription from '../../shared-components/event-display/EventDescription';
+import EventDescription from '../../shared-components/event-display/eventDescription';
 
 const SamplePage = () => {
   const [isEventDescriptionOpen, setIsEventDescriptionOpen] = useState(false);
+
+
+
 
   const handleOpenDrawer = () => {
     setIsEventDescriptionOpen(true);
@@ -36,8 +39,12 @@ const SamplePage = () => {
             })
           }
         >
+          
           Show Modal
         </Button>
+        <Button 
+          
+        ></Button>
         <Button
           variant="contained"
           onClick={() => toast('Executed the entire population of gamers')}

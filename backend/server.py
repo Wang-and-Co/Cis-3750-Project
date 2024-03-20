@@ -32,3 +32,24 @@ def events():
         eventInfo = request.get_json()
         db.add_event(eventInfo)
         return eventInfo
+
+
+@app.route('/eventBooking', methods=['POST','GET'])
+def booking():
+
+
+    if request.method == "GET":
+
+        #Hardcoded Test Makers 
+        db.__setitem__("EventBookings", (1, 2, "Attendee"))
+        db.__setitem__("EventBookings", (4, 2, "Volunteer"))
+        db.__setitem__("EventBookings", (2, 3, "Volunteer"))
+
+        # userID = request.get_json() 
+
+        # Hardcoded for now to test later with an actual get request
+        table = db.select_booking(2)
+        print(table)
+        return (json.dumps(table))
+    else:
+        print("Not implement yet")
