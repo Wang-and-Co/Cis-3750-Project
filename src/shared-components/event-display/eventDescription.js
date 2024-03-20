@@ -95,6 +95,9 @@ const EventDescription = ({ open, setOpen, event }) => {
               </Typography>
             )}
             <Typography variant="body1" color="text.primary" sx={{ marginTop: '16px' }}>
+              Event type: {wellnessType}
+            </Typography>
+            <Typography variant="body1" color="text.primary">
               Cost to attend: ${cost}
             </Typography>
             <Typography variant="body1" color="text.primary">
@@ -103,7 +106,8 @@ const EventDescription = ({ open, setOpen, event }) => {
             <Typography variant="body1" color="text.primary">
               Volunteers: {volunteers.current} / {volunteers.max}
             </Typography>
-            <Typography variant="body1" color="text.primary" sx={{ marginTop: '16px' }}>
+
+            <Typography variant="body1" color="text.primary" sx={{ marginTop: '16px', marginBottom: '200px' }}>
               {description}
             </Typography>
           </div>
