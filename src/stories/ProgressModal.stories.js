@@ -9,6 +9,9 @@ import {
 import NiceModal from '@ebay/nice-modal-react';
 import { ModalButton } from './storyUtils';
 
+/**
+ * Use showProgressModal to show the modal and hideProgressModal to hide the modal. It will not autoclose so be careful!
+ */
 export default {
   title: 'Modals/ProgressModal',
   component: ModalButton,
