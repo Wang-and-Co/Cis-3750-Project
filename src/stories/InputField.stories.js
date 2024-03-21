@@ -2,13 +2,13 @@ import { fn } from '@storybook/test';
 import InputField from '../shared-components/form/InputField/InputField';
 import { Formik } from 'formik';
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
-import { object, string } from 'yup';
+import * as yup from 'yup';
 import { ThemeProvider } from '@mui/material';
 import { theme } from '../app/themeUtils';
 
-let validationSchem = object({
-  name: string().required('Enter a name please'),
-  password: string().required('Enter a password'),
+let validationSchem = yup.object({
+  name: yup.string().required('Enter a name please'),
+  password: yup.string().required('Enter a password'),
 });
 let initialValues = { name: '', password: '' };
 
