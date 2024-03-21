@@ -75,6 +75,7 @@ const SignupForm = ({ handleSubmit, footerOnClick }) => {
               required
               helperText="Password must be 8 characters long."
               autoComplete="current-password"
+              type="password"
             ></InputField>
             <InputField
               name="verifyPassword"
@@ -96,6 +97,7 @@ const SignupForm = ({ handleSubmit, footerOnClick }) => {
                 component="button"
                 target="_blank"
                 onClick={footerOnClick}
+                onKeyDown={(event) => console.log(event)}
                 disabled={formikProps.isSubmitting}
               >
                 Sign in

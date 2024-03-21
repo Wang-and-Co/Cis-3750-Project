@@ -45,7 +45,8 @@ const LoginModal = ({ onSubmit, initalForm = 'Login', ...otherProps }) => {
   const signupBody = (
     <SignupForm
       handleSubmit={submissionHandler}
-      footerOnClick={() => {
+      footerOnClick={(event) => {
+        console.log(event);
         setModalState('Login');
       }}
     ></SignupForm>

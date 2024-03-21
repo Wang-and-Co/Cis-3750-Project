@@ -1,6 +1,8 @@
-import { TextField } from '@mui/material';
+import { TextField, InputAdornment, IconButton } from '@mui/material';
 import { useField, useFormikContext } from 'formik';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
+import { VisibilityOff, Visibility } from '@mui/icons-material';
 /**
  * @typedef {Object} InputFieldProps
  * @property {string} name Name of field corresponding in formik context
@@ -23,13 +25,36 @@ const InputField = ({
   helperText,
   required,
   variant,
+  type,
   ...otherProps
 }) => {
   const { submitForm } = useFormikContext();
+  const [showPassword, setShowPassword] = useState(false);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleKeyDownShowPassword = (event) => {
+    if (event.key !== 'Enter') return;
+    setShowPassword((show) => !show);
+    event.preventDefault();
+  };
+
+  const iconAdnornments = (
+    <InputAdornment position="end">
+      <IconButton
+        aria-label="toggle password visibility"
+        onClick={handleClickShowPassword}
+        onMouseDown={(event) => event.preventDefault()}
+        onKeyDown={handleKeyDownShowPassword}
+      >
+        {showPassword ? <VisibilityOff /> : <Visibility />}
+      </IconButton>
+    </InputAdornment>
+  );
 
   const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' && event.target instanceof HTMLInputElement) {
       submitForm();
+      event.preventDefault();
     }
   };
   const [field, meta] = useField({ name });
@@ -45,6 +70,8 @@ const InputField = ({
       onKeyDown={handleKeyDown}
       name={name}
       sx={{ minHeight: '5rem' }}
+      type={type === 'password' ? (showPassword ? 'text' : 'password') : type}
+      InputProps={type === 'password' && { endAdornment: iconAdnornments }}
       {...otherProps}
     ></TextField>
   );
