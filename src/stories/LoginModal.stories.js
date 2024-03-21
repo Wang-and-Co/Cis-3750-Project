@@ -5,6 +5,7 @@ import { theme } from '../app/themeUtils';
 import { ModalButton } from './storyUtils';
 import { showLoginModal } from '../shared-components/modals/LoginModal';
 import NiceModal from '@ebay/nice-modal-react';
+import AxiosMock from './AxiosMock';
 
 export default {
   title: 'Modals/LoginModal',
@@ -13,7 +14,16 @@ export default {
     (Story) => (
       <NiceModal.Provider>
         <ThemeProvider theme={theme}>
-          <Story />
+          <AxiosMock
+            mock={(apiMock) => {
+              apiMock.onPost('/login').reply(200, {
+                id: 1,
+                title: 'A Meeting',
+              });
+            }}
+          >
+            <Story />
+          </AxiosMock>
         </ThemeProvider>
       </NiceModal.Provider>
     ),
