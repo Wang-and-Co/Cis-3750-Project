@@ -123,11 +123,21 @@ const EventDescription = ({ open, setOpen, event }) => {
           padding: '20px',
           backgroundColor: 'white',
           }}>
-          <Button variant="contained" color="primary" onClick={onClick}>
-            Register as Attendee
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={onClick}
+            disabled={attendees.current === attendees.max} // Disable button if current attendees reach max
+          >
+            {attendees.current === attendees.max ? 'Full (Max reached)' : 'Register as Attendee'}
           </Button>
-          <Button variant="contained" color="primary" onClick={onClick}>
-            Register as Volunteer
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={onClick}
+            disabled={volunteers.current === volunteers.max} // Disable button if current volunteers reach max
+          >
+            {volunteers.current === volunteers.max ? 'Full (Max reached)' : 'Register as Volunteer'}
           </Button>
         </div>
       </Drawer>

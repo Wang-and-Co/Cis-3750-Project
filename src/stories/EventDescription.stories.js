@@ -69,7 +69,7 @@ export const Secondary = () => (
         },
         isOnline: false,
         attendees: { current: 100, max: 100 },
-        volunteers: { current: 5, max: 50 },
+        volunteers: { current: 50, max: 50 },
         wellnessType: 'Fitness',
         cost: 12.07,
         imageUri: 'https://miltonbadmintonclub.files.wordpress.com/2017/12/dscf2190.jpg',
