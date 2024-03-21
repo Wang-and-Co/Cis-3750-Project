@@ -39,6 +39,7 @@ export default {
     variant: {
       options: [undefined, 'standard', 'filled'],
     },
+    type: 'text',
   },
   // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
   args: { onClick: fn() },
@@ -65,12 +66,12 @@ export const Filled = {
   },
 };
 
-export const Standard = {
+export const Password = {
   args: {
     name: 'name',
     label: 'Name',
-    type: 'text',
-    variant: 'standard',
+    type: 'password',
+    variant: undefined,
     required: true,
   },
 };

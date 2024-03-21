@@ -55,6 +55,7 @@ const LoginModal = ({ onSubmit, initalForm = 'Login', ...otherProps }) => {
   return (
     <GenericModal
       title={modalState}
+      id={modalState}
       body={modalState === 'Login' ? loginBody : signupBody}
       showExitButton={true}
       disabled={isLoading}

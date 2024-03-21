@@ -25,6 +25,7 @@ const style = {
 
 /**
  * A generic modal that should be a base for other modals
+ *
  * @param {GenericModalProps} props
  * @type {import('react').FC<GenericModalProps>}
  */
@@ -39,7 +40,13 @@ const GenericModal = ({
   disabled,
   titleAlign,
 }) => (
-  <Dialog name={name} open={open}>
+  <Dialog
+    name={name}
+    open={open}
+    aria-labelledby={`modal-${id}-title`}
+    aria-describedby={`modal-${id}-description`}
+    scroll="body"
+  >
     <Box sx={style}>
       {showExitButton && (
         <IconButton
@@ -63,7 +70,9 @@ const GenericModal = ({
           {title}
         </Typography>
       )}
-      <Box sx={{ marginTop: '1.5rem' }}>{body}</Box>
+      <Box sx={{ marginTop: '1.5rem' }} id={`modal-${id}-description`}>
+        {body}
+      </Box>
     </Box>
   </Dialog>
 );

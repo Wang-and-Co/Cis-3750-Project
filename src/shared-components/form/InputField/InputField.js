@@ -82,6 +82,7 @@ InputField.propTypes = {
   label: PropTypes.string,
   helperText: PropTypes.string,
   required: PropTypes.bool,
+  type: PropTypes.string,
   variant: PropTypes.oneOf(['', 'filled', 'standard']),
 };
 
