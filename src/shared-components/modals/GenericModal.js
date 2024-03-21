@@ -66,13 +66,16 @@ const GenericModal = ({
         </IconButton>
       )}
       {title && (
-        <Typography id={`modal-${id}-title`} align={titleAlign} variant="h3">
+        <Typography
+          id={`modal-${id}-title`}
+          align={titleAlign}
+          variant="h3"
+          marginBottom="1.5rem"
+        >
           {title}
         </Typography>
       )}
-      <Box sx={{ marginTop: '1.5rem' }} id={`modal-${id}-description`}>
-        {body}
-      </Box>
+      <Box id={`modal-${id}-description`}>{body}</Box>
     </Box>
   </Dialog>
 );
