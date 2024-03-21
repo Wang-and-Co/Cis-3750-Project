@@ -32,10 +32,6 @@ const LoginModal = ({ onSubmit, initalForm = 'Login', ...otherProps }) => {
     otherProps.onClose();
     onSubmit(data);
   };
-  useAsyncResponse(
-    modalState === 'Login' ? login : createAccount,
-    submissionHandler,
-  );
 
   const loginBody = (
     <LoginForm

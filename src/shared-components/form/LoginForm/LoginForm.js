@@ -53,11 +53,14 @@ const LoginForm = ({ onSuccess, handleSubmit, footerOnClick }) => {
                 First time here?&nbsp;
               </Typography>
               <Link
+                aria-label="Create a new account"
                 variant={'subtitle2'}
+                component="button"
+                target="_blank"
                 onClick={footerOnClick}
                 disabled={formikProps.isSubmitting}
               >
-                Sign up
+                Create new account
               </Link>
             </div>
           </Stack>
