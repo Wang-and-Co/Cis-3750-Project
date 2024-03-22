@@ -1,4 +1,4 @@
-import EventDescription from '../shared-components/event-display/eventDescription';
+import EventDescription from '../shared-components/event-display/EventDescription';
 import { Header } from './Header';
 import { fn } from '@storybook/test';
 import { theme } from '../app/themeUtils';
@@ -48,7 +48,8 @@ export const Primary = {
       volunteers: { current: 5, max: 50 },
       wellnessType: 'Fitness',
       cost: 0,
-      imageUri: 'https://www.milton.ca/en/arts-and-recreation/resources/group-cycling-banner.jpg',
+      imageUri:
+        'https://www.milton.ca/en/arts-and-recreation/resources/group-cycling-banner.jpg',
       registrationType: 'None',
     },
     onClick: (eventData) => {
@@ -65,7 +66,8 @@ export const Secondary = {
       eventID: 5,
       organizerID: 2,
       title: 'Skills and Drills - Badminton - Level 1 (9-12 years)',
-      description: 'Learn the basics of badminton in this fast-pace class! Each day will begin with skill-building drills, followed by an action-packed game to put your new skills to practice. Note: No experience necessary. Equipment will be provided. Please bring a water bottle and non-marking shoes. No class March 12.',
+      description:
+        'Learn the basics of badminton in this fast-pace class! Each day will begin with skill-building drills, followed by an action-packed game to put your new skills to practice. Note: No experience necessary. Equipment will be provided. Please bring a water bottle and non-marking shoes. No class March 12.',
       startDateTime: new Date(),
       endDateTime: new Date(),
       location: {
@@ -81,7 +83,8 @@ export const Secondary = {
       volunteers: { current: 50, max: 50 },
       wellnessType: 'Fitness',
       cost: 12.07,
-      imageUri: 'https://miltonbadmintonclub.files.wordpress.com/2017/12/dscf2190.jpg',
+      imageUri:
+        'https://miltonbadmintonclub.files.wordpress.com/2017/12/dscf2190.jpg',
       registrationType: 'None',
     },
     onClick: (eventData) => {
