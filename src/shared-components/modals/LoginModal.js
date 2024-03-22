@@ -8,19 +8,15 @@ import toast from 'react-hot-toast';
 import { getResponseStatus } from '../../app/api/statusTypes';
 import useAsyncResponse from '../axios/useAsyncResponse';
 
-const LoginModal = ({ onSubmit, ...otherProps }) => {
-  const [modalState, setModalState] = useState('Login');
+const LoginModal = ({ onSubmit, initalFormShown = 'Login', ...otherProps }) => {
+  const [modalState, setModalState] = useState(initalFormShown);
   const { callAsyncFunctionPromise, isLoading } = useAsyncResponse(
     modalState === 'Login' ? login : createAccount,
   );
 
   const submissionHandler = async (values, actions) => {
+    // eslint-disable-next-line no-unused-vars
     const { verifyPassword, ...formValues } = values;
-    if (verifyPassword && values.password !== verifyPassword) {
-      actions.setFieldError('verifyPassword', 'Password must match');
-      actions.setSubmitting(false);
-      return;
-    }
 
     const { data, status } = await callAsyncFunctionPromise(formValues);
     actions.setSubmitting(false);
@@ -28,14 +24,9 @@ const LoginModal = ({ onSubmit, ...otherProps }) => {
       toast(getResponseStatus(status));
       return;
     }
-    console.log(data);
     otherProps.onClose();
     onSubmit(data);
   };
-  useAsyncResponse(
-    modalState === 'Login' ? login : createAccount,
-    submissionHandler,
-  );
 
   const loginBody = (
     <LoginForm
@@ -49,7 +40,8 @@ const LoginModal = ({ onSubmit, ...otherProps }) => {
   const signupBody = (
     <SignupForm
       handleSubmit={submissionHandler}
-      footerOnClick={() => {
+      footerOnClick={(event) => {
+        console.log(event);
         setModalState('Login');
       }}
     ></SignupForm>
@@ -58,9 +50,11 @@ const LoginModal = ({ onSubmit, ...otherProps }) => {
   return (
     <GenericModal
       title={modalState}
+      id={modalState}
       body={modalState === 'Login' ? loginBody : signupBody}
       showExitButton={true}
       disabled={isLoading}
+      titleAlign={'center'}
       {...otherProps}
     />
   );
