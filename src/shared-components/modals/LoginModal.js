@@ -8,19 +8,15 @@ import toast from 'react-hot-toast';
 import { getResponseStatus } from '../../app/api/statusTypes';
 import useAsyncResponse from '../axios/useAsyncResponse';
 
-const LoginModal = ({ onSubmit, initalForm = 'Login', ...otherProps }) => {
-  const [modalState, setModalState] = useState(initalForm);
+const LoginModal = ({ onSubmit, initalFormShown = 'Login', ...otherProps }) => {
+  const [modalState, setModalState] = useState(initalFormShown);
   const { callAsyncFunctionPromise, isLoading } = useAsyncResponse(
     modalState === 'Login' ? login : createAccount,
   );
 
   const submissionHandler = async (values, actions) => {
+    // eslint-disable-next-line no-unused-vars
     const { verifyPassword, ...formValues } = values;
-    if (verifyPassword !== undefined && values.password !== verifyPassword) {
-      actions.setFieldError('verifyPassword', 'Password must match');
-      actions.setSubmitting(false);
-      return;
-    }
 
     const { data, status } = await callAsyncFunctionPromise(formValues);
     actions.setSubmitting(false);
@@ -28,7 +24,6 @@ const LoginModal = ({ onSubmit, initalForm = 'Login', ...otherProps }) => {
       toast(getResponseStatus(status));
       return;
     }
-    console.log(data);
     otherProps.onClose();
     onSubmit(data);
   };
