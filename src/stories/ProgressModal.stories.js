@@ -1,29 +1,25 @@
-import { fn } from '@storybook/test';
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 import { ThemeProvider } from '@mui/material';
 import { theme } from '../app/themeUtils';
-import { ModalButton } from './storyUtils';
-import { showLoginModal } from '../shared-components/modals/LoginModal';
-import NiceModal from '@ebay/nice-modal-react';
-import AxiosMock from './AxiosMock';
+import {
+  showProgressModal,
+  hideProgressModal,
+} from '../shared-components/modals';
 
+import NiceModal from '@ebay/nice-modal-react';
+import { ModalButton } from './storyUtils';
+
+/**
+ * Use showProgressModal to show the modal and hideProgressModal to hide the modal. It will not autoclose so be careful!
+ */
 export default {
-  title: 'Modals/LoginModal',
+  title: 'Modals/ProgressModal',
   component: ModalButton,
   decorators: [
     (Story) => (
       <NiceModal.Provider>
         <ThemeProvider theme={theme}>
-          <AxiosMock
-            mock={(apiMock) => {
-              apiMock.onPost('/login').reply(200, {
-                id: 1,
-                title: 'A Meeting',
-              });
-            }}
-          >
-            <Story />
-          </AxiosMock>
+          <Story />
         </ThemeProvider>
       </NiceModal.Provider>
     ),
@@ -40,12 +36,10 @@ export default {
   },
   // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
   args: {
-    onSubmit: fn(),
-    modalOpener: showLoginModal,
-    // open: false,
-    // id: '123',
-    // onClose: fn(),
-    // onSubmit: fn(),
+    modalOpener: () => {
+      showProgressModal();
+      setTimeout(() => hideProgressModal(), 1000);
+    },
   },
 };
 

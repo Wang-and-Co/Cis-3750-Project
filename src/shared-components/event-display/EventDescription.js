@@ -6,6 +6,9 @@ import {
   Drawer,
   IconButton,
   iconButton,
+  Container,
+  Drawer,
+  IconButton,
   Typography,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
@@ -14,7 +17,7 @@ import PropTypes from 'prop-types';
 import getEventDurationString from '../../utils/getEventDurationString';
 import dateFormat from 'dateformat';
 
-const EventDescription = ({ open, setOpen, event, onClick }) => {
+const EventDescription = ({ open, setOpen, event = {}, onClick }) => {
   const {
     eventID,
     organizerID,
@@ -22,10 +25,10 @@ const EventDescription = ({ open, setOpen, event, onClick }) => {
     description,
     startDateTime,
     endDateTime,
-    location,
+    location = {},
     isOnline,
-    attendees,
-    volunteers,
+    attendees = {},
+    volunteers = {},
     wellnessType,
     cost,
     imageUri,

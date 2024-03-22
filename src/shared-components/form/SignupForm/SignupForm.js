@@ -1,8 +1,9 @@
 import { Form, Formik } from 'formik';
-import { initialValues } from './utils';
-import { getLoginFormValidationSchema } from './validations';
+import { getSignUpFormValidationSchema } from './validations';
 import { InputField } from '../InputField';
-import { Button, Grid, Link, Stack, Typography } from '@mui/material';
+import { Button, Link, Stack, Typography } from '@mui/material';
+import { ConnectedFocusError } from 'focus-formik-error';
+import { signUpFormInitialValues } from '../LoginForm/utils';
 /**
  * @typedef {Object} SignupFormProps
  * @property {function} onSuccess function handler after form is successfully submitted. Should handle the endpoint calls
@@ -16,36 +17,40 @@ import { Button, Grid, Link, Stack, Typography } from '@mui/material';
  * @type {React.FC<SignupFormProps>}
  */
 const SignupForm = ({ handleSubmit, footerOnClick }) => {
-  const validationSchema = getLoginFormValidationSchema();
+  const validationSchema = getSignUpFormValidationSchema();
 
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={signUpFormInitialValues}
       validationSchema={validationSchema}
-      validateOnChange={true}
+      validateOnChange
+      validateOnBlur
       onSubmit={handleSubmit}
     >
       {(formikProps) => (
         <Form>
+          <ConnectedFocusError />
           <Stack spacing={1} sx={{ marginTop: '1.5rem' }}>
-            <InputField
-              name="email"
-              label="Email"
-              required
-              autoComplete="email"
-            ></InputField>
-            <InputField
-              name="password"
-              label="Password"
-              required
-              autoComplete="current-password"
-            ></InputField>
-            <InputField
-              name="verifyPassword"
-              label="Verify Password"
-              required
-              autoComplete="current-password"
-            ></InputField>
+            <div>
+              <Typography variant="subtitle2">
+                {'By clicking “Sign up”, you agree to our '}
+                <Link
+                  href={'http://localhost:3000/legal/terms-of-service'}
+                  target="_blank"
+                  aria-label="Go to terms and service"
+                >
+                  Terms of Service
+                </Link>{' '}
+                {' and acknowledge you have read our '}
+                <Link
+                  aria-label="Go to privacy policy"
+                  href={'http://localhost:3000/legal/terms-of-service'}
+                  target="_blank"
+                >
+                  privacy policy
+                </Link>
+              </Typography>
+            </div>
             <InputField
               name="firstName"
               label="First Name"
@@ -58,6 +63,25 @@ const SignupForm = ({ handleSubmit, footerOnClick }) => {
               required
               autoComplete=""
             ></InputField>
+            <InputField
+              name="email"
+              label="Email"
+              required
+              autoComplete="email"
+            ></InputField>
+            <InputField
+              name="password"
+              label="Password"
+              required
+              helperText="Password must be 8 characters long."
+              autoComplete="current-password"
+              type="password"
+            ></InputField>
+            <InputField
+              name="verifyPassword"
+              label="Verify Password"
+              required
+            ></InputField>
             <Button
               onClick={formikProps.handleSubmit}
               variant="contained"
@@ -65,19 +89,20 @@ const SignupForm = ({ handleSubmit, footerOnClick }) => {
             >
               Sign Up
             </Button>
-            <div style={{ display: 'flex' }}>
-              <Typography inline variant={'subtitle2'}>
-                Already have an account?&nbsp;
-              </Typography>
+            <Typography variant="subtitle2">
+              {'Already have an account? '}
               <Link
-                inline
-                variant={'subtitle2'}
+                aria-label="Login to existing account"
+                variant="subtitle2"
+                component="button"
+                target="_blank"
                 onClick={footerOnClick}
+                onKeyDown={(event) => console.log(event)}
                 disabled={formikProps.isSubmitting}
               >
                 Sign in
               </Link>
-            </div>
+            </Typography>
           </Stack>
         </Form>
       )}
