@@ -17,6 +17,8 @@ import {
 
 const EventCard = ({ id, event, onClick }) => {
   const {
+    eventID,
+    organizerID,
     title,
     description,
     startDateTime,
@@ -43,7 +45,11 @@ const EventCard = ({ id, event, onClick }) => {
 
   return (
     <Card id={id}>
-      <CardActionArea onClick={onClick}>
+      <CardActionArea
+        onClick={() => {
+          onClick(event);
+        }}
+      >
         <CardMedia
           component="img"
           height="140"
@@ -62,19 +68,6 @@ const EventCard = ({ id, event, onClick }) => {
           <Typography variant="subtitle2" color="text.primary">
             {locationString}
           </Typography>
-          {location?.extraInstructions && (
-            <Typography
-              sx={{
-                marginTop: 0,
-                paddingTop: 0,
-                fontSize: 12,
-                fontStyle: 'italic',
-              }}
-              color="text.primary"
-            >
-              {`Extra Directions: ${location.extraInstructions}`}
-            </Typography>
-          )}
           <Typography variant="body2" color="text.secondary">
             {description.length > maxDescriptionLength
               ? description.slice(0, maxDescriptionLength) + '...'
@@ -114,6 +107,8 @@ const EventCard = ({ id, event, onClick }) => {
 
 EventCard.propTypes = {
   event: PropTypes.exact({
+    eventID: PropTypes.number,
+    organizerID: PropTypes.number,
     title: PropTypes.string,
     description: PropTypes.string,
     startDateTime: PropTypes.Date,
