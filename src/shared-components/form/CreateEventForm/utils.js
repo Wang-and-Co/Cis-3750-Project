@@ -1,0 +1,20 @@
+const getInitialFormValues = () => ({
+  title: '',
+  description: '',
+  wellnessType: '',
+  isOnline: false,
+  maxVolunteers: '',
+  maxAttendees: '',
+  cost: '',
+  startDateTime: '',
+  endDateTime: '',
+  location: {
+    address: '',
+    road: '',
+    city: '',
+    province: '',
+    postalCode: '',
+    extraInstructions: '',
+  },
+  image: undefined,
+});
