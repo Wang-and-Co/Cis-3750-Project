@@ -1,11 +1,11 @@
-import {Button, CardMedia, Grid, Drawer, IconButton, iconButton, Typography } from '@mui/material';
+import {Button, CardMedia, Grid, Container, Drawer, IconButton, iconButton, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import React from 'react';
 import PropTypes from 'prop-types';
 import getEventDurationString from '../../utils/getEventDurationString';
 import dateFormat from 'dateformat';
 
-const EventDescription = ({ open, setOpen, event }) => {
+const EventDescription = ({ open, setOpen, event, onClick}) => {
 
   const {
     title,
@@ -38,12 +38,9 @@ const EventDescription = ({ open, setOpen, event }) => {
     setOpen(false);
   };
   
-  const onClick = () => {
-    alert('Lol haha cringe you are! What a 100Z3R');
-  };
 
   return (
-    <div>
+    <Container style={{ padding: 0 }}>
       <Drawer
         sx={{
           width: styling.myEventsWidth,
@@ -58,8 +55,8 @@ const EventDescription = ({ open, setOpen, event }) => {
         anchor="right"
         open={open}
       >
-        <div>
-          <div style={{ position: 'relative'}}>
+        <Container style={{ padding: 0 }}>
+          <Container style={{ position: 'relative', padding: 0 }}>
             <IconButton
               onClick={handleDrawerClose}
               style={{ position: 'absolute', top: '8px', right: '8px', backgroundColor: 'rgba(255, 255, 255, 0.8)' }}
@@ -75,8 +72,8 @@ const EventDescription = ({ open, setOpen, event }) => {
               }
               style={{ width: '100%' }}
             />
-          </div>
-          <div style={{padding: '1rem'}}>
+          </Container>
+          <Container style={{padding: '1rem'}}>
             <Typography gutterBottom variant="h3" component="div" >
               {title}
             </Typography>
@@ -110,8 +107,8 @@ const EventDescription = ({ open, setOpen, event }) => {
             <Typography variant="body1" color="text.primary" sx={{ marginTop: '16px', marginBottom: '200px' }}>
               {description}
             </Typography>
-          </div>
-        </div>
+          </Container>
+        </Container>
         <div style={{ 
           position: 'fixed', 
           marginTop: '750px',
@@ -126,7 +123,9 @@ const EventDescription = ({ open, setOpen, event }) => {
           <Button
             variant="contained"
             color="primary"
-            onClick={onClick}
+            onClick={() => {
+              onClick(event);
+            }}
             disabled={attendees.current === attendees.max} // Disable button if current attendees reach max
           >
             {attendees.current === attendees.max ? 'Full (Max reached)' : 'Register as Attendee'}
@@ -134,14 +133,16 @@ const EventDescription = ({ open, setOpen, event }) => {
           <Button
             variant="contained"
             color="primary"
-            onClick={onClick}
+            onClick={() => {
+              onClick(event);
+            }}
             disabled={volunteers.current === volunteers.max} // Disable button if current volunteers reach max
           >
             {volunteers.current === volunteers.max ? 'Full (Max reached)' : 'Register as Volunteer'}
           </Button>
         </div>
       </Drawer>
-    </div>
+    </Container>
   );
 };
 
@@ -149,6 +150,8 @@ EventDescription.propTypes = {
   open: PropTypes.bool,
   setOpen: PropTypes.func,
   event: PropTypes.exact({
+    eventID: PropTypes.number,
+    organizerID: PropTypes.number,
     title: PropTypes.string,
     description: PropTypes.string,
     startDateTime: PropTypes.Date,
@@ -173,7 +176,9 @@ EventDescription.propTypes = {
     wellnessType: PropTypes.string,
     cost: PropTypes.number,
     imageUri: PropTypes.string,
+    registrationType: PropTypes.string,
   }),
+  onClick: PropTypes.func,
 };
 
 export default EventDescription;

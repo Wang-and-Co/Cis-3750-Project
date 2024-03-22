@@ -13,6 +13,7 @@ import {
   ListItemText,
   Toolbar,
   Typography,
+  Container,
 } from '@mui/material';
 import NavBarLeft from '../shared-components/NavBarLeft';
 
@@ -22,7 +23,7 @@ const topBarHeight = '64px';
 const myEventsHeight = window.innerHeight - topBarHeight;
 
 const navBarLeft = (
-  <div>
+  <Container>
     <Toolbar />
     <List>
       <ListItem key={'test'} sx={{ marginTop: '2rem' }}>
@@ -42,7 +43,7 @@ const navBarLeft = (
         </ListItemButton>
       </ListItem>
     </List>
-  </div>
+  </Container>
 );
 
 const myEventsBar = (
@@ -103,7 +104,7 @@ const Layout = ({ children }) => {
         </AppBar>
 
         {/*body*/}
-        <Box component="main" sx={{ flexGrow: 1, marginRight: `${myEventsWidth}px`}}>
+        <Box component="main" sx={{ flexGrow: 1, marginRight: myEventsWidth}}>
           {children}
         </Box>
       </Box>
