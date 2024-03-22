@@ -25,26 +25,33 @@ This should install all modules, and should take a few minutes.
 cd backend
 ```
 
-If the venv folder does not already exist, run the following command 
+If the venv folder does not already exist, run the following command
+
 ```
 python -m venv venv
 ```
 
 then run
+
 ```
 venv\Scripts\activate
 ```
 
 From here, ensure to install Flask and python-dotenv
+
 ```
 pip install flask python-dotenv
 ```
 
+```
+pip install -U flask-cors
+```
+
 Now you can finally run the program with the following command
+
 ```
 yarn start-server
 ```
-
 
 ## Available Scripts
 
@@ -61,7 +68,7 @@ You may also see any lint errors in the console.
 ### `yarn start-server`
 
 Runs the backend Flask server in development mode.\
-Open [http://localhost:5000](http://localhost:5000) to view it in your browser. 
+Open [http://localhost:5000](http://localhost:5000) to view it in your browser.
 
 Make sure to run this in a seperate terminal from the frontend.
 

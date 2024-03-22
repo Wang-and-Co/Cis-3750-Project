@@ -1,7 +1,9 @@
 from flask import Flask, request
+from flask_cors import CORS
 import comboSql as comboSql 
 import json
 app = Flask(__name__)
+CORS(app)
 
 db = comboSql.Database(reset=True)
 
@@ -34,6 +36,7 @@ def events():
         return eventInfo
 
 
+
 @app.route('/eventBooking', methods=['POST','GET'])
 def booking():
 
@@ -52,3 +55,14 @@ def booking():
         return (json.dumps(table))
     else:
         print("Not implement yet")
+
+
+@app.route('/login', methods=['POST'])
+def login():
+    if request.method == 'POST':
+        mockLoginInfo = {"id": 123123, "email": "sus@balls.ca", "password": "among us"}
+        return json.dumps(mockLoginInfo)
+    else:
+        eventInfo = request.get_json()
+        db.add_event(eventInfo)
+        return eventInfo
