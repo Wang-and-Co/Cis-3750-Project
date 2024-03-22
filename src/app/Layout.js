@@ -104,7 +104,7 @@ const Layout = ({ children }) => {
         </AppBar>
 
         {/*body*/}
-        <Box component="main" sx={{ flexGrow: 1, marginRight: myEventsWidth}}>
+        <Box component="main" sx={{ flexGrow: 1,  marginRight: `${myEventsWidth}px`}}>
           {children}
         </Box>
       </Box>
