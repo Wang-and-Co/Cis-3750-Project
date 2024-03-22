@@ -4,6 +4,7 @@ import { fn } from '@storybook/test';
 import { theme } from '../app/themeUtils';
 import { ThemeProvider } from '@emotion/react';
 import { Grid } from '@mui/material';
+import * as sampleEvents from './sampleEvents';
 
 export default {
   title: 'Events/EventCard',
@@ -35,60 +36,8 @@ export default {
 
 export const Primary = {
   args: {
-    event: {
-      title: 'Test Event',
-      description:
-        'This is the event description! Here you can learn all about the event. This is a really cool event. It is a good event. This is an event. It is a good event. It is really cool.',
-      startDateTime: Date.now(),
-      endDateTime: Date.now(),
-      location: {
-        address: 1,
-        road: 'Example Rd',
-        city: 'Guelph',
-        province: 'ON',
-        postalCode: 'A1A 1A1',
-        extraInstructions: 'Haha none',
-      },
-      isOnline: false,
-      attendees: { current: 1, max: 55 },
-      volunteers: { current: 5, max: 5 },
-      wellnessType: 'Good',
-      cost: 999,
-      imageUri:
-        'https://i0.wp.com/voyagecomics.com/wp-content/uploads/2021/10/smaug_dragon.webp?fit=1782%2C937&ssl=1',
-    },
-    onClick: () => {
-      alert('Lol haha cringe you are! What a 100Z3R');
-    },
-  },
-};
-
-export const NoExtraDirections = {
-  args: {
-    id: 1,
-    event: {
-      title: 'Test Event',
-      description:
-        'This is the event description! Here you can learn all about the event. This is a really cool event. It is a good event. This is an event. It is a good event. It is really cool.',
-      startDateTime: Date.now(),
-      endDateTime: Date.now(),
-      location: {
-        address: 1,
-        road: 'Example Rd',
-        city: 'Guelph',
-        province: 'ON',
-        postalCode: 'A1A 1A1',
-        extraInstructions: '',
-      },
-      isOnline: false,
-      attendees: { current: 1, max: 55 },
-      volunteers: { current: 5, max: 5 },
-      wellnessType: 'Good',
-      cost: 1324344342,
-      imageUri: '',
-      registrationType: 'None',
-    },
-    onClick: () => {
+    event: sampleEvents.attendingEvent,
+    onClick: (eventData) => {
       alert('Lol haha cringe you are! What a 100Z3R');
     },
   },
@@ -96,30 +45,8 @@ export const NoExtraDirections = {
 
 export const Attendee = {
   args: {
-    event: {
-      title: 'Test Event',
-      description:
-        'This is the event description! Here you can learn all about the event. This is a really cool event. It is a good event. This is an event. It is a good event. It is really cool.',
-      startDateTime: Date.now(),
-      endDateTime: Date.now(),
-      location: {
-        address: 1,
-        road: 'Example Rd',
-        city: 'Guelph',
-        province: 'ON',
-        postalCode: 'A1A 1A1',
-        extraInstructions: 'Haha none',
-      },
-      isOnline: false,
-      attendees: { current: 1, max: 55 },
-      volunteers: { current: 5, max: 5 },
-      wellnessType: 'Good',
-      cost: 999,
-      imageUri:
-        'https://i0.wp.com/voyagecomics.com/wp-content/uploads/2021/10/smaug_dragon.webp?fit=1782%2C937&ssl=1',
-      registrationType: 'Attendee',
-    },
-    onClick: () => {
+    event: sampleEvents.attendingEvent,
+    onClick: (eventData) => {
       alert('Lol haha cringe you are! What a 100Z3R');
     },
   },
@@ -127,30 +54,8 @@ export const Attendee = {
 
 export const Volunteer = {
   args: {
-    event: {
-      title: 'Test Event',
-      description:
-        'This is the event description! Here you can learn all about the event. This is a really cool event. It is a good event. This is an event. It is a good event. It is really cool.',
-      startDateTime: Date.now(),
-      endDateTime: Date.now(),
-      location: {
-        address: 1,
-        road: 'Example Rd',
-        city: 'Guelph',
-        province: 'ON',
-        postalCode: 'A1A 1A1',
-        extraInstructions: 'Haha none',
-      },
-      isOnline: false,
-      attendees: { current: 1, max: 55 },
-      volunteers: { current: 5, max: 5 },
-      wellnessType: 'Good',
-      cost: 999,
-      imageUri:
-        'https://i0.wp.com/voyagecomics.com/wp-content/uploads/2021/10/smaug_dragon.webp?fit=1782%2C937&ssl=1',
-      registrationType: 'Volunteer',
-    },
-    onClick: () => {
+    event: sampleEvents.volunteeringEvent,
+    onClick: (eventData) => {
       alert('Lol haha cringe you are! What a 100Z3R');
     },
   },
@@ -158,30 +63,8 @@ export const Volunteer = {
 
 export const Host = {
   args: {
-    event: {
-      title: 'Test Event',
-      description:
-        'This is the event description! Here you can learn all about the event. This is a really cool event. It is a good event. This is an event. It is a good event. It is really cool.',
-      startDateTime: Date.now(),
-      endDateTime: Date.now(),
-      location: {
-        address: 1,
-        road: 'Example Rd',
-        city: 'Guelph',
-        province: 'ON',
-        postalCode: 'A1A 1A1',
-        extraInstructions: 'Haha none',
-      },
-      isOnline: false,
-      attendees: { current: 1, max: 55 },
-      volunteers: { current: 5, max: 5 },
-      wellnessType: 'Good',
-      cost: 999,
-      imageUri:
-        'https://i0.wp.com/voyagecomics.com/wp-content/uploads/2021/10/smaug_dragon.webp?fit=1782%2C937&ssl=1',
-      registrationType: 'Host',
-    },
-    onClick: () => {
+    event: sampleEvents.hostingEvent,
+    onClick: (eventData) => {
       alert('Lol haha cringe you are! What a 100Z3R');
     },
   },
