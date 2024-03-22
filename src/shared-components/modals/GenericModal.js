@@ -21,6 +21,7 @@ const style = {
  * @property {function} onClose
  * @property {boolean} open
  * @property {boolean} showExitButton
+ * @property {boolean} disabled
  */
 
 /**
@@ -36,6 +37,7 @@ const GenericModal = ({
   showExitButton,
   id,
   open,
+  disabled,
 }) => (
   <Dialog name={name} open={open}>
     <Box sx={style}>
@@ -51,6 +53,7 @@ const GenericModal = ({
           }}
           aria-label="close"
           onClick={onClose}
+          disabled={disabled}
         >
           <Clear />
         </IconButton>

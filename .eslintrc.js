@@ -42,5 +42,13 @@ module.exports = {
       { namedComponents: 'arrow-function' },
     ],
     'react/prop-types': 0,
+    'no-restricted-imports': [
+      2,
+      {
+        name: 'axios',
+        message:
+          'Imports of axios package is forbidden. Pwease use axios from /shared-components/axios',
+      },
+    ],
   },
 };
