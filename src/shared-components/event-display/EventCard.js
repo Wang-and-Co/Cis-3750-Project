@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {
   Card,
   CardActionArea,
@@ -15,7 +16,7 @@ import {
   getRegistrationTypeMessage,
 } from '../../types/types';
 
-const EventCard = ({ id, event, onClick }) => {
+const EventCard = ({ id, event = {}, onClick }) => {
   const {
     eventID,
     organizerID,
