@@ -37,7 +37,6 @@ def events():
 @app.route('/eventBooking', methods=['POST','GET'])
 def booking():
 
-
     if request.method == "GET":
 
         #Hardcoded Test Makers 
