@@ -1,21 +1,27 @@
-import {Button, CardMedia, Grid, Container, Drawer, IconButton, iconButton, Typography } from '@mui/material';
+import {
+  Button,
+  CardMedia,
+  Container,
+  Drawer,
+  IconButton,
+  Typography,
+} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import React from 'react';
 import PropTypes from 'prop-types';
 import getEventDurationString from '../../utils/getEventDurationString';
 import dateFormat from 'dateformat';
 
-const EventDescription = ({ open, setOpen, event, onClick}) => {
-
+const EventDescription = ({ open, setOpen, event = {}, onClick }) => {
   const {
     title,
     description,
     startDateTime,
     endDateTime,
-    location,
+    location = {},
     isOnline,
-    attendees,
-    volunteers,
+    attendees = {},
+    volunteers = {},
     wellnessType,
     cost,
     imageUri,
@@ -37,7 +43,6 @@ const EventDescription = ({ open, setOpen, event, onClick}) => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  
 
   return (
     <Container style={{ padding: 0 }}>
@@ -59,7 +64,12 @@ const EventDescription = ({ open, setOpen, event, onClick}) => {
           <Container style={{ position: 'relative', padding: 0 }}>
             <IconButton
               onClick={handleDrawerClose}
-              style={{ position: 'absolute', top: '8px', right: '8px', backgroundColor: 'rgba(255, 255, 255, 0.8)' }}
+              style={{
+                position: 'absolute',
+                top: '8px',
+                right: '8px',
+                backgroundColor: 'rgba(255, 255, 255, 0.8)',
+              }}
             >
               <CloseIcon />
             </IconButton>
@@ -73,8 +83,8 @@ const EventDescription = ({ open, setOpen, event, onClick}) => {
               style={{ width: '100%' }}
             />
           </Container>
-          <Container style={{padding: '1rem'}}>
-            <Typography gutterBottom variant="h3" component="div" >
+          <Container style={{ padding: '1rem' }}>
+            <Typography gutterBottom variant="h3" component="div">
               {title}
             </Typography>
             <Typography variant="subtitle1" color="text.primary">
@@ -84,14 +94,15 @@ const EventDescription = ({ open, setOpen, event, onClick}) => {
               {locationString}
             </Typography>
             {location?.extraInstructions && (
-              <Typography
-                variant="subtitle1"
-                color="text.primary"
-              >
+              <Typography variant="subtitle1" color="text.primary">
                 {`Extra Directions: ${location.extraInstructions}`}
               </Typography>
             )}
-            <Typography variant="body1" color="text.primary" sx={{ marginTop: '16px' }}>
+            <Typography
+              variant="body1"
+              color="text.primary"
+              sx={{ marginTop: '16px' }}
+            >
               Event type: {wellnessType}
             </Typography>
             <Typography variant="body1" color="text.primary">
@@ -104,22 +115,28 @@ const EventDescription = ({ open, setOpen, event, onClick}) => {
               Volunteers: {volunteers.current} / {volunteers.max}
             </Typography>
 
-            <Typography variant="body1" color="text.primary" sx={{ marginTop: '16px', marginBottom: '200px' }}>
+            <Typography
+              variant="body1"
+              color="text.primary"
+              sx={{ marginTop: '16px', marginBottom: '200px' }}
+            >
               {description}
             </Typography>
           </Container>
         </Container>
-        <div style={{ 
-          position: 'fixed', 
-          marginTop: '750px',
-          textAlign: 'center',
-          width: `${styling.myEventsWidth - 40}px`,
-          display: 'grid',
-          gridTemplateColumns: 'repeat(2, 1fr)',
-          gap: '20px',
-          padding: '20px',
-          backgroundColor: 'white',
-          }}>
+        <div
+          style={{
+            position: 'fixed',
+            marginTop: '750px',
+            textAlign: 'center',
+            width: `${styling.myEventsWidth - 40}px`,
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, 1fr)',
+            gap: '20px',
+            padding: '20px',
+            backgroundColor: 'white',
+          }}
+        >
           <Button
             variant="contained"
             color="primary"
@@ -128,7 +145,9 @@ const EventDescription = ({ open, setOpen, event, onClick}) => {
             }}
             disabled={attendees.current === attendees.max} // Disable button if current attendees reach max
           >
-            {attendees.current === attendees.max ? 'Full (Max reached)' : 'Register as Attendee'}
+            {attendees.current === attendees.max
+              ? 'Full (Max reached)'
+              : 'Register as Attendee'}
           </Button>
           <Button
             variant="contained"
@@ -138,7 +157,9 @@ const EventDescription = ({ open, setOpen, event, onClick}) => {
             }}
             disabled={volunteers.current === volunteers.max} // Disable button if current volunteers reach max
           >
-            {volunteers.current === volunteers.max ? 'Full (Max reached)' : 'Register as Volunteer'}
+            {volunteers.current === volunteers.max
+              ? 'Full (Max reached)'
+              : 'Register as Volunteer'}
           </Button>
         </div>
       </Drawer>
