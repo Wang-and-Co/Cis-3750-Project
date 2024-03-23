@@ -59,6 +59,4 @@ def login():
         mockLoginInfo = {"id": 123123, "email": "sus@balls.ca", "password": "among us"}
         return json.dumps(mockLoginInfo)
     else:
-        eventInfo = request.get_json()
-        db.add_event(eventInfo)
-        return eventInfo
+        print("Not implemented yet") 
