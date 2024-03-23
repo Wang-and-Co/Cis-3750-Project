@@ -74,12 +74,6 @@ const SamplePage = () => {
         <Button variant="contained" onClick={handleOpenDrawer}>
           Open Drawer
         </Button>
-        <EventDescription
-          open={isEventDescriptionOpen}
-          setOpen={setIsEventDescriptionOpen}
-          title="Test Event Title"
-          description="This is a test event description."
-        />
       </header>
     </div>
   );
