@@ -13,7 +13,7 @@ class Database():
         cursor = connect.cursor()
         tempString = "( " + "?, "* (len(values)-1) + "?)"
 
-        cursor.execute(f"""INSERT OR IGNORE
+        cursor.execute(f"""INSERT
                            INTO     {table}
                            VALUES   {tempString} ;""", values)
 
@@ -90,7 +90,6 @@ class Database():
         table = cursor.execute(f""" SELECT * FROM EventBookings
                                          WHERE USER_ID = {userID};""").fetchall()
         
-
         connect.commit()
         connect.close()
 

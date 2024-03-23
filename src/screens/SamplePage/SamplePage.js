@@ -4,10 +4,10 @@ import logo from './../../logo.svg';
 import { Button, Stack } from '@mui/material';
 import { useCookies } from 'react-cookie';
 import { showLoginModal } from '../../shared-components/modals/LoginModal';
+import { retrieveBookings } from '../../app/api/events';
 import React, { useState } from 'react';
 import EventDescription from '../../shared-components/event-display/eventDescription';
-import { retrieveBookings } from '../../app/api/eventBookings';
-import { Axios } from '../../shared-components/axios/Axios';
+
 
 const SamplePage = () => {
   const [cookies, setCookies, removeCookie] = useCookies(['auth']);
@@ -33,7 +33,7 @@ const SamplePage = () => {
         >
           Learn React
         </a>
-        <Button
+        <Button 
           variant="contained"
           onClick={() =>
             showConfirmationModal({
@@ -46,10 +46,11 @@ const SamplePage = () => {
           Show Modal
         </Button>
         <Button 
+          title="retrieveBooking"
           variant="contained"
-          onClick={() => retrieveBookings()}
+          onClick={() => retrieveBookings(2)}
         >
-
+          retrieveBooking 
         </Button>
         <Button
           variant="contained"
@@ -74,13 +75,13 @@ const SamplePage = () => {
         {cookies?.auth
           ? `Logged in. Cookies have: {email: ${cookies.auth.email}, password: ${cookies.auth.password}}`
           : 'not logged in'}
-        <Button
+        {/* <Button
           onClick={() => {
             retrieveEvents(cookies, { type: 'text' });
           }}
         >
           Send Request
-        </Button>
+        </Button> */}
         <Button variant="contained" onClick={handleOpenDrawer}>
           Open Drawer
         </Button>

@@ -1,5 +1,5 @@
 from flask import Flask, request
-from flask_cors import CORS
+from flask_cors import CORS 
 import comboSql as comboSql 
 import json
 app = Flask(__name__)
@@ -42,17 +42,13 @@ def booking():
 
     if request.method == "GET":
 
-        #Hardcoded Test Makers 
-        db.__setitem__("EventBookings", (1, 2, "Attendee"))
-        db.__setitem__("EventBookings", (4, 2, "Volunteer"))
-        db.__setitem__("EventBookings", (2, 3, "Volunteer"))
+        userID = request.args.get('id')
 
-        # userID = request.get_json() 
+        #db['EventBookings'] = (1, 2, "Volunteers")
 
-        # Hardcoded for now to test later with an actual get request
-        table = db.select_booking(2)
-        print(table)
+        table = db.select_booking(userID)
         return (json.dumps(table))
+    
     else:
         print("Not implement yet")
 
