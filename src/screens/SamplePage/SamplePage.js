@@ -5,6 +5,7 @@ import { Button, Stack } from '@mui/material';
 import { useCookies } from 'react-cookie';
 import { showLoginModal } from '../../shared-components/modals/LoginModal';
 import { addBooking } from '../../app/api/events';
+import { createAccount } from '../../app/api/accounts';
 import React, { useState } from 'react';
 import EventDescription from '../../shared-components/event-display/eventDescription';
 
@@ -47,7 +48,7 @@ const SamplePage = () => {
         </Button>
         <Button 
           variant="contained"
-          onClick={() => addBooking({event_id: 54, user_id: 2, type: 'Volunteer'})}
+          onClick={() => createAccount({email: 'sussy@gmail.com', password: 'HiAll', fname: 'Daniel', lname: 'Wang'})}
         >
           add Booking  
         </Button>

@@ -32,11 +32,10 @@ def events():
         return json.dumps(eventInfo)
     else:
         eventInfo = request.get_json()
-        db.add_event(eventInfo)
+        eventID = db.add_event(eventInfo)
 
-        #For sake of minimum viable product, just returning one here to signify succesfull account registration
-        return json.dumps(1)
-
+        #Return the eventID 
+        return json.dumps(eventID)
 
 
 @app.route('/eventBooking', methods=['POST','GET'])
@@ -50,11 +49,11 @@ def booking():
         return (json.dumps(table))
     
     else:
+
         bookingInfo = request.get_json()
         db['EventBookings'] = (bookingInfo['event_id'], bookingInfo['user_id'],
                                                         bookingInfo['type'])
-
-        return json.dumps(1)
+        return json.dumps(True)
 
 @app.route('/createAccount', methods=['POST'])
 def createAccount():
@@ -64,8 +63,9 @@ def createAccount():
                                 accountInfo['fname'], accountInfo['lname'])
         
         #For sake of minimum viable product, just returning one here to signify succesfull account registration
-        return json.dumps(1)
-    
+        userCredentials = db.select_account({'email': accountInfo['email'], 'password': accountInfo['password']})
+        return json.dumps(userCredentials)
+        # Return same as login for auto signing them in once account created 
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -75,11 +75,7 @@ def login():
         #Hardcoded Testing info: Kept for future testing
         #db['Accounts'] = (None, "sussy@gmail.com","HiAll","Daniel","Wang")
 
-        #need userid, fname, lastname
         userCredentials = request.get_json()
         table = db.select_account(userCredentials)
 
         return json.dumps(table)
-
-        #mockLoginInfo = {"id": 123123, "email": "sus@balls.ca", "password": "among us"}
-        #return json.dumps(mockLoginInfo)

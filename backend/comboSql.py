@@ -77,8 +77,15 @@ class Database():
             cursor.execute(""" INSERT INTO Events (TITLE, START_TIME, END_TIME, LOCATION, DESCRIPTION, MAX_ATTENDEES, MAX_VOLUNTEERS, COST, IMAGE) 
                                 VALUES('%s', '%s', '%s', '%s', '%s', '%s','%s', '%s');""" % (eventInfo['title'], eventInfo['startTime'], eventInfo['endTime'], eventInfo['location'], eventInfo['description'], eventInfo['maxAttendees'], eventInfo['maxVolunteers'], eventInfo['cost'], eventInfo['image']))
     
+        userID = cursor.execute(f""" SELECT EVENT_ID FROM Events 
+                                        WHERE TITLE = "{eventInfo}" """).fetchone()
+
         connect.commit()
         connect.close()
+
+        return userID
+
+        
 
 
     def select_booking(self, userID):

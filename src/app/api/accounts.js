@@ -13,6 +13,7 @@ const login = async (payload) => {
 const createAccount = async (payload) => {
   try {
     const { data } = await Axios.post('/createAccount', payload);
+    console.log(data)
     return { status: 200, ...data };
   } catch (error) {
     return { status: 0, ...error };
