@@ -71,7 +71,7 @@ const InputField = ({
       name={name}
       sx={{ minHeight: '5rem' }}
       type={type === 'password' ? (showPassword ? 'text' : 'password') : type}
-      InputProps={type === 'password' && { endAdornment: iconAdnornments }}
+      InputProps={type === 'password' ? { endAdornment: iconAdnornments } : {}}
       {...otherProps}
     ></TextField>
   );
