@@ -15,7 +15,7 @@ import {
   getRegistrationTypeMessage,
 } from '../../types/types';
 
-const MinimizedEventCard = ({ id, event, onClick }) => {
+const MinimizedEventCard = ({ id, event, openEventFunc }) => {
   const {
     eventID,
     organizerID,
@@ -41,7 +41,7 @@ const MinimizedEventCard = ({ id, event, onClick }) => {
     <Card sx={{ backgroundColor: backgroundColour }}>
       <CardActionArea
         onClick={() => {
-          onClick(event);
+          openEventFunc(event);
         }}
       >
         <CardContent>
@@ -117,6 +117,6 @@ MinimizedEventCard.propTypes = {
     imageUri: PropTypes.string,
     registrationType: PropTypes.string,
   }),
-  onClick: PropTypes.func,
+  openEventFunc: PropTypes.func,
 };
 export default MinimizedEventCard;

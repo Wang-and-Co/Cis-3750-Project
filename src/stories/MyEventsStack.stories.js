@@ -4,12 +4,12 @@ import { fn } from '@storybook/test';
 import { theme } from '../app/themeUtils';
 import { ThemeProvider } from '@emotion/react';
 import { Container, Grid } from '@mui/material';
-import MyEventsSidebar from '../shared-components/event-display/MyEventsSidebar';
+import MyEventsStack from '../shared-components/Navigation/MyEventsStack';
 import * as sampleEvents from './sampleEvents';
 
 export default {
-  title: 'Events/MyEventsSidebar',
-  component: MyEventsSidebar,
+  title: 'Events/MyEventsStack',
+  component: MyEventsStack,
   decorators: [
     (Story) => (
       <ThemeProvider theme={theme}>

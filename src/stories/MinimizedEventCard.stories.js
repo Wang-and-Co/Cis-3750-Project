@@ -42,7 +42,7 @@ export default {
 export const Primary = {
   args: {
     event: sampleEvents.attendingEvent,
-    onClick: (eventData) => {
+    openEventFunc: (eventData) => {
       alert('Lol haha cringe you are! What a 100Z3R');
     },
   },
@@ -51,7 +51,7 @@ export const Primary = {
 export const Volunteer = {
   args: {
     event: sampleEvents.volunteeringEvent,
-    onClick: (eventData) => {
+    openEventFunc: (eventData) => {
       alert('Lol haha cringe you are! What a 100Z3R');
     },
   },
@@ -60,7 +60,7 @@ export const Volunteer = {
 export const Host = {
   args: {
     event: sampleEvents.hostingEvent,
-    onClick: (eventData) => {
+    openEventFunc: (eventData) => {
       alert('Lol haha cringe you are! What a 100Z3R');
     },
   },
