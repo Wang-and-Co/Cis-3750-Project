@@ -1,4 +1,4 @@
-import { IcecreamOutlined } from '@mui/icons-material';
+import { IcecreamOutlined, Inbox, Mail } from '@mui/icons-material';
 import {
   AppBar,
   CssBaseline,
@@ -14,6 +14,7 @@ import {
   Toolbar,
   Typography,
   Container,
+  Divider,
 } from '@mui/material';
 import NavBarLeft from '../shared-components/NavBarLeft';
 
@@ -22,93 +23,41 @@ const myEventsWidth = 480;
 const topBarHeight = '64px';
 const myEventsHeight = window.innerHeight - topBarHeight;
 
-const navBarLeft = (
-  <Container>
-    <Toolbar />
-    <List>
-      <ListItem key={'test'} sx={{ marginTop: '2rem' }}>
-        <ListItemButton>
-          <ListItemIcon>
-            <IcecreamOutlined></IcecreamOutlined>
-          </ListItemIcon>
-          <ListItemText primary="lol"></ListItemText>
-        </ListItemButton>
-      </ListItem>
-      <ListItem key={'second'}>
-        <ListItemButton>
-          <ListItemIcon>
-            <IcecreamOutlined></IcecreamOutlined>
-          </ListItemIcon>
-          <ListItemText primary="lol covered ^"></ListItemText>
-        </ListItemButton>
-      </ListItem>
-    </List>
-  </Container>
-);
-
-const myEventsBar = (
-  <div style={{ padding: '1rem' }}>
-    <Typography variant="h2">Test My Events</Typography>
-  </div>
-);
-
 const Layout = ({ children }) => {
   return (
-    <>
-      <CssBaseline />
-
-      <Box sx={{ display: 'flex' }}>
-        {/*right nav bar*/}
-        <Drawer
-          variant="permanent"
-          anchor="right"
-          sx={{
-            flexShrink: 0,
-            '& .MuiDrawer-paper': {
-              width: myEventsWidth,
-              height: myEventsHeight,
-              marginTop: topBarHeight,
-            },
-          }}
-          open
-        >
-          {myEventsBar}
-        </Drawer>
-
-        {/*left nav bar*/}
-        <Drawer
-          variant="permanent"
-          sx={{
+    <Box sx={{ display: 'flex' }}>
+      <AppBar
+        position="fixed"
+        sx={{
+          zIndex: (theme) => theme.zIndex.drawer + 1,
+          boxShadow: 'none',
+          backgroundColor: 'white',
+          borderBottom: 1,
+          borderColor: 'lightgray',
+        }}
+      >
+        <Toolbar>
+          <Typography variant="h6" noWrap component="div">
+            Search bar goes here
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Drawer
+        variant="permanent"
+        sx={{
+          width: drawerWidth,
+          flexShrink: 0,
+          [`& .MuiDrawer-paper`]: {
             width: drawerWidth,
-            flexShrink: 0,
-            '& .MuiDrawer-paper': { width: drawerWidth },
-          }}
-          open
-        >
-          <NavBarLeft />
-        </Drawer>
+            boxSizing: 'border-box',
+          },
+        }}
+      >
+        <NavBarLeft></NavBarLeft>
+      </Drawer>
+      <Box sx={{ flexGrow: 1, paddingTop: 3 }}>{children}</Box>
+    </Box>
 
-        <AppBar
-          position="fixed"
-          sx={{
-            width: { sm: `calc(100% - ${drawerWidth}px)` },
-            ml: { sm: `${drawerWidth}px` },
-            zIndex: (theme) => theme.zIndex.drawer + 1,
-            height: topBarHeight,
-          }}
-        >
-          {/*top nav bar*/}
-          <Toolbar>
-            <Typography variant="h4">Test search bar</Typography>
-          </Toolbar>
-        </AppBar>
-
-        {/*body*/}
-        <Box component="main" sx={{ flexGrow: 1,  marginRight: `${myEventsWidth}px`}}>
-          {children}
-        </Box>
-      </Box>
-    </>
   );
 };
 

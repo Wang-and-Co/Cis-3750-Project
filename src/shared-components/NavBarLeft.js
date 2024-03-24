@@ -1,4 +1,4 @@
-import { IcecreamOutlined } from '@mui/icons-material';
+import { IcecreamOutlined, Inbox, Mail } from '@mui/icons-material';
 import {
   List,
   Toolbar,
@@ -6,30 +6,43 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Divider,
 } from '@mui/material';
+import { Box } from '@mui/system';
 
 const NavBarLeft = () => {
-  <div>
-    <Toolbar />
-    <List>
-      <ListItem key={'test'} sx={{ marginTop: '2rem' }}>
-        <ListItemButton>
-          <ListItemIcon>
-            <IcecreamOutlined></IcecreamOutlined>
-          </ListItemIcon>
-          <ListItemText primary="lol"></ListItemText>
-        </ListItemButton>
-      </ListItem>
-      <ListItem key={'second'}>
-        <ListItemButton>
-          <ListItemIcon>
-            <IcecreamOutlined></IcecreamOutlined>
-          </ListItemIcon>
-          <ListItemText primary="lol covered ^"></ListItemText>
-        </ListItemButton>
-      </ListItem>
-    </List>
-  </div>;
+  return (
+    <>
+      <Toolbar />
+      <Box sx={{ overflow: 'auto' }}>
+        <List>
+          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+            <ListItem key={text} disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  {index % 2 === 0 ? <Inbox /> : <Mail />}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+        <Divider />
+        <List>
+          {['All mail', 'Trash', 'Spam'].map((text, index) => (
+            <ListItem key={text} disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  {index % 2 === 0 ? <Inbox /> : <Mail />}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      </Box>
+    </>
+  );
 };
 
 export default NavBarLeft;
