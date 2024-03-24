@@ -7,7 +7,6 @@ const GridInputField = ({ fieldProps, spacing, key }) => {
       <InputField
         {...fieldProps}
         sx={(theme) => ({
-          padding: theme.spacing(1),
           width: '100%',
           minHeight: '5rem',
         })}

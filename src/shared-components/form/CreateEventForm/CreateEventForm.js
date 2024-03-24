@@ -1,4 +1,11 @@
-import { Stack, Box, Typography, Button } from '@mui/material';
+import {
+  Stack,
+  Box,
+  Typography,
+  Button,
+  Paper,
+  Container,
+} from '@mui/material';
 import { Form, Formik } from 'formik';
 import { getCreateEventValidationSchema } from './validations';
 import {
@@ -30,79 +37,88 @@ const CreateEventForm = ({ handleSubmit }) => {
   const schema = getCreateEventValidationSchema();
   const initialValues = getInitialFormValues();
   return (
-    <Formik
-      validationSchema={schema}
-      initialValues={initialValues}
-      validateOnBlur
-      onSubmit={(values, actions) => {
-        console.log(values);
-      }}
+    <Container
+      maxWidth="1rem"
+      component="div"
+      sx={(theme) => ({
+        backgroundColor: theme.palette.background.default,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        maxWidth: '40rem',
+        borderRadius: '10px',
+        padding: '1rem',
+        marginBottom: '10rem',
+      })}
     >
-      {(formikProps) => (
-        <Form>
-          <ConnectedFocusError />
-          <Stack maxWidth={'40rem'} gap="0.5rem">
-            <Typography variant="h2">Create Event</Typography>
-            <FileInputField
-              name="image"
-              label={'Upload an image to represent your event!'}
-              defaultImage={defaultImage}
-            />
-            <Box sx={styles} key="overview">
-              <Typography variant="h3" marginBottom={'1rem'}>
-                Event Overview
-              </Typography>
-              {overviewProperties.map((values, index) => (
-                <InputContentBox {...values} key={index} />
-              ))}
-            </Box>
-            <Box sx={styles} key="location">
-              <Typography variant="h3" marginBottom={'1rem'}>
-                Time & Location
-              </Typography>
-              <Box display={'inline-flex'} flexDirection={'row'} gap="0.5rem">
-                <TimePickerField
-                  name="startDateTime"
-                  label="Starting Time"
-                ></TimePickerField>
-                <TimePickerField
-                  name="endDateTime"
-                  label="Ending Time"
-                ></TimePickerField>
-              </Box>
-              <InputContentBox
-                title="Event Date"
-                description="Enter the date your event will take place on"
-                fieldProps={{
-                  name: 'eventDate',
-                  label: 'Event Date',
-                  required: true,
-                }}
-                type="date"
+      <Formik
+        validationSchema={schema}
+        initialValues={initialValues}
+        validateOnBlur
+        onSubmit={handleSubmit}
+      >
+        {(formikProps) => (
+          <Form>
+            <ConnectedFocusError />
+            <Stack maxWidth="inherit" gap="0.5rem">
+              <Typography variant="h2">Create Event</Typography>
+              <FileInputField
+                name="image"
+                label={'Upload an image to represent your event!'}
+                defaultImage={defaultImage}
               />
-              <Typography variant="h4">Address</Typography>
-              <InputAddressGrid />
-            </Box>
-            <Box sx={styles}>
-              <Typography variant="h3">Other Info</Typography>
-              {otherInfoProperties.map((values, index) => (
-                <InputContentBox {...values} key={index} />
-              ))}
-            </Box>
-            <Button
-              onClick={formikProps.handleSubmit}
-              disabled={formikProps.isSubmitting}
-              variant="contained"
-            >
-              Submit
-            </Button>
-            <Button onClick={() => console.log(formikProps.errors)}>
-              Debug
-            </Button>
-          </Stack>
-        </Form>
-      )}
-    </Formik>
+              <Box sx={styles} key="overview">
+                <Typography variant="h3" marginBottom={'1rem'}>
+                  Event Overview
+                </Typography>
+                {overviewProperties.map((values, index) => (
+                  <InputContentBox {...values} key={index} />
+                ))}
+              </Box>
+              <Box sx={styles} key="location">
+                <Typography variant="h3" marginBottom={'1rem'}>
+                  Time & Location
+                </Typography>
+                <Box display={'inline-flex'} flexDirection={'row'} gap="0.5rem">
+                  <TimePickerField
+                    name="startDateTime"
+                    label="Starting Time"
+                  ></TimePickerField>
+                  <TimePickerField
+                    name="endDateTime"
+                    label="Ending Time"
+                  ></TimePickerField>
+                </Box>
+                <InputContentBox
+                  title="Event Date"
+                  description="Enter the date your event will take place on"
+                  fieldProps={{
+                    name: 'eventDate',
+                    label: 'Event Date',
+                    required: true,
+                  }}
+                  type="date"
+                />
+                <Typography variant="h4">Address</Typography>
+                <InputAddressGrid />
+              </Box>
+              <Box sx={styles}>
+                <Typography variant="h3">Other Info</Typography>
+                {otherInfoProperties.map((values, index) => (
+                  <InputContentBox {...values} key={index} />
+                ))}
+              </Box>
+              <Button
+                onClick={formikProps.handleSubmit}
+                disabled={formikProps.isSubmitting}
+                variant="contained"
+              >
+                Create Event
+              </Button>
+            </Stack>
+          </Form>
+        )}
+      </Formik>
+    </Container>
   );
 };
 export default CreateEventForm;
