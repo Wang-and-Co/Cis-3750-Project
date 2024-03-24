@@ -39,7 +39,7 @@ const SamplePage = () => {
           onClick={() =>
             showConfirmationModal({
               title: 'among us alert!',
-              description: 'Raw men and maximum samuel',
+              description: 'Raw men and maximum samuel and Ianiel Fridays and Man-sour and ET ham and Kirkland Foundations',
             })
           }
         >
