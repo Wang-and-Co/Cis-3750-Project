@@ -109,50 +109,51 @@ const EventDescription = ({ closeFunc, event = {} }) => {
           <Typography
             variant="body1"
             color="text.primary"
-            sx={{ marginTop: '16px', marginBottom: '200px' }}
+            sx={{ marginTop: '16px', marginBottom: '100px'}}
           >
             {description}
           </Typography>
         </Container>
+        <div
+          style={{
+            position: 'fixed',
+            bottom: '0px',
+            textAlign: 'center',
+            width: `${styling.myEventsWidth - 40}px`,
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, 1fr)',
+            gap: '20px',
+            padding: '20px',
+            backgroundColor: 'white',
+            overflow: 'auto',
+          }}
+        >
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              console.log('Asked to register as attendee');
+            }}
+            disabled={attendees.current === attendees.max} // Disable button if current attendees reach max
+          >
+            {attendees.current === attendees.max
+              ? 'Full (Max reached)'
+              : 'Register as Attendee'}
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              console.log('Asked to register as volunteer');
+            }}
+            disabled={volunteers.current === volunteers.max} // Disable button if current volunteers reach max
+          >
+            {volunteers.current === volunteers.max
+              ? 'Full (Max reached)'
+              : 'Register as Volunteer'}
+          </Button>
+        </div>
       </Container>
-      <div
-        style={{
-          position: 'fixed',
-          marginTop: '400px',
-          textAlign: 'center',
-          width: `${styling.myEventsWidth - 40}px`,
-          display: 'grid',
-          gridTemplateColumns: 'repeat(2, 1fr)',
-          gap: '20px',
-          padding: '20px',
-          backgroundColor: 'white',
-        }}
-      >
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => {
-            console.log('Asked to register as attendee');
-          }}
-          disabled={attendees.current === attendees.max} // Disable button if current attendees reach max
-        >
-          {attendees.current === attendees.max
-            ? 'Full (Max reached)'
-            : 'Register as Attendee'}
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => {
-            console.log('Asked to register as volunteer');
-          }}
-          disabled={volunteers.current === volunteers.max} // Disable button if current volunteers reach max
-        >
-          {volunteers.current === volunteers.max
-            ? 'Full (Max reached)'
-            : 'Register as Volunteer'}
-        </Button>
-      </div>
     </>
   );
 };
