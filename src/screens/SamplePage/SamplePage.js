@@ -5,6 +5,8 @@ import { Button, Stack } from '@mui/material';
 import { useCookies } from 'react-cookie';
 import { showLoginModal } from '../../shared-components/modals/LoginModal';
 import { retrieveBookings } from '../../app/api/events';
+import { login } from '../../app/api/accounts';
+import { createAccount } from '../../app/api/accounts';
 import React, { useState } from 'react';
 import EventDescription from '../../shared-components/event-display/eventDescription';
 
@@ -46,11 +48,10 @@ const SamplePage = () => {
           Show Modal
         </Button>
         <Button 
-          title="retrieveBooking"
           variant="contained"
-          onClick={() => retrieveBookings(2)}
+          onClick={() => createAccount({email: 'sussy@gmail.com', password: 'HiAll', fname: 'Daniel', lname: 'Wang'})}
         >
-          retrieveBooking 
+          login Submission  
         </Button>
         <Button
           variant="contained"

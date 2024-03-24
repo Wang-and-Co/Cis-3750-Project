@@ -53,10 +53,30 @@ def booking():
         print("Not implement yet")
 
 
+@app.route('/createAccount', methods=['POST'])
+def createAccount():
+    if request.method == 'POST':
+        accountInfo = request.get_json()
+        db['Accounts'] = (None, accountInfo['email'], accountInfo['password'],
+                                accountInfo['fname'], accountInfo['lname'])
+        
+        #For sake of minimum viable product, just returning one here to signify succesfull account registration
+        return json.dumps(1)
+    
+
 @app.route('/login', methods=['POST'])
 def login():
+
     if request.method == 'POST':
-        mockLoginInfo = {"id": 123123, "email": "sus@balls.ca", "password": "among us"}
-        return json.dumps(mockLoginInfo)
-    else:
-        print("Not implemented yet") 
+
+        #Hardcoded Testing info: Kept for future testing
+        #db['Accounts'] = (None, "sussy@gmail.com","HiAll","Daniel","Wang")
+
+        #need userid, fname, lastname
+        userCredentials = request.get_json()
+        table = db.select_account(userCredentials)
+
+        return json.dumps(table)
+
+        #mockLoginInfo = {"id": 123123, "email": "sus@balls.ca", "password": "among us"}
+        #return json.dumps(mockLoginInfo)

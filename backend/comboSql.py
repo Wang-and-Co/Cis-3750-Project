@@ -48,7 +48,7 @@ class Database():
 
         cursor.execute(""" CREATE TABLE IF NOT EXISTS Accounts (
                        USER_ID          INTEGER     PRIMARY KEY    AUTOINCREMENT,
-                       EMAIL            TEXT        NOT NULL,
+                       EMAIL            BLOB        NOT NULL,
                        PASSWORD         TEXT        NOT NULL, 
                        FNAME            TEXT        NOT NULL,
                        LNAME            TEXT        NOT NULL );""")
@@ -83,6 +83,7 @@ class Database():
     def add_booking(self, bookingInfo):
         print("Does not do anything yet")
 
+
     def select_booking(self, userID):
         connect = sqlite3.connect('database.db')
         cursor = connect.cursor()
@@ -94,6 +95,22 @@ class Database():
         connect.close()
 
         return table
+    
+    def select_account(self, credentials):
+        connect = sqlite3.connect('database.db')
+        cursor = connect.cursor() 
+
+        table = cursor.execute(f""" SELECT * FROM Accounts
+                                        WHERE EMAIL =  "{credentials['email']}"
+                                        AND PASSWORD = "{credentials['password']}";""").fetchone()
+        
+        
+        # Here we return a fake accoun for sake of the minimum viable product
+        if table == None:
+            return (1, "Bryan","Wang")
+        
+        return (table[0], table[3], table[4])
+            
 
 
         
