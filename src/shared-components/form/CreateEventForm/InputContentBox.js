@@ -1,8 +1,13 @@
 import { Box, Typography } from '@mui/material';
 import { InputField } from '../InputField';
 import { DatePickerField } from '../DatePickerField';
+import RadioGroupField from '../RadioGroupField/RadioGroupField';
 
-const inputField = { input: InputField, date: DatePickerField };
+const inputField = {
+  input: InputField,
+  date: DatePickerField,
+  radio: RadioGroupField,
+};
 
 const InputContentBox = ({
   title,
