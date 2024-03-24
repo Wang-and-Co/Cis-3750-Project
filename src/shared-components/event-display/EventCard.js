@@ -16,7 +16,7 @@ import {
   getRegistrationTypeMessage,
 } from '../../types/types';
 
-const EventCard = ({ id, event = {}, onClick }) => {
+const EventCard = ({ id, event = {}, openEventFunc }) => {
   const {
     eventID,
     organizerID,
@@ -48,7 +48,7 @@ const EventCard = ({ id, event = {}, onClick }) => {
     <Card id={id}>
       <CardActionArea
         onClick={() => {
-          onClick(event);
+          openEventFunc(event);
         }}
       >
         <CardMedia
@@ -136,6 +136,6 @@ EventCard.propTypes = {
     imageUri: PropTypes.string,
     registrationType: PropTypes.string,
   }),
-  onClick: PropTypes.func,
+  openEventFunc: PropTypes.func,
 };
 export default EventCard;
