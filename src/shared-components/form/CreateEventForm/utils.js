@@ -3,8 +3,8 @@ const getInitialFormValues = () => ({
   description: '',
   wellnessType: '',
   isOnline: false,
-  maxVolunteers: '',
-  maxAttendees: 1,
+  maxVolunteers: undefined,
+  maxAttendees: undefined,
   cost: 0,
   startDateTime: '',
   endDateTime: '',
@@ -89,26 +89,6 @@ const otherInfoProperties = [
     type: 'radio',
   },
   {
-    title: 'Attendees',
-    description: 'how many',
-    fieldProps: {
-      name: 'maxAttendees',
-      label: 'Maximum Attendees',
-      required: false,
-    },
-    type: 'number',
-  },
-  {
-    title: 'Volunteers',
-    description: 'how many',
-    fieldProps: {
-      name: 'maxVolunteers',
-      label: 'Maximum Volunteers',
-      required: false,
-    },
-    type: 'number',
-  },
-  {
     title: 'Cost',
     description: 'how many',
     fieldProps: {
@@ -131,9 +111,33 @@ const otherInfoProperties = [
     type: 'radio',
   },
 ];
+
+const participantLevelsProperties = [
+  {
+    title: 'Attendees',
+    description: 'how many',
+    fieldProps: {
+      name: 'maxAttendees',
+      label: 'Maximum Attendees',
+      required: false,
+    },
+    type: 'number',
+  },
+  {
+    title: 'Volunteers',
+    description: 'how many',
+    fieldProps: {
+      name: 'maxVolunteers',
+      label: 'Maximum Volunteers',
+      required: false,
+    },
+    type: 'number',
+  },
+];
 export {
   getInitialFormValues,
   overviewProperties,
   locationTimeProperties,
   otherInfoProperties,
+  participantLevelsProperties,
 };

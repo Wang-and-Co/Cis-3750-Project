@@ -12,6 +12,7 @@ import {
   overviewProperties,
   otherInfoProperties,
   getInitialFormValues,
+  participantLevelsProperties,
 } from './utils';
 import FileInputField from '../FileInputField/FileInputField';
 import defaultImage from '../../../assets/sampleImage.png';
@@ -100,11 +101,16 @@ const CreateEventForm = ({ handleSubmit }) => {
                 <Typography variant="h4">Address</Typography>
                 <InputAddressGrid />
               </Box>
-              <Box sx={styles}>
+              <Box sx={styles} key="otherInfo">
                 <Typography variant="h3">Other Info</Typography>
                 {otherInfoProperties.map((values, index) => (
                   <InputContentBox {...values} key={index} />
                 ))}
+                <Stack direction="row-reverse" justifyContent="space-between">
+                  {participantLevelsProperties.map((values, index) => (
+                    <InputContentBox {...values} key={index} />
+                  ))}
+                </Stack>
               </Box>
               <Button
                 onClick={formikProps.handleSubmit}

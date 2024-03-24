@@ -5,7 +5,7 @@ const getCreateEventValidationSchema = () =>
     title: yup
       .string()
       .required('Event title is required')
-      .max(40, 'Title is maximum 40 characters'),
+      .max(50, 'Title is maximum 50 characters'),
     description: yup
       .string()
       .required('Description of event is required.')
@@ -16,7 +16,10 @@ const getCreateEventValidationSchema = () =>
       .number()
       .required('Must specify how many volunteers are required')
       .min(0),
-    maxAttendees: yup.number().min(1, 'Event must have atleast 1 attendee'),
+    maxAttendees: yup
+      .number()
+      .min(1, 'Event must have atleast 1 attendee')
+      .required('You must specify number of attendees'),
     cost: yup.number().min(0, 'cost cannot be negative'),
     startDateTime: yup.date(),
     endDateTime: yup
