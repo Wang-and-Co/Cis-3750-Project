@@ -30,7 +30,6 @@ const retrieveBookings = async (payload) => {
 const addBooking = async (payload) => {
   try {
     const { data } = await Axios.post('/eventBooking', payload);
-    console.log(data)
     return { status: 200, ...data};
 
   } catch (error) {
