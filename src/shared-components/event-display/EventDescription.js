@@ -139,7 +139,7 @@ const EventDescription = ({ closeFunc, event = {} }) => {
             >
               {attendees.current === attendees.max
                 ? 'Full (Max reached)'
-                : 'Register as Volunteer'}
+                : 'Register as Attendee'}
             </Button>
           </Grid>
           <Grid item sx={{ paddingLeft: '13px' }}>
