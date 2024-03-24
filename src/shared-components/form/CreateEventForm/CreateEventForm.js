@@ -4,7 +4,7 @@ import { InputField } from '../InputField';
 import { getCreateEventValidationSchema } from './validations';
 import {
   overviewProperties,
-  locationTimeProperties,
+  otherInfoProperties,
   getInitialFormValues,
 } from './utils';
 import FileInputField from '../FileInputField/FileInputField';
@@ -79,6 +79,9 @@ const CreateEventForm = () => {
           </Box>
           <Box sx={styles}>
             <Typography variant="h3">Other Info</Typography>
+            {otherInfoProperties.map((values, index) => (
+              <InputContentBox {...values} key={index} />
+            ))}
           </Box>
         </Stack>
       </Form>

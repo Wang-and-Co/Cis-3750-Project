@@ -72,4 +72,36 @@ const locationTimeProperties = [
   },
 ];
 
-export { getInitialFormValues, overviewProperties, locationTimeProperties };
+const otherInfoProperties = [
+  {
+    title: 'Wellness Category',
+    description: 'What wellness type does your event fit into?',
+    fieldProps: {
+      name: 'wellnessType',
+      options: [
+        { value: 'mental', label: 'Mental Wellness' },
+        { value: 'physical', label: 'Physical Wellness' },
+        { value: 'intellectual', label: 'Intellectual Wellness' },
+      ],
+    },
+    type: 'radio',
+  },
+  {
+    title: 'Platform',
+    description: 'Is your event taking place online?',
+    fieldProps: {
+      name: 'isOnline',
+      options: [
+        { value: false, label: 'In-Person Event' },
+        { value: true, label: 'Online' },
+      ],
+    },
+    type: 'radio',
+  },
+];
+export {
+  getInitialFormValues,
+  overviewProperties,
+  locationTimeProperties,
+  otherInfoProperties,
+};
