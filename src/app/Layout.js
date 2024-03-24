@@ -55,9 +55,9 @@ const Layout = ({ children }) => {
       >
         <NavBarLeft></NavBarLeft>
       </Drawer>
-
       <Box sx={{ flexGrow: 1, paddingTop: 3 }}>{children}</Box>
     </Box>
+
   );
 };
 
