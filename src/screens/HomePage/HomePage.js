@@ -13,6 +13,7 @@ const HomePage = () => {
     sampleEvents.attendingEvent,
     sampleEvents.hostingEvent,
     sampleEvents.volunteeringEvent,
+    sampleEvents.unregisteredEvent,
   ]);
   const [registeredEvents, setRegisteredEvents] = useState([
     sampleEvents.attendingEvent,

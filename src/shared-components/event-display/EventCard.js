@@ -40,11 +40,10 @@ const EventCard = ({ id, event = {}, openEventFunc, height }) => {
   const locationString = isOnline
     ? 'Online'
     : `${location.address} ${location.road}, ${location.city}`;
-  const dateString = `${dateFormat(startDateTime, 'dd/mm/yyyy @ hh:mm TT')}`;
+  const dateString = `${dateFormat(startDateTime, 'DDD, mmm dd, hh:mm TT')}`;
   const lengthString = getEventDurationString(startDateTime, endDateTime);
   const registrationTypeString = getRegistrationTypeMessage(registrationType);
   const backgroundColour = getRegistrationTypeColour(registrationType);
-
   const maxDescriptionLength = 70;
 
   return (
@@ -110,7 +109,7 @@ const EventCard = ({ id, event = {}, openEventFunc, height }) => {
               {title}
             </Typography>
             <Typography variant="body2" color="text.primary">
-              {`${dateString}, (${lengthString})`}
+              {`${dateString} (${lengthString})`}
             </Typography>
             <Typography variant="body2" color="text.primary">
               {locationString}
