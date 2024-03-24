@@ -33,25 +33,28 @@ def events():
     else:
         eventInfo = request.get_json()
         db.add_event(eventInfo)
-        return eventInfo
+
+        #For sake of minimum viable product, just returning one here to signify succesfull account registration
+        return json.dumps(1)
 
 
 
 @app.route('/eventBooking', methods=['POST','GET'])
 def booking():
 
+    # Retrieve all events that the user is assosiated with.
     if request.method == "GET":
 
         userID = request.args.get('id')
-
-        #db['EventBookings'] = (1, 2, "Volunteers")
-
         table = db.select_booking(userID)
         return (json.dumps(table))
     
     else:
-        print("Not implement yet")
+        bookingInfo = request.get_json()
+        db['EventBookings'] = (bookingInfo['event_id'], bookingInfo['user_id'],
+                                                        bookingInfo['type'])
 
+        return json.dumps(1)
 
 @app.route('/createAccount', methods=['POST'])
 def createAccount():

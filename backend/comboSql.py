@@ -80,9 +80,6 @@ class Database():
         connect.commit()
         connect.close()
 
-    def add_booking(self, bookingInfo):
-        print("Does not do anything yet")
-
 
     def select_booking(self, userID):
         connect = sqlite3.connect('database.db')

@@ -4,9 +4,7 @@ import logo from './../../logo.svg';
 import { Button, Stack } from '@mui/material';
 import { useCookies } from 'react-cookie';
 import { showLoginModal } from '../../shared-components/modals/LoginModal';
-import { retrieveBookings } from '../../app/api/events';
-import { login } from '../../app/api/accounts';
-import { createAccount } from '../../app/api/accounts';
+import { addBooking } from '../../app/api/events';
 import React, { useState } from 'react';
 import EventDescription from '../../shared-components/event-display/eventDescription';
 
@@ -49,9 +47,9 @@ const SamplePage = () => {
         </Button>
         <Button 
           variant="contained"
-          onClick={() => createAccount({email: 'sussy@gmail.com', password: 'HiAll', fname: 'Daniel', lname: 'Wang'})}
+          onClick={() => addBooking({event_id: 54, user_id: 2, type: 'Volunteer'})}
         >
-          login Submission  
+          add Booking  
         </Button>
         <Button
           variant="contained"
