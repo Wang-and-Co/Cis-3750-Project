@@ -3,7 +3,7 @@ const getEventDurationString = (start, end) => {
 
   let hours = duration / 3600;
 
-  return `${hours} hours`;
+  return `${Math.round(hours * 10.0) / 10.0} hours`;
 };
 
 export default getEventDurationString;

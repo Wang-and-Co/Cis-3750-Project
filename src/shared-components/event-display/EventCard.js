@@ -1,9 +1,11 @@
 /* eslint-disable no-unused-vars */
 import {
+  Box,
   Card,
   CardActionArea,
   CardContent,
   CardMedia,
+  Divider,
   Grid,
   Typography,
 } from '@mui/material';
@@ -35,9 +37,8 @@ const EventCard = ({ id, event = {}, openEventFunc, height }) => {
   } = event;
   const locationString = isOnline
     ? 'Online'
-    : `${location.address} ${location.road}, ${location.city} ${location.province}, ${location.postalCode}`;
-
-  const dateString = `${dateFormat(startDateTime, 'dd/mm/yyyy hh:mm TT')}`;
+    : `${location.address} ${location.road}, ${location.city}`;
+  const dateString = `${dateFormat(startDateTime, 'dd/mm/yyyy @ hh:mm TT')}`;
   const lengthString = getEventDurationString(startDateTime, endDateTime);
   const registrationTypeString = getRegistrationTypeMessage(registrationType);
   const backgroundColour = getRegistrationTypeColour(registrationType);
@@ -45,12 +46,24 @@ const EventCard = ({ id, event = {}, openEventFunc, height }) => {
   const maxDescriptionLength = 70;
 
   return (
-    <Card id={id} sx={{ height: height }}>
+    <Card
+      id={id}
+      sx={{
+        height: height,
+        maxHeight: height,
+        border: '1px solid lightgray',
+      }}
+    >
       <CardActionArea
         onClick={() => {
           openEventFunc(event);
         }}
-        sx={{ height: '100%', alignContent: 'flex-start' }}
+        sx={{
+          height: '100%',
+          justifyContent: 'flex-start',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
       >
         <CardMedia
           component="img"
@@ -60,44 +73,95 @@ const EventCard = ({ id, event = {}, openEventFunc, height }) => {
             'https://i0.wp.com/voyagecomics.com/wp-content/uploads/2021/10/smaug_dragon.webp?fit=1782%2C937&ssl=1'
           }
         />
-        <CardContent sx={{ backgroundColor: backgroundColour }}>
-          <Typography gutterBottom variant="h5" component="div">
-            {title}
-          </Typography>
-          <Typography variant="subtitle2" color="text.primary">
-            {`${dateString}, ${lengthString}`}
-          </Typography>
-          <Typography variant="subtitle2" color="text.primary">
-            {locationString}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {description.length > maxDescriptionLength
-              ? description.slice(0, maxDescriptionLength) + '...'
-              : description}
-          </Typography>
-
+        <CardContent
+          sx={{
+            flexGrow: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            margin: 0,
+            paddingLeft: 0,
+          }}
+        >
+          <Box
+            sx={{
+              width: '100%',
+              margin: 0,
+              paddingRight: 0,
+              paddingLeft: 1,
+            }}
+          >
+            <Typography
+              variant="subtitle1"
+              fontSize={18}
+              lineHeight={1.2}
+              color="text.primary"
+              maxHeight={'50%'}
+              sx={{
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                display: '-webkit-box',
+                WebkitLineClamp: '3',
+                WebkitBoxOrient: 'vertical',
+              }}
+              marginBottom={1}
+            >
+              {title}
+            </Typography>
+            <Typography variant="body2" color="text.primary">
+              {`${dateString}, ${lengthString}`}
+            </Typography>
+            <Typography variant="body2" color="text.primary">
+              {locationString}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {description.length > maxDescriptionLength
+                ? description.slice(0, maxDescriptionLength) + '...'
+                : description}
+            </Typography>
+          </Box>
           {registrationType != null && registrationType !== 'None' ? (
-            <Grid container spacing={0} sx={{ marginTop: 1 }}>
-              <Grid item xs={2} sx={{ justifySelf: 'center' }}>
-                <CheckCircleOutline
-                  sx={{ justifySelf: 'center' }}
-                  fontSize={'small'}
-                />
+            <Box
+              sx={{
+                position: 'absolute',
+                bottom: '0',
+                width: '100%',
+                height: '15%',
+                margin: 0,
+                padding: 0,
+                backgroundColor: backgroundColour,
+              }}
+            >
+              <Divider />
+              <Grid
+                container
+                spacing={0}
+                sx={{
+                  marginTop: 1,
+                  flex: 0,
+                  paddingLeft: 1,
+                }}
+              >
+                <Grid item xs={2} sx={{ justifySelf: 'center' }}>
+                  <CheckCircleOutline
+                    sx={{ justifySelf: 'center' }}
+                    fontSize={'small'}
+                  />
+                </Grid>
+                <Grid item xs={10} sx={{ justifySelf: 'center' }}>
+                  <Typography
+                    sx={{
+                      textAlign: 'left',
+                      justifySelf: 'baseline',
+                      fontSize: 15,
+                    }}
+                    variant="subtitle1"
+                    color="text.primary"
+                  >
+                    {registrationTypeString}
+                  </Typography>
+                </Grid>
               </Grid>
-              <Grid item xs={10} sx={{ justifySelf: 'center' }}>
-                <Typography
-                  sx={{
-                    textAlign: 'left',
-                    justifySelf: 'baseline',
-                    fontSize: 12,
-                  }}
-                  variant="body2"
-                  color="text.primary"
-                >
-                  {registrationTypeString}
-                </Typography>
-              </Grid>
-            </Grid>
+            </Box>
           ) : (
             <></>
           )}

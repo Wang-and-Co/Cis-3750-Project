@@ -6,8 +6,8 @@ const hostingEvent = {
   title: 'Wowie so many events!',
   description:
     'This is the event description! Here you can learn all about the event. This is a really cool event. It is a good event. This is an event. It is a good event. It is really cool.',
-  startDateTime: 1710952446,
-  endDateTime: 1710953446,
+  startDateTime: new Date(Date.parse('04 Dec 2024 00:12:00 GMT')).getTime(),
+  endDateTime: new Date(Date.parse('04 Dec 2024 15:00:00 GMT')).getTime(),
   location: {
     address: 1,
     road: 'Example Rd',
@@ -31,8 +31,8 @@ const volunteeringEvent = {
   title: 'A second event!',
   description:
     'This is the event description! Here you can learn all about the event. This is a really cool event. It is a good event. This is an event. It is a good event. It is really cool.',
-  startDateTime: 1710951446,
-  endDateTime: 1710952446,
+  startDateTime: new Date(Date.parse('09 Dec 2024 00:12:00 GMT')).getTime(),
+  endDateTime: new Date(Date.parse('20 Dec 2024 15:00:00 GMT')).getTime(),
   location: {
     address: 1,
     road: 'Example Rd',
@@ -56,8 +56,8 @@ const attendingEvent = {
   title: 'Test Event - With a longer title - That you can use - Very cool!',
   description:
     'This is the event description! Here you can learn all about the event. This is a really cool event. It is a good event. This is an event. It is a good event. It is really cool.',
-  startDateTime: 1710953446,
-  endDateTime: 1710954446,
+  startDateTime: new Date(Date.parse('01 Apr 2024 12:30:00 GMT')).getTime(),
+  endDateTime: new Date(Date.parse('01 Apr 2024 13:00:00 GMT')).getTime(),
   location: {
     address: 1,
     road: 'Example Rd',
