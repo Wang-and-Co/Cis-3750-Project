@@ -17,6 +17,8 @@ const CreateEventPage = () => {
       style={{
         backgroundImage: `url(${sampleImage})`,
         backgroundAttachment: 'fixed',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
         padding: '1rem',
       }}
     >

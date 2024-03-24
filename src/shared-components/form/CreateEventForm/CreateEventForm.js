@@ -42,8 +42,7 @@ const CreateEventForm = ({ handleSubmit }) => {
       component="div"
       sx={(theme) => ({
         backgroundColor: theme.palette.background.default,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
+
         maxWidth: '40rem',
         borderRadius: '10px',
         padding: '1rem',
