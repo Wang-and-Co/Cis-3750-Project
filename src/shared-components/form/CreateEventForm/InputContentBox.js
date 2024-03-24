@@ -27,8 +27,8 @@ const InputContentBox = ({
       flexDirection={'column'}
       gap={'0.5rem'}
     >
-      <Typography variant="h4">{title}</Typography>
-      <Typography variant="h5">{description}</Typography>
+      <Typography variant="h5">{title}</Typography>
+      <Typography variant="body">{description}</Typography>
       <RenderedInputField {...fieldProps} />
     </Box>
   );
