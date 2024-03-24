@@ -47,6 +47,7 @@ const DatePickerField = ({ name, label, helperText, variant, ...props }) => {
         helperText: meta.touched && meta.error ? meta.error : helperText,
         error: !!meta.error && meta.touched,
         variant: variant,
+        sx: { minHeight: '5rem' },
       }}
       placeholderText="mm/dd/yyyy"
       customInput={<InnerMUIInputField />}
