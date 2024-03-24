@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-const getCreateEventValidationSchema = () => {
+const getCreateEventValidationSchema = () =>
   yup.object({
     title: yup
       .string()
@@ -19,10 +19,27 @@ const getCreateEventValidationSchema = () => {
     maxAttendees: yup.number().min(1, 'Event must have atleast 1 attendee'),
     cost: yup.number().min(0, 'cost cannot be negative'),
     startDateTime: yup.date(),
-    endDateTime: yup.date(),
+    endDateTime: yup
+      .date()
+      .test(
+        'startEndTimes',
+        'End time must be after start time.',
+        (value, context) => {
+          console.log(
+            context,
+            value,
+            context.parent?.startDateTime - value,
+            context.parent?.startDateTime - value > 0,
+          );
+          return (
+            !context.parent?.startDateTime ||
+            !value ||
+            context.parent?.startDateTime - value < 0
+          );
+        },
+      ),
     location: yup.object({
-      address: yup.string().required(),
-      road: yup.string(),
+      address: yup.string().required('Address is required'),
       city: yup.string(),
       province: yup.string(),
       postalCode: yup
@@ -35,4 +52,5 @@ const getCreateEventValidationSchema = () => {
     }),
     image: yup.mixed().required('Required'),
   });
-};
+
+export { getCreateEventValidationSchema };
