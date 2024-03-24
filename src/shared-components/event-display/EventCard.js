@@ -16,7 +16,7 @@ import {
   getRegistrationTypeMessage,
 } from '../../types/types';
 
-const EventCard = ({ id, event = {}, onClick }) => {
+const EventCard = ({ id, event = {}, openEventFunc, height }) => {
   const {
     eventID,
     organizerID,
@@ -45,15 +45,16 @@ const EventCard = ({ id, event = {}, onClick }) => {
   const maxDescriptionLength = 70;
 
   return (
-    <Card id={id}>
+    <Card id={id} sx={{ height: height }}>
       <CardActionArea
         onClick={() => {
-          onClick(event);
+          openEventFunc(event);
         }}
+        sx={{ height: '100%', alignContent: 'flex-start' }}
       >
         <CardMedia
           component="img"
-          height="140"
+          height="30%"
           image={
             imageUri ??
             'https://i0.wp.com/voyagecomics.com/wp-content/uploads/2021/10/smaug_dragon.webp?fit=1782%2C937&ssl=1'
@@ -136,6 +137,6 @@ EventCard.propTypes = {
     imageUri: PropTypes.string,
     registrationType: PropTypes.string,
   }),
-  onClick: PropTypes.func,
+  openEventFunc: PropTypes.func,
 };
 export default EventCard;

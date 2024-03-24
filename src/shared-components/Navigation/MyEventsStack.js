@@ -18,10 +18,10 @@ import {
   getRegistrationTypeColour,
   getRegistrationTypeMessage,
 } from '../../types/types';
-import MinimizedEventCard from './MinimizedEventCard';
+import MinimizedEventCard from '../event-display/MinimizedEventCard';
 import { theme } from '../../app/themeUtils';
 
-const MyEventsSidebar = ({ events, eventDetailsOpenFunc }) => {
+const MyEventsStack = ({ events, eventDetailsOpenFunc }) => {
   return (
     <Container sx={{ maxHeight: '100%', width: '100%' }}>
       <Typography sx={{ textAlign: 'center' }} variant="h6">
@@ -38,7 +38,7 @@ const MyEventsSidebar = ({ events, eventDetailsOpenFunc }) => {
               key={index}
               id={index}
               event={item}
-              onClick={eventDetailsOpenFunc}
+              openEventFunc={eventDetailsOpenFunc}
             />
           );
         })}
@@ -47,7 +47,7 @@ const MyEventsSidebar = ({ events, eventDetailsOpenFunc }) => {
   );
 };
 
-MyEventsSidebar.propTypes = {
+MyEventsStack.propTypes = {
   events: PropTypes.array,
 };
-export default MyEventsSidebar;
+export default MyEventsStack;
