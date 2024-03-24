@@ -10,7 +10,6 @@ const Layout = ({ children }) => {
       <NavBarLeft widthPercent={NAVBAR_LEFT_WIDTH_PERCENT} />
       <Box
         sx={{
-          paddingTop: 3,
           width: `${100 - NAVBAR_LEFT_WIDTH_PERCENT}%`,
         }}
       >
