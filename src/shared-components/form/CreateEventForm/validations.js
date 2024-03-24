@@ -25,12 +25,6 @@ const getCreateEventValidationSchema = () =>
         'startEndTimes',
         'End time must be after start time.',
         (value, context) => {
-          console.log(
-            context,
-            value,
-            context.parent?.startDateTime - value,
-            context.parent?.startDateTime - value > 0,
-          );
           return (
             !context.parent?.startDateTime ||
             !value ||
