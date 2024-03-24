@@ -2,6 +2,8 @@ import { forwardRef, useState } from 'react';
 import { TextField, InputAdornment, IconButton } from '@mui/material';
 import { AccessTime } from '@mui/icons-material';
 import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+
 import { useField } from 'formik';
 
 const InnerMUIInputField = forwardRef(
@@ -25,8 +27,9 @@ const InnerMUIInputField = forwardRef(
     );
   },
 );
-InnerMUIInputField.displayName = 'test';
-const TimePickerField = (name, label, helperText, variant, ...props) => {
+InnerMUIInputField.displayName = 'test2';
+
+const TimePickerField = ({ name, label, helperText, variant, ...props }) => {
   const [field, meta, helpers] = useField(name);
 
   return (
@@ -34,9 +37,9 @@ const TimePickerField = (name, label, helperText, variant, ...props) => {
       selected={field.value ? new Date(field.value) : null}
       value={field.value ? field.value.toString() : undefined}
       {...field}
+      variant={'filled'}
       onSelect={() => {}}
       {...props}
-      onChange={(newDate) => helpers.setValue(newDate, true)}
       customInput={<InnerMUIInputField />}
       name={{
         label: label,
@@ -50,6 +53,7 @@ const TimePickerField = (name, label, helperText, variant, ...props) => {
       timeIntervals={15}
       timeCaption="Time"
       dateFormat="h:mm aa"
+      onChange={(newDate) => helpers.setValue(newDate, true)}
     />
   );
 };

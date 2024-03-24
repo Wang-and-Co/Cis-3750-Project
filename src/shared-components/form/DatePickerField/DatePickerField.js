@@ -4,7 +4,6 @@ import { IconButton, InputAdornment, TextField } from '@mui/material';
 import { forwardRef } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import { CalendarMonth } from '@mui/icons-material';
-import { isNaN } from 'formik';
 
 // We need to make a forward ref to use this input within the date picker component
 //https://stackoverflow.com/questions/74499549/time-is-set-automatically-if-selecting-date-in-react-datepicker

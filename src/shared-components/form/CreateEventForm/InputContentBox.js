@@ -1,12 +1,28 @@
 import { Box, Typography } from '@mui/material';
 import { InputField } from '../InputField';
+import { DatePickerField } from '../DatePickerField';
 
-const InputContentBox = ({ title, description, inputFieldProps }) => {
+const inputField = { input: InputField, date: DatePickerField };
+
+const InputContentBox = ({
+  title,
+  description,
+  fieldProps,
+  key,
+  type = 'input',
+}) => {
+  const RenderedInputField = inputField[type];
+
   return (
-    <Box display={'inline-flex'} flexDirection={'column'} gap={'0.5rem'}>
+    <Box
+      key={key}
+      display={'inline-flex'}
+      flexDirection={'column'}
+      gap={'0.5rem'}
+    >
       <Typography variant="h4">{title}</Typography>
       <Typography variant="h5">{description}</Typography>
-      <InputField {...inputFieldProps} />
+      <RenderedInputField {...fieldProps} />
     </Box>
   );
 };
