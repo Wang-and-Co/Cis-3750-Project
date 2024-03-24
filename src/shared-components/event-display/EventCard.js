@@ -1,10 +1,14 @@
 /* eslint-disable no-unused-vars */
 import {
+  Box,
   Card,
   CardActionArea,
   CardContent,
   CardMedia,
+  Container,
+  Divider,
   Grid,
+  Stack,
   Typography,
 } from '@mui/material';
 import PropTypes from 'prop-types';
@@ -35,22 +39,32 @@ const EventCard = ({ id, event = {}, openEventFunc, height }) => {
   } = event;
   const locationString = isOnline
     ? 'Online'
-    : `${location.address} ${location.road}, ${location.city} ${location.province}, ${location.postalCode}`;
-
-  const dateString = `${dateFormat(startDateTime, 'dd/mm/yyyy hh:mm TT')}`;
+    : `${location.address} ${location.road}, ${location.city}`;
+  const dateString = `${dateFormat(startDateTime, 'DDD, mmm dd, hh:mm TT')}`;
   const lengthString = getEventDurationString(startDateTime, endDateTime);
   const registrationTypeString = getRegistrationTypeMessage(registrationType);
   const backgroundColour = getRegistrationTypeColour(registrationType);
-
   const maxDescriptionLength = 70;
 
   return (
-    <Card id={id} sx={{ height: height }}>
+    <Card
+      id={id}
+      sx={{
+        height: height,
+        maxHeight: height,
+        border: '1px solid lightgray',
+      }}
+    >
       <CardActionArea
         onClick={() => {
           openEventFunc(event);
         }}
-        sx={{ height: '100%', alignContent: 'flex-start' }}
+        sx={{
+          height: '100%',
+          justifyContent: 'flex-start',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
       >
         <CardMedia
           component="img"
@@ -60,47 +74,115 @@ const EventCard = ({ id, event = {}, openEventFunc, height }) => {
             'https://i0.wp.com/voyagecomics.com/wp-content/uploads/2021/10/smaug_dragon.webp?fit=1782%2C937&ssl=1'
           }
         />
-        <CardContent sx={{ backgroundColor: backgroundColour }}>
-          <Typography gutterBottom variant="h5" component="div">
-            {title}
-          </Typography>
-          <Typography variant="subtitle2" color="text.primary">
-            {`${dateString}, ${lengthString}`}
-          </Typography>
-          <Typography variant="subtitle2" color="text.primary">
-            {locationString}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {description.length > maxDescriptionLength
-              ? description.slice(0, maxDescriptionLength) + '...'
-              : description}
-          </Typography>
+        <CardContent
+          sx={{
+            flexGrow: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            margin: 0,
+            paddingLeft: 0,
+          }}
+        >
+          <Box
+            sx={{
+              width: '100%',
+              margin: 0,
+              paddingRight: 0,
+              paddingLeft: 1,
+            }}
+          >
+            <Typography
+              variant="subtitle1"
+              fontSize={18}
+              lineHeight={1.2}
+              color="text.primary"
+              maxHeight={'50%'}
+              sx={{
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                display: '-webkit-box',
+                WebkitLineClamp: '2',
+                WebkitBoxOrient: 'vertical',
+              }}
+              marginBottom={1}
+            >
+              {title}
+            </Typography>
+            <Typography variant="body2" color="text.primary">
+              {`${dateString} (${lengthString})`}
+            </Typography>
+            <Typography variant="body2" color="text.primary">
+              {locationString}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {description.length > maxDescriptionLength
+                ? description.slice(0, maxDescriptionLength) + '...'
+                : description}
+            </Typography>
+          </Box>
 
-          {registrationType != null && registrationType !== 'None' ? (
-            <Grid container spacing={0} sx={{ marginTop: 1 }}>
-              <Grid item xs={2} sx={{ justifySelf: 'center' }}>
-                <CheckCircleOutline
-                  sx={{ justifySelf: 'center' }}
-                  fontSize={'small'}
-                />
+          <Box
+            sx={{
+              position: 'absolute',
+              bottom: '0',
+              width: '100%',
+              margin: 0,
+              marginBottom: 1,
+              padding: 0,
+            }}
+          >
+            <Grid
+              container
+              spacing={2}
+              sx={{
+                marginTop: 1,
+                flex: 0,
+                paddingLeft: 1,
+              }}
+            >
+              <Grid item xs={6}>
+                <Stack>
+                  <Typography variant="body2" fontSize={12}>
+                    Attendees: {attendees.current} / {attendees.max}
+                  </Typography>
+                  <Typography variant="body2" fontSize={12}>
+                    Volunteers: {volunteers.current} / {volunteers.max}
+                  </Typography>
+                </Stack>
               </Grid>
-              <Grid item xs={10} sx={{ justifySelf: 'center' }}>
-                <Typography
-                  sx={{
-                    textAlign: 'left',
-                    justifySelf: 'baseline',
-                    fontSize: 12,
-                  }}
-                  variant="body2"
-                  color="text.primary"
-                >
-                  {registrationTypeString}
-                </Typography>
-              </Grid>
+              {registrationType != null && registrationType !== 'None' ? (
+                <Grid item xs={5}>
+                  <Stack
+                    direction={'row'}
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      backgroundColor: backgroundColour,
+                      borderRadius: 1,
+                      padding: 1,
+                      width: '100%',
+                    }}
+                  >
+                    <CheckCircleOutline fontSize={'small'} />
+                    <Typography
+                      sx={{
+                        textAlign: 'left',
+                        justifySelf: 'baseline',
+                        fontSize: 12,
+                        margin: 0,
+                      }}
+                      variant="subtitle1"
+                      color="text.primary"
+                    >
+                      {registrationTypeString}
+                    </Typography>
+                  </Stack>
+                </Grid>
+              ) : (
+                <></>
+              )}
             </Grid>
-          ) : (
-            <></>
-          )}
+          </Box>
         </CardContent>
       </CardActionArea>
     </Card>

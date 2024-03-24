@@ -33,7 +33,7 @@ const MinimizedEventCard = ({ id, event, openEventFunc }) => {
     registrationType,
   } = event;
 
-  const dateString = `${dateFormat(startDateTime, 'dd/mm/yyyy hh:mm TT')}`;
+  const dateString = `${dateFormat(startDateTime, 'DDD, mmm dd, hh:mm TT')}`;
   const registrationTypeString = getRegistrationTypeMessage(registrationType);
   const backgroundColour = getRegistrationTypeColour(registrationType);
 

@@ -6,9 +6,9 @@ export const USER_TYPES = {
 
 export const getRegistrationTypeMessage = (userType) =>
   ({
-    Volunteer: 'Registered as Volunteer',
-    Attendee: 'Registered as Attendee',
-    Host: 'You are the Host',
+    Volunteer: 'Volunteering',
+    Attendee: 'Attending',
+    Host: 'Hosting',
     None: null,
   })[userType];
 

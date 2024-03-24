@@ -114,45 +114,54 @@ const EventDescription = ({ closeFunc, event = {} }) => {
             {description}
           </Typography>
         </Container>
-        <div
-          style={{
-            position: 'fixed',
-            bottom: '0px',
-            textAlign: 'center',
-            width: `${styling.myEventsWidth - 40}px`,
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: '20px',
-            padding: '20px',
-            backgroundColor: 'white',
-            overflow: 'auto',
-          }}
-        >
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => {
-              console.log('Asked to register as attendee');
+        <Container style={{ position: 'relative', padding: 0 }}>
+          <Grid
+            container
+            justifyContent="center"
+            alignItems="center"
+            position="fixed"
+            bottom={0}
+            sx={{
+              textAlign: 'center',
+              paddingLeft: '10px',
+              paddingTop: '10px',
+              paddingBottom: '10px',
+              backgroundColor: 'white',
+              width: '24%',
             }}
-            disabled={attendees.current === attendees.max} // Disable button if current attendees reach max
           >
-            {attendees.current === attendees.max
-              ? 'Full (Max reached)'
-              : 'Register as Attendee'}
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => {
-              console.log('Asked to register as volunteer');
-            }}
-            disabled={volunteers.current === volunteers.max} // Disable button if current volunteers reach max
-          >
-            {volunteers.current === volunteers.max
-              ? 'Full (Max reached)'
-              : 'Register as Volunteer'}
-          </Button>
-        </div>
+            <Grid item sx={{ paddingLeft: '1%' }}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => {
+                  console.log('Asked to register as attendee');
+                }}
+                sx={{ width: '206px' }}
+                disabled={attendees.current === attendees.max} // Disable button if current attendees reach max
+              >
+                {attendees.current === attendees.max
+                  ? 'Full (Max reached)'
+                  : 'Register as Attendee'}
+              </Button>
+            </Grid>
+            <Grid item sx={{ paddingLeft: '4%' }}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => {
+                  console.log('Asked to register as volunteer');
+                }}
+                sx={{ width: '206px' }}
+                disabled={volunteers.current === volunteers.max} // Disable button if current volunteers reach max
+              >
+                {volunteers.current === volunteers.max
+                  ? 'Full (Max reached)'
+                  : 'Register as Volunteer'}
+              </Button>
+            </Grid>
+          </Grid>
+        </Container>
       </Container>
     </>
   );
