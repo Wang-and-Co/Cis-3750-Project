@@ -33,7 +33,6 @@ def events():
     else:
         eventInfo = request.get_json()
         eventID = db.add_event(eventInfo)
-
         #Return the eventID 
         return json.dumps(eventID)
 
