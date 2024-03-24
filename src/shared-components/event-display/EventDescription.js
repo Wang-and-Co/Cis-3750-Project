@@ -114,50 +114,54 @@ const EventDescription = ({ closeFunc, event = {} }) => {
             {description}
           </Typography>
         </Container>
-        <Grid
-          container
-          justifyContent="center"
-          alignItems="center"
-          position="fixed"
-          bottom={0}
-          width={`${styling.myEventsWidth - 20}px`}
-          sx={{
-            textAlign: 'center',
-            padding: '10px',
-            backgroundColor: 'white',
-          }}
-        >
-          <Grid item sx={{ paddingLeft: '13px' }}>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => {
-                console.log('Asked to register as attendee');
-              }}
-              sx={{ width: '206px' }}
-              disabled={attendees.current === attendees.max} // Disable button if current attendees reach max
-            >
-              {attendees.current === attendees.max
-                ? 'Full (Max reached)'
-                : 'Register as Attendee'}
-            </Button>
+        <Container style={{ position: 'relative', padding: 0 }}>
+          <Grid
+            container
+            justifyContent="center"
+            alignItems="center"
+            position="fixed"
+            bottom={0}
+            sx={{
+              textAlign: 'center',
+              paddingLeft: '10px',
+              paddingTop: '10px',
+              paddingBottom: '10px',
+              backgroundColor: 'white',
+              width: '24%',
+            }}
+          >
+            <Grid item sx={{ paddingLeft: '1%' }}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => {
+                  console.log('Asked to register as attendee');
+                }}
+                sx={{ width: '206px' }}
+                disabled={attendees.current === attendees.max} // Disable button if current attendees reach max
+              >
+                {attendees.current === attendees.max
+                  ? 'Full (Max reached)'
+                  : 'Register as Attendee'}
+              </Button>
+            </Grid>
+            <Grid item sx={{ paddingLeft: '4%' }}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => {
+                  console.log('Asked to register as volunteer');
+                }}
+                sx={{ width: '206px' }}
+                disabled={volunteers.current === volunteers.max} // Disable button if current volunteers reach max
+              >
+                {volunteers.current === volunteers.max
+                  ? 'Full (Max reached)'
+                  : 'Register as Volunteer'}
+              </Button>
+            </Grid>
           </Grid>
-          <Grid item sx={{ paddingLeft: '13px' }}>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => {
-                console.log('Asked to register as volunteer');
-              }}
-              sx={{ width: '206px' }}
-              disabled={volunteers.current === volunteers.max} // Disable button if current volunteers reach max
-            >
-              {volunteers.current === volunteers.max
-                ? 'Full (Max reached)'
-                : 'Register as Volunteer'}
-            </Button>
-          </Grid>
-        </Grid>
+        </Container>
       </Container>
     </>
   );
