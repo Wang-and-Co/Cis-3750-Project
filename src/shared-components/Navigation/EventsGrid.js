@@ -24,6 +24,7 @@ const EventsGrid = ({ eventDetailsOpenFunc, events }) => {
               id={index}
               event={item}
               openEventFunc={eventDetailsOpenFunc}
+              height={'23rem'}
             />
           </Grid>
         );
