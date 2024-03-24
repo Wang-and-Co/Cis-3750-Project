@@ -5,8 +5,10 @@ import {
   CardActionArea,
   CardContent,
   CardMedia,
+  Container,
   Divider,
   Grid,
+  Stack,
   Typography,
 } from '@mui/material';
 import PropTypes from 'prop-types';
@@ -100,7 +102,7 @@ const EventCard = ({ id, event = {}, openEventFunc, height }) => {
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
                 display: '-webkit-box',
-                WebkitLineClamp: '3',
+                WebkitLineClamp: '2',
                 WebkitBoxOrient: 'vertical',
               }}
               marginBottom={1}
@@ -108,7 +110,7 @@ const EventCard = ({ id, event = {}, openEventFunc, height }) => {
               {title}
             </Typography>
             <Typography variant="body2" color="text.primary">
-              {`${dateString}, ${lengthString}`}
+              {`${dateString}, (${lengthString})`}
             </Typography>
             <Typography variant="body2" color="text.primary">
               {locationString}
@@ -119,52 +121,69 @@ const EventCard = ({ id, event = {}, openEventFunc, height }) => {
                 : description}
             </Typography>
           </Box>
-          {registrationType != null && registrationType !== 'None' ? (
-            <Box
+
+          <Box
+            sx={{
+              position: 'absolute',
+              bottom: '0',
+              width: '100%',
+              margin: 0,
+              marginBottom: 1,
+              padding: 0,
+            }}
+          >
+            <Grid
+              container
+              spacing={2}
               sx={{
-                position: 'absolute',
-                bottom: '0',
-                width: '100%',
-                height: '15%',
-                margin: 0,
-                padding: 0,
-                backgroundColor: backgroundColour,
+                marginTop: 1,
+                flex: 0,
+                paddingLeft: 1,
               }}
             >
-              <Divider />
-              <Grid
-                container
-                spacing={0}
-                sx={{
-                  marginTop: 1,
-                  flex: 0,
-                  paddingLeft: 1,
-                }}
-              >
-                <Grid item xs={2} sx={{ justifySelf: 'center' }}>
-                  <CheckCircleOutline
-                    sx={{ justifySelf: 'center' }}
-                    fontSize={'small'}
-                  />
-                </Grid>
-                <Grid item xs={10} sx={{ justifySelf: 'center' }}>
-                  <Typography
-                    sx={{
-                      textAlign: 'left',
-                      justifySelf: 'baseline',
-                      fontSize: 15,
-                    }}
-                    variant="subtitle1"
-                    color="text.primary"
-                  >
-                    {registrationTypeString}
+              <Grid item xs={6}>
+                <Stack>
+                  <Typography variant="body2" fontSize={12}>
+                    Attendees: {attendees.current} / {attendees.max}
                   </Typography>
-                </Grid>
+                  <Typography variant="body2" fontSize={12}>
+                    Volunteers: {volunteers.current} / {volunteers.max}
+                  </Typography>
+                </Stack>
               </Grid>
-            </Box>
-          ) : (
-            <></>
-          )}
+              {registrationType != null && registrationType !== 'None' ? (
+                <Grid item xs={5}>
+                  <Stack
+                    direction={'row'}
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      backgroundColor: backgroundColour,
+                      borderRadius: 1,
+                      padding: 1,
+                      width: '100%',
+                    }}
+                  >
+                    <CheckCircleOutline fontSize={'small'} />
+                    <Typography
+                      sx={{
+                        textAlign: 'left',
+                        justifySelf: 'baseline',
+                        fontSize: 12,
+                        margin: 0,
+                      }}
+                      variant="subtitle1"
+                      color="text.primary"
+                    >
+                      {registrationTypeString}
+                    </Typography>
+                  </Stack>
+                </Grid>
+              ) : (
+                <></>
+              )}
+            </Grid>
+          </Box>
         </CardContent>
       </CardActionArea>
     </Card>
