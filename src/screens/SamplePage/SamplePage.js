@@ -4,13 +4,17 @@ import logo from './../../logo.svg';
 import { Button, Stack } from '@mui/material';
 import { useCookies } from 'react-cookie';
 import { showLoginModal } from '../../shared-components/modals/LoginModal';
+import { addBooking } from '../../app/api/events';
+import { createAccount } from '../../app/api/accounts';
 import React, { useState } from 'react';
-import EventDescription from '../../shared-components/event-display/EventDescription';
-import { retrieveEvents } from '../../app/api/events';
+import EventDescription from '../../shared-components/event-display/eventDescription';
+
 
 const SamplePage = () => {
   const [cookies, setCookies, removeCookie] = useCookies(['auth']);
   const [isEventDescriptionOpen, setIsEventDescriptionOpen] = useState(false);
+
+
 
   const handleOpenDrawer = () => {
     setIsEventDescriptionOpen(true);
@@ -30,16 +34,23 @@ const SamplePage = () => {
         >
           Learn React
         </a>
-        <Button
+        <Button 
           variant="contained"
           onClick={() =>
             showConfirmationModal({
               title: 'among us alert!',
-              description: 'Raw men and maximum samuel',
+              description: 'Raw men and maximum samuel and Ianiel Fridays and Man-sour and ET ham and Kirkland Foundations',
             })
           }
         >
+          
           Show Modal
+        </Button>
+        <Button 
+          variant="contained"
+          onClick={() => createAccount({email: 'sussy@gmail.com', password: 'HiAll', fname: 'Daniel', lname: 'Wang'})}
+        >
+          add Booking  
         </Button>
         <Button
           variant="contained"
@@ -64,13 +75,13 @@ const SamplePage = () => {
         {cookies?.auth
           ? `Logged in. Cookies have: {email: ${cookies.auth.email}, password: ${cookies.auth.password}}`
           : 'not logged in'}
-        <Button
+        {/* <Button
           onClick={() => {
             retrieveEvents(cookies, { type: 'text' });
           }}
         >
           Send Request
-        </Button>
+        </Button> */}
         <Button variant="contained" onClick={handleOpenDrawer}>
           Open Drawer
         </Button>
