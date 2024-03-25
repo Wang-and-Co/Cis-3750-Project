@@ -36,14 +36,8 @@ const EventDescription = ({ closeFunc, event = {} }) => {
     ? 'Online'
     : `${location.address} ${location.road}, ${location.city} ${location.province}, ${location.postalCode}`;
 
-  const dateString = `${dateFormat(startDateTime, 'dd/mm/yyyy hh:mm TT')}`;
+  const dateString = `${dateFormat(startDateTime, 'DDD, mmm dd, hh:mm TT')}`;
   const lengthString = getEventDurationString(startDateTime, endDateTime);
-
-  const styling = {
-    myEventsWidth: 480,
-    topBarHeight: '64px',
-    myEventsHeight: window.innerHeight - self.topBarHeight,
-  };
 
   const handleDrawerClose = () => {
     closeFunc();
@@ -51,7 +45,7 @@ const EventDescription = ({ closeFunc, event = {} }) => {
 
   return (
     <>
-      <Container style={{ padding: 0 }}>
+      <Container style={{display: 'flex', flexDirection: 'column', padding: 0}}>
         <Container style={{ position: 'relative', padding: 0 }}>
           <IconButton
             onClick={handleDrawerClose}
@@ -74,7 +68,7 @@ const EventDescription = ({ closeFunc, event = {} }) => {
             style={{ width: '100%' }}
           />
         </Container>
-        <Container style={{ padding: '1rem' }}>
+        <Container style={{paddingLeft: '3rem', paddingRight: '3rem', paddingTop: '1.5rem'}}>
           <Typography gutterBottom variant="h3" component="div">
             {title}
           </Typography>
@@ -94,70 +88,65 @@ const EventDescription = ({ closeFunc, event = {} }) => {
             color="text.primary"
             sx={{ marginTop: '16px' }}
           >
-            Event type: {wellnessType}
-          </Typography>
-          <Typography variant="body1" color="text.primary">
             Cost to attend: ${cost}
           </Typography>
           <Typography variant="body1" color="text.primary">
-            Attendees: {attendees.current} / {attendees.max}
+            Event type: {wellnessType}
           </Typography>
-          <Typography variant="body1" color="text.primary">
-            Volunteers: {volunteers.current} / {volunteers.max}
-          </Typography>
-
           <Typography
             variant="body1"
             color="text.primary"
-            sx={{ marginTop: '16px', marginBottom: '100px'}}
+            sx={{ marginTop: '16px', marginBottom: '40%'}}
           >
             {description}
           </Typography>
         </Container>
-        <Container style={{ position: 'relative', padding: 0 }}>
-          <Grid
+        <Container style={{ paddingBottom: '1%', marginLeft: '1%', position: 'fixed', width: '23%', bottom: 0}}>
+        <Grid
             container
-            justifyContent="center"
-            alignItems="center"
-            position="fixed"
-            bottom={0}
+            spacing={2}
             sx={{
-              textAlign: 'center',
-              paddingLeft: '10px',
-              paddingTop: '10px',
-              paddingBottom: '10px',
               backgroundColor: 'white',
-              width: '24%',
             }}
           >
-            <Grid item sx={{ paddingLeft: '1%' }}>
+            <Grid item xs={12}>
               <Button
                 variant="contained"
                 color="primary"
                 onClick={() => {
                   console.log('Asked to register as attendee');
                 }}
-                sx={{ width: '206px' }}
+                style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}
                 disabled={attendees.current === attendees.max} // Disable button if current attendees reach max
               >
-                {attendees.current === attendees.max
-                  ? 'Full (Max reached)'
-                  : 'Register as Attendee'}
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  {attendees.current === attendees.max
+                  ? 'Attendees Full'
+                  : `Attend`}
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  {attendees.current}/{attendees.max}
+                </div>
               </Button>
             </Grid>
-            <Grid item sx={{ paddingLeft: '4%' }}>
+            <Grid item xs={12}>
               <Button
                 variant="contained"
                 color="primary"
                 onClick={() => {
                   console.log('Asked to register as volunteer');
                 }}
-                sx={{ width: '206px' }}
-                disabled={volunteers.current === volunteers.max} // Disable button if current volunteers reach max
+                style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}
+                disabled={volunteers.current === volunteers.max} // Disable button if current attendees reach max
               >
-                {volunteers.current === volunteers.max
-                  ? 'Full (Max reached)'
-                  : 'Register as Volunteer'}
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  {volunteers.current === volunteers.max
+                  ? 'Volunteers Full'
+                  : `Volunteer`}
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  {volunteers.current}/{volunteers.max}
+                </div>
               </Button>
             </Grid>
           </Grid>
