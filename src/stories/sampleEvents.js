@@ -93,7 +93,7 @@ const unregisteredEvent = {
   },
   isOnline: false,
   attendees: { current: 1, max: 55 },
-  volunteers: { current: 5, max: 5 },
+  volunteers: { current: 5, max: 125 },
   wellnessType: 'Good',
   cost: 999,
   imageUri:

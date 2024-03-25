@@ -88,7 +88,7 @@ const EventDescription = ({ closeFunc, event = {} }) => {
             style={{ width: '100%' }}
           />
         </Container>
-        <Box sx={{ padding: 1 }}>
+        <Box sx={{ padding: 1, paddingRight: 2, paddingLeft: 2 }}>
           <Typography
             variant="subtitle1"
             fontSize={18}
@@ -100,16 +100,16 @@ const EventDescription = ({ closeFunc, event = {} }) => {
             {title}
           </Typography>
           <List dense={true} sx={{ width: '100%', padding: 0 }}>
-            <ListItem>
-              <ListItemIcon>
+            <ListItem sx={{ paddingLeft: 0, margin: 0 }}>
+              <ListItemIcon sx={{ minWidth: 0, paddingRight: 1 }}>
                 <CalendarMonth />
               </ListItemIcon>
               <ListItemText
                 primary={`${dateString}, ${lengthString}`}
               ></ListItemText>
             </ListItem>
-            <ListItem>
-              <ListItemIcon>
+            <ListItem sx={{ paddingLeft: 0, margin: 0 }}>
+              <ListItemIcon sx={{ minWidth: 0, paddingRight: 1 }}>
                 <Place />
               </ListItemIcon>
               <ListItemText
@@ -120,30 +120,30 @@ const EventDescription = ({ closeFunc, event = {} }) => {
                 }
               />
             </ListItem>
-            <ListItem>
-              <ListItemIcon>
+            <ListItem sx={{ paddingLeft: 0, margin: 0 }}>
+              <ListItemIcon sx={{ minWidth: 0, paddingRight: 1 }}>
                 <Interests />
               </ListItemIcon>
               <ListItemText
                 primary={`Event Type: ${wellnessType}`}
               ></ListItemText>
             </ListItem>
-            <ListItem>
-              <ListItemIcon>
+            <ListItem sx={{ paddingLeft: 0, margin: 0 }}>
+              <ListItemIcon sx={{ minWidth: 0, paddingRight: 1 }}>
                 <Paid />
               </ListItemIcon>
               <ListItemText primary={`$${cost}`}></ListItemText>
             </ListItem>
-            <ListItem>
-              <ListItemIcon sx={{ padding: 0, margin: 0 }}>
+            <ListItem sx={{ paddingLeft: 0, margin: 0 }}>
+              <ListItemIcon sx={{ minWidth: 0, paddingRight: 1 }}>
                 <People />
               </ListItemIcon>
               <ListItemText
                 primary={`Attendees: ${attendees.current} / ${attendees.max}`}
               ></ListItemText>
             </ListItem>
-            <ListItem>
-              <ListItemIcon>
+            <ListItem sx={{ paddingLeft: 0, margin: 0 }}>
+              <ListItemIcon sx={{ minWidth: 0, paddingRight: 1 }}>
                 <People />
               </ListItemIcon>
               <ListItemText
