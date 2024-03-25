@@ -6,13 +6,17 @@ import {
   Button,
   TextField,
   InputAdornment,
+  Stack,
+  IconButton,
 } from '@mui/material';
 import { InputField } from '../form/InputField';
 import { useCookies } from 'react-cookie';
 import { Search } from '@mui/icons-material';
+import useAuth from '../hooks/useAuth';
+import { showLoginModal } from '../modals/LoginModal';
 
 const NavBarTop = () => {
-  const [cookies, setCookies, removeCookie] = useCookies(['auth']);
+  const { isLoggedIn, setAuthInfo, handleLogout } = useAuth();
   return (
     <AppBar
       position="fixed"
@@ -53,41 +57,63 @@ const NavBarTop = () => {
           placeholder="Search for an event..."
           variant="outlined"
           InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <Search />
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  type="button"
+                  sx={{ p: '10px' }}
+                  aria-label="search"
+                  onClick={() => {
+                    console.log('Now I will search your personal data lol');
+                  }}
+                >
+                  <Search />
+                </IconButton>
               </InputAdornment>
             ),
           }}
           sx={{
-            flexGrow: 1,
+            width: '25%',
+            marginLeft: 1,
           }}
         />
-        {cookies.auth ? (
+
+        {isLoggedIn ? (
           <Button
             variant="contained"
             title="Log Out"
-            sx={{ marginLeft: 1, height: '80%' }}
+            onClick={handleLogout}
+            sx={{ marginLeft: 'auto' }}
           >
             Log Out
           </Button>
         ) : (
-          <>
+          <Stack direction="row" spacing={1} sx={{ marginLeft: 'auto' }}>
             <Button
               variant="contained"
               title="Log In"
-              sx={{ marginLeft: 1, height: '80%' }}
+              onClick={() => {
+                showLoginModal({
+                  onSubmit: (values) => setAuthInfo({ id: '123', ...values }),
+                  initalFormShown: 'Login',
+                });
+              }}
             >
               Log In
             </Button>
             <Button
               variant="contained"
               title="Sign Up"
-              sx={{ marginLeft: 1, height: '80%' }}
+              onClick={() => {
+                showLoginModal({
+                  onSubmit: (values) => setAuthInfo({ id: '123', ...values }),
+                  initalFormShown: 'Sign up',
+                });
+              }}
             >
               Sign Up
             </Button>
-          </>
+          </Stack>
         )}
       </Toolbar>
     </AppBar>
