@@ -1,4 +1,8 @@
 import {
+  Celebration,
+  EditCalendar,
+  Home,
+  House,
   IcecreamOutlined,
   IcecreamRounded,
   Inbox,
@@ -37,24 +41,24 @@ const NavBarLeft = ({ widthPercent }) => {
         <List>
           <ListItem key={'Home Page'} disablePadding>
             <ListItemButton onClick={() => navigate('/')}>
-              <ListItemIcon>
-                <Mail />
+              <ListItemIcon sx={{ minWidth: 0, paddingRight: 1 }}>
+                <Home />
               </ListItemIcon>
               <ListItemText primary={'Home Page'} />
             </ListItemButton>
           </ListItem>
           <ListItem key={'Create Event'} disablePadding>
             <ListItemButton onClick={() => navigate('/hosting')}>
-              <ListItemIcon>
-                <IcecreamOutlined />
+              <ListItemIcon sx={{ minWidth: 0, paddingRight: 1 }}>
+                <EditCalendar />
               </ListItemIcon>
               <ListItemText primary={'Create Event'} />
             </ListItemButton>
           </ListItem>
           <ListItem key={'Sample Page'} disablePadding>
             <ListItemButton onClick={() => navigate('/debug')}>
-              <ListItemIcon>
-                <Mail />
+              <ListItemIcon sx={{ minWidth: 0, paddingRight: 1 }}>
+                <Celebration />
               </ListItemIcon>
               <ListItemText primary={'Sample Page'} />
             </ListItemButton>
