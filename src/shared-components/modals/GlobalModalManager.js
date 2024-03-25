@@ -1,9 +1,14 @@
 import NiceModal, { useModal } from '@ebay/nice-modal-react';
 const ModalWrapper = (ModalComponent) => {
   const ModalizedComponent = (props) => {
-    const { visible, hide } = useModal();
+    const { visible, hide, remove } = useModal();
     return (
-      <ModalComponent {...props} onClose={hide} open={visible}></ModalComponent>
+      <ModalComponent
+        {...props}
+        onClose={hide}
+        afterClose={remove}
+        open={visible}
+      ></ModalComponent>
     );
   };
   return NiceModal.create((props) => (

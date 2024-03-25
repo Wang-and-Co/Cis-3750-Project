@@ -19,7 +19,7 @@ const EventsGrid = ({ eventDetailsOpenFunc, events }) => {
     <Grid container spacing={1}>
       {events.map((item, index) => {
         return (
-          <Grid item xs={4} key={index}>
+          <Grid item xs={12} sm={12} md={6} lg={5} xl={4} key={index}>
             <EventCard
               id={index}
               event={item}
