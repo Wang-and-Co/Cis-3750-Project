@@ -7,12 +7,31 @@ import {
   IconButton,
   iconButton,
   Typography,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Box,
+  Chip,
+  Stack,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import React from 'react';
 import PropTypes from 'prop-types';
 import getEventDurationString from '../../utils/getEventDurationString';
 import dateFormat from 'dateformat';
+import { CalendarContainer } from 'react-datepicker';
+import {
+  CalendarMonth,
+  CheckBox,
+  CurrencyPound,
+  Interests,
+  Paid,
+  People,
+  Place,
+  TaskAlt,
+} from '@mui/icons-material';
+import { getRegistrationTypeMessage } from '../../types/types';
 
 const EventDescription = ({ closeFunc, event = {} }) => {
   const {
@@ -38,6 +57,7 @@ const EventDescription = ({ closeFunc, event = {} }) => {
 
   const dateString = `${dateFormat(startDateTime, 'DDD, mmm dd, hh:mm TT')}`;
   const lengthString = getEventDurationString(startDateTime, endDateTime);
+  const registrationTypeString = getRegistrationTypeMessage(registrationType);
 
   const handleDrawerClose = () => {
     closeFunc();
@@ -45,7 +65,7 @@ const EventDescription = ({ closeFunc, event = {} }) => {
 
   return (
     <>
-      <Container style={{display: 'flex', flexDirection: 'column', padding: 0}}>
+      <Stack style={{ padding: 0, width: '100%' }}>
         <Container style={{ position: 'relative', padding: 0 }}>
           <IconButton
             onClick={handleDrawerClose}
@@ -68,90 +88,150 @@ const EventDescription = ({ closeFunc, event = {} }) => {
             style={{ width: '100%' }}
           />
         </Container>
-        <Container style={{paddingLeft: '3rem', paddingRight: '3rem', paddingTop: '1.5rem'}}>
-          <Typography gutterBottom variant="h3" component="div">
+        <Box sx={{ padding: 1, paddingRight: 2, paddingLeft: 2 }}>
+          <Typography
+            variant="subtitle1"
+            fontSize={18}
+            lineHeight={1.2}
+            color="text.primary"
+            maxHeight={'20%'}
+            marginBottom={1}
+          >
             {title}
           </Typography>
-          <Typography variant="subtitle1" color="text.primary">
-            {`${dateString}, ${lengthString}`}
-          </Typography>
-          <Typography variant="subtitle1" color="text.primary">
-            {locationString}
-          </Typography>
-          {location?.extraInstructions && (
-            <Typography variant="subtitle1" color="text.primary">
-              {`Extra Directions: ${location.extraInstructions}`}
-            </Typography>
-          )}
-          <Typography
-            variant="body1"
-            color="text.primary"
-            sx={{ marginTop: '16px' }}
-          >
-            Cost to attend: ${cost}
-          </Typography>
-          <Typography variant="body1" color="text.primary">
-            Event type: {wellnessType}
-          </Typography>
-          <Typography
-            variant="body1"
-            color="text.primary"
-            sx={{ marginTop: '16px', marginBottom: '40%'}}
-          >
+          <List dense={true} sx={{ width: '100%', padding: 0 }}>
+            <ListItem sx={{ paddingLeft: 0, margin: 0 }}>
+              <ListItemIcon sx={{ minWidth: 0, paddingRight: 1 }}>
+                <CalendarMonth />
+              </ListItemIcon>
+              <ListItemText
+                primary={`${dateString}, ${lengthString}`}
+              ></ListItemText>
+            </ListItem>
+            <ListItem sx={{ paddingLeft: 0, margin: 0 }}>
+              <ListItemIcon sx={{ minWidth: 0, paddingRight: 1 }}>
+                <Place />
+              </ListItemIcon>
+              <ListItemText
+                primary={`${locationString}`}
+                secondary={
+                  location?.extraInstructions &&
+                  `Extra Directions: ${location.extraInstructions}`
+                }
+              />
+            </ListItem>
+            <ListItem sx={{ paddingLeft: 0, margin: 0 }}>
+              <ListItemIcon sx={{ minWidth: 0, paddingRight: 1 }}>
+                <Interests />
+              </ListItemIcon>
+              <ListItemText
+                primary={`Event Type: ${wellnessType}`}
+              ></ListItemText>
+            </ListItem>
+            <ListItem sx={{ paddingLeft: 0, margin: 0 }}>
+              <ListItemIcon sx={{ minWidth: 0, paddingRight: 1 }}>
+                <Paid />
+              </ListItemIcon>
+              <ListItemText primary={`$${cost}`}></ListItemText>
+            </ListItem>
+            <ListItem sx={{ paddingLeft: 0, margin: 0 }}>
+              <ListItemIcon sx={{ minWidth: 0, paddingRight: 1 }}>
+                <People />
+              </ListItemIcon>
+              <ListItemText
+                primary={`Attendees: ${attendees.current} / ${attendees.max}`}
+              ></ListItemText>
+            </ListItem>
+            <ListItem sx={{ paddingLeft: 0, margin: 0 }}>
+              <ListItemIcon sx={{ minWidth: 0, paddingRight: 1 }}>
+                <People />
+              </ListItemIcon>
+              <ListItemText
+                primary={`Volunteers: ${volunteers.current} / ${volunteers.max}`}
+              ></ListItemText>
+            </ListItem>
+          </List>
+
+          <Typography variant="body2" sx={{ marginBottom: 5 }}>
             {description}
           </Typography>
-        </Container>
-        <Container style={{ paddingBottom: '1%', marginLeft: '1%', position: 'fixed', width: '23%', bottom: 0}}>
-        <Grid
-            container
-            spacing={2}
-            sx={{
-              backgroundColor: 'white',
-            }}
-          >
-            <Grid item xs={12}>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() => {
-                  console.log('Asked to register as attendee');
-                }}
-                style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}
-                disabled={attendees.current === attendees.max} // Disable button if current attendees reach max
-              >
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                  {attendees.current === attendees.max
-                  ? 'Attendees Full'
-                  : `Attend`}
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                  {attendees.current}/{attendees.max}
-                </div>
-              </Button>
-            </Grid>
-            <Grid item xs={12}>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() => {
-                  console.log('Asked to register as volunteer');
-                }}
-                style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}
-                disabled={volunteers.current === volunteers.max} // Disable button if current attendees reach max
-              >
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                  {volunteers.current === volunteers.max
-                  ? 'Volunteers Full'
-                  : `Volunteer`}
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                  {volunteers.current}/{volunteers.max}
-                </div>
-              </Button>
-            </Grid>
+
+          {registrationType != null && registrationType !== 'none' ? (
+            <Chip
+              variant="filled"
+              color={`${registrationType}`}
+              label={registrationTypeString}
+              icon={<TaskAlt />}
+              sx={{ width: '100%' }}
+            ></Chip>
+          ) : (
+            <></>
+          )}
+
+          <Grid container spacing={1} sx={{ marginTop: 1 }}>
+            {registrationType === 'none' ? (
+              <>
+                <Grid item xs={12} lg={6} key="attend">
+                  <Button
+                    variant="contained"
+                    color="attendee"
+                    onClick={() => {
+                      console.log('Asked to register as attendee');
+                    }}
+                    sx={{
+                      width: '100%',
+                      height: '100%',
+                    }}
+                    disabled={attendees.current === attendees.max} // Disable button if current attendees reach max
+                  >
+                    {attendees.current === attendees.max
+                      ? 'Attend Event (FULL)'
+                      : 'Attend Event'}
+                  </Button>
+                </Grid>
+                <Grid item xs={12} lg={6} key="volunteer">
+                  <Button
+                    variant="contained"
+                    color="volunteer"
+                    onClick={() => {
+                      console.log('Asked to register as volunteer');
+                    }}
+                    sx={{
+                      width: '100%',
+                      height: '100%',
+                    }}
+                    disabled={volunteers.current === volunteers.max} // Disable button if current volunteers reach max
+                  >
+                    {volunteers.current === volunteers.max
+                      ? 'Volunteer Here (FULL)'
+                      : 'Volunteer Here'}
+                  </Button>
+                </Grid>
+              </>
+            ) : (
+              <Grid item xs={12} key="cancel">
+                {registrationType === 'Host' ? (
+                  <Button
+                    sx={{ width: '100%' }}
+                    variant="contained"
+                    color="error"
+                  >
+                    Cancel Event
+                  </Button>
+                ) : (
+                  <Button
+                    sx={{ width: '100%' }}
+                    variant="contained"
+                    color="error"
+                  >
+                    Cancel Registration
+                  </Button>
+                )}
+              </Grid>
+            )}
           </Grid>
-        </Container>
-      </Container>
+        </Box>
+      </Stack>
     </>
   );
 };

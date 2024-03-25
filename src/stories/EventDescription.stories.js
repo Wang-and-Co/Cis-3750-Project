@@ -50,7 +50,7 @@ export const Primary = {
       cost: 0,
       imageUri:
         'https://www.milton.ca/en/arts-and-recreation/resources/group-cycling-banner.jpg',
-      registrationType: 'None',
+      registrationType: 'none',
     },
     onClick: (eventData) => {
       alert('Lol haha cringe you are! What a 100Z3R');
@@ -85,7 +85,7 @@ export const Secondary = {
       cost: 12.07,
       imageUri:
         'https://miltonbadmintonclub.files.wordpress.com/2017/12/dscf2190.jpg',
-      registrationType: 'None',
+      registrationType: 'none',
     },
     onClick: (eventData) => {
       alert('Lol haha cringe you are! What a 100Z3R');

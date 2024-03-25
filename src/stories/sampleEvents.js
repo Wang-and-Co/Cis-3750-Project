@@ -23,7 +23,7 @@ const hostingEvent = {
   cost: 999,
   imageUri:
     'https://i0.wp.com/voyagecomics.com/wp-content/uploads/2021/10/smaug_dragon.webp?fit=1782%2C937&ssl=1',
-  registrationType: 'Host',
+  registrationType: 'host',
 };
 const volunteeringEvent = {
   eventID: 1,
@@ -48,7 +48,7 @@ const volunteeringEvent = {
   cost: 999,
   imageUri:
     'https://i0.wp.com/voyagecomics.com/wp-content/uploads/2021/10/smaug_dragon.webp?fit=1782%2C937&ssl=1',
-  registrationType: 'Volunteer',
+  registrationType: 'volunteer',
 };
 const attendingEvent = {
   eventID: 0,
@@ -68,12 +68,12 @@ const attendingEvent = {
   },
   isOnline: false,
   attendees: { current: 1, max: 55 },
-  volunteers: { current: 5, max: 5 },
+  volunteers: { current: 5, max: 125 },
   wellnessType: 'Good',
   cost: 999,
   imageUri:
     'https://i0.wp.com/voyagecomics.com/wp-content/uploads/2021/10/smaug_dragon.webp?fit=1782%2C937&ssl=1',
-  registrationType: 'Attendee',
+  registrationType: 'attendee',
 };
 const unregisteredEvent = {
   eventID: 0,
@@ -93,10 +93,10 @@ const unregisteredEvent = {
   },
   isOnline: false,
   attendees: { current: 1, max: 55 },
-  volunteers: { current: 5, max: 5 },
+  volunteers: { current: 5, max: 125 },
   wellnessType: 'Good',
   cost: 999,
   imageUri:
     'https://i0.wp.com/voyagecomics.com/wp-content/uploads/2021/10/smaug_dragon.webp?fit=1782%2C937&ssl=1',
-  registrationType: 'None',
+  registrationType: 'none',
 };
