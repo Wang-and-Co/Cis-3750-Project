@@ -3,17 +3,15 @@ import {
   CardActionArea,
   CardContent,
   CardMedia,
+  Chip,
   Grid,
   Typography,
 } from '@mui/material';
 import PropTypes from 'prop-types';
 import dateFormat from 'dateformat';
 import getEventDurationString from '../../utils/getEventDurationString';
-import { CheckCircleOutline } from '@mui/icons-material';
-import {
-  getRegistrationTypeColour,
-  getRegistrationTypeMessage,
-} from '../../types/types';
+import { CheckCircleOutline, TaskAlt } from '@mui/icons-material';
+import { getRegistrationTypeMessage } from '../../types/types';
 
 const MinimizedEventCard = ({ id, event, openEventFunc }) => {
   const {
@@ -35,10 +33,9 @@ const MinimizedEventCard = ({ id, event, openEventFunc }) => {
 
   const dateString = `${dateFormat(startDateTime, 'DDD, mmm dd, hh:mm TT')}`;
   const registrationTypeString = getRegistrationTypeMessage(registrationType);
-  const backgroundColour = getRegistrationTypeColour(registrationType);
 
   return (
-    <Card sx={{ backgroundColor: `${backgroundColour}.main` }}>
+    <Card>
       <CardActionArea
         onClick={() => {
           openEventFunc(event);
@@ -60,27 +57,13 @@ const MinimizedEventCard = ({ id, event, openEventFunc }) => {
             {`${dateString}`}
           </Typography>
 
-          <Grid container spacing={0} sx={{ marginTop: 1 }}>
-            <Grid item xs={2} sx={{ justifySelf: 'center' }}>
-              <CheckCircleOutline
-                sx={{ justifySelf: 'center' }}
-                fontSize={'small'}
-              />
-            </Grid>
-            <Grid item xs={10} sx={{ justifySelf: 'center' }}>
-              <Typography
-                sx={{
-                  textAlign: 'left',
-                  justifySelf: 'baseline',
-                  fontSize: 12,
-                }}
-                variant="body2"
-                color={`${backgroundColour}.contrast`}
-              >
-                {registrationTypeString}
-              </Typography>
-            </Grid>
-          </Grid>
+          <Chip
+            variant="filled"
+            color={`${registrationType}`}
+            label={registrationTypeString}
+            icon={<TaskAlt />}
+            sx={{ width: '100%' }}
+          ></Chip>
         </CardContent>
       </CardActionArea>
     </Card>

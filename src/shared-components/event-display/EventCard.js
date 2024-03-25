@@ -5,6 +5,7 @@ import {
   CardActionArea,
   CardContent,
   CardMedia,
+  Chip,
   Container,
   Divider,
   Grid,
@@ -14,11 +15,8 @@ import {
 import PropTypes from 'prop-types';
 import dateFormat from 'dateformat';
 import getEventDurationString from '../../utils/getEventDurationString';
-import { CheckCircleOutline } from '@mui/icons-material';
-import {
-  getRegistrationTypeColour,
-  getRegistrationTypeMessage,
-} from '../../types/types';
+import { CheckCircleOutline, TaskAlt } from '@mui/icons-material';
+import { getRegistrationTypeMessage } from '../../types/types';
 
 const EventCard = ({ id, event = {}, openEventFunc, height }) => {
   const {
@@ -43,7 +41,6 @@ const EventCard = ({ id, event = {}, openEventFunc, height }) => {
   const dateString = `${dateFormat(startDateTime, 'DDD, mmm dd, hh:mm TT')}`;
   const lengthString = getEventDurationString(startDateTime, endDateTime);
   const registrationTypeString = getRegistrationTypeMessage(registrationType);
-  const backgroundColour = getRegistrationTypeColour(registrationType);
   const maxDescriptionLength = 70;
 
   return (
@@ -150,33 +147,15 @@ const EventCard = ({ id, event = {}, openEventFunc, height }) => {
                   </Typography>
                 </Stack>
               </Grid>
-              {registrationType != null && registrationType !== 'None' ? (
+              {registrationType != null && registrationType !== 'none' ? (
                 <Grid item xs={5}>
-                  <Stack
-                    direction={'row'}
-                    sx={{
-                      display: 'flex',
-                      flexDirection: 'row',
-                      bgcolor: `${backgroundColour}.main`,
-                      borderRadius: 1,
-                      padding: 1,
-                      width: '100%',
-                    }}
-                  >
-                    <CheckCircleOutline fontSize={'small'} />
-                    <Typography
-                      sx={{
-                        textAlign: 'left',
-                        justifySelf: 'baseline',
-                        fontSize: 12,
-                        margin: 0,
-                      }}
-                      variant="subtitle1"
-                      color={`${backgroundColour}.contrast`}
-                    >
-                      {registrationTypeString}
-                    </Typography>
-                  </Stack>
+                  <Chip
+                    variant="filled"
+                    color={`${registrationType}`}
+                    label={registrationTypeString}
+                    icon={<TaskAlt />}
+                    sx={{ width: '100%' }}
+                  ></Chip>
                 </Grid>
               ) : (
                 <></>

@@ -12,6 +12,7 @@ import {
   ListItemIcon,
   ListItemText,
   Box,
+  Chip,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import React from 'react';
@@ -19,7 +20,17 @@ import PropTypes from 'prop-types';
 import getEventDurationString from '../../utils/getEventDurationString';
 import dateFormat from 'dateformat';
 import { CalendarContainer } from 'react-datepicker';
-import { CalendarMonth, CurrencyPound, People } from '@mui/icons-material';
+import {
+  CalendarMonth,
+  CheckBox,
+  CurrencyPound,
+  Interests,
+  Paid,
+  People,
+  Place,
+  TaskAlt,
+} from '@mui/icons-material';
+import { getRegistrationTypeMessage } from '../../types/types';
 
 const EventDescription = ({ closeFunc, event = {} }) => {
   const {
@@ -45,6 +56,7 @@ const EventDescription = ({ closeFunc, event = {} }) => {
 
   const dateString = `${dateFormat(startDateTime, 'dd/mm/yyyy hh:mm TT')}`;
   const lengthString = getEventDurationString(startDateTime, endDateTime);
+  const registrationTypeString = getRegistrationTypeMessage(registrationType);
 
   const handleDrawerClose = () => {
     closeFunc();
@@ -86,7 +98,7 @@ const EventDescription = ({ closeFunc, event = {} }) => {
           >
             {title}
           </Typography>
-          <List dense={true} sx={{ width: '100%', paddingLeft: 0 }}>
+          <List dense={true} sx={{ width: '100%', padding: 0 }}>
             <ListItem>
               <ListItemIcon>
                 <CalendarMonth />
@@ -97,7 +109,7 @@ const EventDescription = ({ closeFunc, event = {} }) => {
             </ListItem>
             <ListItem>
               <ListItemIcon>
-                <CalendarMonth />
+                <Place />
               </ListItemIcon>
               <ListItemText
                 primary={`${locationString}`}
@@ -109,7 +121,7 @@ const EventDescription = ({ closeFunc, event = {} }) => {
             </ListItem>
             <ListItem>
               <ListItemIcon>
-                <CalendarMonth />
+                <Interests />
               </ListItemIcon>
               <ListItemText
                 primary={`Event Type: ${wellnessType}`}
@@ -117,7 +129,7 @@ const EventDescription = ({ closeFunc, event = {} }) => {
             </ListItem>
             <ListItem>
               <ListItemIcon>
-                <CurrencyPound />
+                <Paid />
               </ListItemIcon>
               <ListItemText primary={`$${cost}`}></ListItemText>
             </ListItem>
@@ -145,57 +157,73 @@ const EventDescription = ({ closeFunc, event = {} }) => {
           >
             {description}
           </Typography>
+
+          {registrationType != null && registrationType !== 'none' ? (
+            <Chip
+              variant="filled"
+              color={`${registrationType}`}
+              label={registrationTypeString}
+              icon={<TaskAlt />}
+              sx={{ width: '100%' }}
+            ></Chip>
+          ) : (
+            <></>
+          )}
         </Box>
-        <Container style={{ position: 'relative', padding: 0 }}>
-          <Grid container position="fixed" bottom={0} spacing={1}>
-            {registrationType === 'None' ? (
-              <>
-                <Grid item xs={3}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() => {
-                      console.log('Asked to register as attendee');
-                    }}
-                    sx={{ width: '206px' }}
-                    disabled={attendees.current === attendees.max} // Disable button if current attendees reach max
-                  >
-                    {attendees.current === attendees.max
-                      ? 'Full (Max reached)'
-                      : 'Register as Attendee'}
-                  </Button>
-                </Grid>
-                <Grid item xs={3}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() => {
-                      console.log('Asked to register as volunteer');
-                    }}
-                    sx={{ width: '206px' }}
-                    disabled={volunteers.current === volunteers.max} // Disable button if current volunteers reach max
-                  >
-                    {volunteers.current === volunteers.max
-                      ? 'Full (Max reached)'
-                      : 'Register as Volunteer'}
-                  </Button>
-                </Grid>
-              </>
-            ) : (
-              <Grid item xs={12}>
-                {registrationType === 'Host' ? (
-                  <Button sx={{ width: '100%' }} variant="contained">
-                    Cancel Event
-                  </Button>
-                ) : (
-                  <Button sx={{ width: '100%' }} variant="contained">
-                    Cancel Registration
-                  </Button>
-                )}
+        <Grid
+          container
+          spacing={1}
+          sx={{
+            margin: 1,
+          }}
+        >
+          {registrationType === 'none' ? (
+            <>
+              <Grid item xs={12} sm={12} md={12} lg={6}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => {
+                    console.log('Asked to register as attendee');
+                  }}
+                  sx={{ width: '206px' }}
+                  disabled={attendees.current === attendees.max} // Disable button if current attendees reach max
+                >
+                  {attendees.current === attendees.max
+                    ? 'Attend Event (FULL)'
+                    : 'Attend Event'}
+                </Button>
               </Grid>
-            )}
-          </Grid>
-        </Container>
+              <Grid item xs={12} sm={12} md={12} lg={6}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => {
+                    console.log('Asked to register as volunteer');
+                  }}
+                  sx={{ width: '206px' }}
+                  disabled={volunteers.current === volunteers.max} // Disable button if current volunteers reach max
+                >
+                  {volunteers.current === volunteers.max
+                    ? 'Volunteer Here (FULL)'
+                    : 'Volunteer Here'}
+                </Button>
+              </Grid>
+            </>
+          ) : (
+            <Grid item xs={12}>
+              {registrationType === 'Host' ? (
+                <Button sx={{ width: '100%' }} variant="contained">
+                  Cancel Event
+                </Button>
+              ) : (
+                <Button sx={{ width: '100%' }} variant="contained">
+                  Cancel Registration
+                </Button>
+              )}
+            </Grid>
+          )}
+        </Grid>
       </Container>
     </>
   );
