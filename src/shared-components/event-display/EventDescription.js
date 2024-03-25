@@ -68,7 +68,7 @@ const EventDescription = ({ closeFunc, event = {} }) => {
             style={{ width: '100%' }}
           />
         </Container>
-        <Container style={{ marginTop: '1rem'}}>
+        <Container style={{paddingLeft: '3rem', paddingRight: '3rem', paddingTop: '1.5rem'}}>
           <Typography gutterBottom variant="h3" component="div">
             {title}
           </Typography>
@@ -88,16 +88,10 @@ const EventDescription = ({ closeFunc, event = {} }) => {
             color="text.primary"
             sx={{ marginTop: '16px' }}
           >
-            Event type: {wellnessType}
-          </Typography>
-          <Typography variant="body1" color="text.primary">
             Cost to attend: ${cost}
           </Typography>
           <Typography variant="body1" color="text.primary">
-            Attendees: {attendees.current} / {attendees.max}
-          </Typography>
-          <Typography variant="body1" color="text.primary">
-            Volunteers: {volunteers.current} / {volunteers.max}
+            Event type: {wellnessType}
           </Typography>
           <Typography
             variant="body1"
