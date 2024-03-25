@@ -33,8 +33,9 @@ def events():
     else:
         eventInfo = request.get_json()
         eventID = db.add_event(eventInfo)
-        #Return the eventID 
-        return json.dumps(eventID)
+        
+        idInfo = {'id': eventID}
+        return json.dumps(idInfo)
 
 
 @app.route('/eventBooking', methods=['POST','GET'])
@@ -45,7 +46,17 @@ def booking():
 
         userID = request.args.get('id')
         table = db.select_booking(userID)
-        return (json.dumps(table))
+        eventBookings = []
+
+        for i in range(0, len(table)):
+            eventBookings.append({
+                'event_id': table[i][0],
+                'user_id': table[i][1],
+                'type': table[i][2]
+            })
+
+
+        return (json.dumps(eventBookings))
     
     else:
 
@@ -63,7 +74,14 @@ def createAccount():
         
         #For sake of minimum viable product, just returning one here to signify succesfull account registration
         userCredentials = db.select_account({'email': accountInfo['email'], 'password': accountInfo['password']})
-        return json.dumps(userCredentials)
+
+        loginInfo = {
+                'id' : userCredentials[0],
+                'fname' : userCredentials[1],
+                'lname' : userCredentials[2],
+        }
+
+        return json.dumps(loginInfo)
         # Return same as login for auto signing them in once account created 
 
 @app.route('/login', methods=['POST'])
@@ -77,4 +95,10 @@ def login():
         userCredentials = request.get_json()
         table = db.select_account(userCredentials)
 
-        return json.dumps(table)
+        loginInfo = {
+                'id' : table[0],
+                'fname' : table[1],
+                'lname' : table[2],
+        }
+
+        return json.dumps(loginInfo)
