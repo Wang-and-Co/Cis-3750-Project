@@ -38,7 +38,7 @@ const MinimizedEventCard = ({ id, event, openEventFunc }) => {
   const backgroundColour = getRegistrationTypeColour(registrationType);
 
   return (
-    <Card sx={{ backgroundColor: backgroundColour }}>
+    <Card sx={{ backgroundColor: `${backgroundColour}.main` }}>
       <CardActionArea
         onClick={() => {
           openEventFunc(event);
@@ -75,7 +75,7 @@ const MinimizedEventCard = ({ id, event, openEventFunc }) => {
                   fontSize: 12,
                 }}
                 variant="body2"
-                color="text.primary"
+                color={`${backgroundColour}.contrast`}
               >
                 {registrationTypeString}
               </Typography>

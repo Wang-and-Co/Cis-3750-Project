@@ -157,7 +157,7 @@ const EventCard = ({ id, event = {}, openEventFunc, height }) => {
                     sx={{
                       display: 'flex',
                       flexDirection: 'row',
-                      backgroundColor: backgroundColour,
+                      bgcolor: `${backgroundColour}.main`,
                       borderRadius: 1,
                       padding: 1,
                       width: '100%',
@@ -172,7 +172,7 @@ const EventCard = ({ id, event = {}, openEventFunc, height }) => {
                         margin: 0,
                       }}
                       variant="subtitle1"
-                      color="text.primary"
+                      color={`${backgroundColour}.contrast`}
                     >
                       {registrationTypeString}
                     </Typography>

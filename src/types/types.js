@@ -14,8 +14,8 @@ export const getRegistrationTypeMessage = (userType) =>
 
 export const getRegistrationTypeColour = (userType) =>
   ({
-    Volunteer: '#87e1ff',
-    Attendee: '#90ee90',
-    Host: '#ff7dff',
-    None: 'default',
+    Volunteer: 'attendee',
+    Attendee: 'volunteer',
+    Host: 'host',
+    None: 'primary',
   })[userType];
