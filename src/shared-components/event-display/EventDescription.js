@@ -7,12 +7,19 @@ import {
   IconButton,
   iconButton,
   Typography,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Box,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import React from 'react';
 import PropTypes from 'prop-types';
 import getEventDurationString from '../../utils/getEventDurationString';
 import dateFormat from 'dateformat';
+import { CalendarContainer } from 'react-datepicker';
+import { CalendarMonth, CurrencyPound, People } from '@mui/icons-material';
 
 const EventDescription = ({ closeFunc, event = {} }) => {
   const {
@@ -38,12 +45,6 @@ const EventDescription = ({ closeFunc, event = {} }) => {
 
   const dateString = `${dateFormat(startDateTime, 'dd/mm/yyyy hh:mm TT')}`;
   const lengthString = getEventDurationString(startDateTime, endDateTime);
-
-  const styling = {
-    myEventsWidth: 480,
-    topBarHeight: '64px',
-    myEventsHeight: window.innerHeight - self.topBarHeight,
-  };
 
   const handleDrawerClose = () => {
     closeFunc();
@@ -74,92 +75,125 @@ const EventDescription = ({ closeFunc, event = {} }) => {
             style={{ width: '100%' }}
           />
         </Container>
-        <Container style={{ padding: '1rem' }}>
-          <Typography gutterBottom variant="h3" component="div">
+        <Box style={{ padding: '1rem' }}>
+          <Typography
+            variant="subtitle1"
+            fontSize={18}
+            lineHeight={1.2}
+            color="text.primary"
+            maxHeight={'20%'}
+            marginBottom={1}
+          >
             {title}
           </Typography>
-          <Typography variant="subtitle1" color="text.primary">
-            {`${dateString}, ${lengthString}`}
-          </Typography>
-          <Typography variant="subtitle1" color="text.primary">
-            {locationString}
-          </Typography>
-          {location?.extraInstructions && (
-            <Typography variant="subtitle1" color="text.primary">
-              {`Extra Directions: ${location.extraInstructions}`}
-            </Typography>
-          )}
-          <Typography
-            variant="body1"
-            color="text.primary"
-            sx={{ marginTop: '16px' }}
-          >
-            Event type: {wellnessType}
-          </Typography>
-          <Typography variant="body1" color="text.primary">
-            Cost to attend: ${cost}
-          </Typography>
-          <Typography variant="body1" color="text.primary">
-            Attendees: {attendees.current} / {attendees.max}
-          </Typography>
-          <Typography variant="body1" color="text.primary">
-            Volunteers: {volunteers.current} / {volunteers.max}
-          </Typography>
+          <List dense={true} sx={{ width: '100%', paddingLeft: 0 }}>
+            <ListItem>
+              <ListItemIcon>
+                <CalendarMonth />
+              </ListItemIcon>
+              <ListItemText
+                primary={`${dateString}, ${lengthString}`}
+              ></ListItemText>
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <CalendarMonth />
+              </ListItemIcon>
+              <ListItemText
+                primary={`${locationString}`}
+                secondary={
+                  location?.extraInstructions &&
+                  `Extra Directions: ${location.extraInstructions}`
+                }
+              />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <CalendarMonth />
+              </ListItemIcon>
+              <ListItemText
+                primary={`Event Type: ${wellnessType}`}
+              ></ListItemText>
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <CurrencyPound />
+              </ListItemIcon>
+              <ListItemText primary={`$${cost}`}></ListItemText>
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <People />
+              </ListItemIcon>
+              <ListItemText
+                primary={`Attendees: ${attendees.current} / ${attendees.max}`}
+              ></ListItemText>
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <People />
+              </ListItemIcon>
+              <ListItemText
+                primary={`Volunteers: ${volunteers.current} / ${volunteers.max}`}
+              ></ListItemText>
+            </ListItem>
+          </List>
 
           <Typography
-            variant="body1"
-            color="text.primary"
-            sx={{ marginTop: '16px', marginBottom: '100px'}}
+            variant="body2"
+            sx={{ marginTop: '16px', marginBottom: '100px' }}
           >
             {description}
           </Typography>
-        </Container>
+        </Box>
         <Container style={{ position: 'relative', padding: 0 }}>
-          <Grid
-            container
-            justifyContent="center"
-            alignItems="center"
-            position="fixed"
-            bottom={0}
-            sx={{
-              textAlign: 'center',
-              paddingLeft: '10px',
-              paddingTop: '10px',
-              paddingBottom: '10px',
-              backgroundColor: 'white',
-              width: '24%',
-            }}
-          >
-            <Grid item sx={{ paddingLeft: '1%' }}>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() => {
-                  console.log('Asked to register as attendee');
-                }}
-                sx={{ width: '206px' }}
-                disabled={attendees.current === attendees.max} // Disable button if current attendees reach max
-              >
-                {attendees.current === attendees.max
-                  ? 'Full (Max reached)'
-                  : 'Register as Attendee'}
-              </Button>
-            </Grid>
-            <Grid item sx={{ paddingLeft: '4%' }}>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() => {
-                  console.log('Asked to register as volunteer');
-                }}
-                sx={{ width: '206px' }}
-                disabled={volunteers.current === volunteers.max} // Disable button if current volunteers reach max
-              >
-                {volunteers.current === volunteers.max
-                  ? 'Full (Max reached)'
-                  : 'Register as Volunteer'}
-              </Button>
-            </Grid>
+          <Grid container position="fixed" bottom={0} spacing={1}>
+            {registrationType === 'None' ? (
+              <>
+                <Grid item xs={3}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => {
+                      console.log('Asked to register as attendee');
+                    }}
+                    sx={{ width: '206px' }}
+                    disabled={attendees.current === attendees.max} // Disable button if current attendees reach max
+                  >
+                    {attendees.current === attendees.max
+                      ? 'Full (Max reached)'
+                      : 'Register as Attendee'}
+                  </Button>
+                </Grid>
+                <Grid item xs={3}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => {
+                      console.log('Asked to register as volunteer');
+                    }}
+                    sx={{ width: '206px' }}
+                    disabled={volunteers.current === volunteers.max} // Disable button if current volunteers reach max
+                  >
+                    {volunteers.current === volunteers.max
+                      ? 'Full (Max reached)'
+                      : 'Register as Volunteer'}
+                  </Button>
+                </Grid>
+              </>
+            ) : (
+              <Grid item xs={12}>
+                {registrationType === 'Host' ? (
+                  <Button sx={{ width: '100%' }} variant="contained">
+                    Cancel Event
+                  </Button>
+                ) : (
+                  <Button sx={{ width: '100%' }} variant="contained">
+                    Cancel Registration
+                  </Button>
+                )}
+              </Grid>
+            )}
           </Grid>
         </Container>
       </Container>
