@@ -14,6 +14,24 @@ export const theme = createTheme({
       dark: '#56b7c5',
       contrast: '#ffffff',
     },
+    background: {
+      main: '#97e7f5',
+      light: '#97e7f5',
+      dark: '#51c4d8',
+      contrast: '#000000',
+    },
+    topNavBar: {
+      main: '#009dd1',
+      light: '#009dd1',
+      dark: '#007ba4',
+      contrast: '#ffffff',
+    },
+    leftNavBar: {
+      main: '#7ed348',
+      light: '#7ed348',
+      dark: '#67b438',
+      contrast: '#ffffff',
+    },
     volunteer: {
       main: '#87e1ff',
       light: '#87e1ff',

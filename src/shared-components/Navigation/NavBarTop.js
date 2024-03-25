@@ -27,6 +27,7 @@ const NavBarTop = () => {
         borderBottom: 1,
         borderColor: 'lightgray',
         height: '4rem',
+        bgcolor: 'topNavBar.main',
       }}
     >
       <Toolbar
