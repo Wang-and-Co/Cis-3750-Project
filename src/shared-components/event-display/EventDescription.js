@@ -36,14 +36,8 @@ const EventDescription = ({ closeFunc, event = {} }) => {
     ? 'Online'
     : `${location.address} ${location.road}, ${location.city} ${location.province}, ${location.postalCode}`;
 
-  const dateString = `${dateFormat(startDateTime, 'dd/mm/yyyy hh:mm TT')}`;
+  const dateString = `${dateFormat(startDateTime, 'DDD, mmm dd, hh:mm TT')}`;
   const lengthString = getEventDurationString(startDateTime, endDateTime);
-
-  const styling = {
-    myEventsWidth: 480,
-    topBarHeight: '64px',
-    myEventsHeight: window.innerHeight - self.topBarHeight,
-  };
 
   const handleDrawerClose = () => {
     closeFunc();
@@ -108,7 +102,7 @@ const EventDescription = ({ closeFunc, event = {} }) => {
           <Typography
             variant="body1"
             color="text.primary"
-            sx={{ marginTop: '16px', marginBottom: '100px'}}
+            sx={{ marginTop: '16px', marginBottom: '30%'}}
           >
             {description}
           </Typography>
@@ -133,7 +127,7 @@ const EventDescription = ({ closeFunc, event = {} }) => {
               >
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                   {attendees.current === attendees.max
-                  ? 'Full (Max reached)'
+                  ? 'Attendees Full'
                   : `Attend`}
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -153,7 +147,7 @@ const EventDescription = ({ closeFunc, event = {} }) => {
               >
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                   {volunteers.current === volunteers.max
-                  ? 'Full (Max reached)'
+                  ? 'Volunteers Full'
                   : `Volunteer`}
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
