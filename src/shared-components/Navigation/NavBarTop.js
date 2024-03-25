@@ -52,7 +52,6 @@ const NavBarTop = () => {
           id="search"
           placeholder="Search for an event..."
           variant="outlined"
-          disabled={cookies.auth == null}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
