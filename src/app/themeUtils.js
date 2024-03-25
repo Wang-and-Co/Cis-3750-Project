@@ -2,7 +2,18 @@ import { createTheme } from '@mui/material';
 import { green } from '@mui/material/colors';
 export const theme = createTheme({
   palette: {
-    primary: green,
+    primary: {
+      main: '#26b170',
+      light: '#26b170',
+      dark: '#26905e',
+      contrast: '#ffffff',
+    },
+    secondary: {
+      main: '#97e9f5',
+      light: '#97e9f5',
+      dark: '#56b7c5',
+      contrast: '#ffffff',
+    },
     volunteer: {
       main: '#87e1ff',
       light: '#87e1ff',
