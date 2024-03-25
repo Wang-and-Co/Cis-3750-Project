@@ -43,7 +43,7 @@ const NavBarTop = () => {
           sx={{ padding: 1, margin: 0, height: '100%', width: '15%' }}
         >
           <img
-            src={'ComboLogo.png'}
+            src={'/ComboLogo.png'}
             alt="ComBo Logo"
             style={{
               height: '100%',
