@@ -39,6 +39,7 @@ const GenericModal = ({
   open,
   disabled,
   titleAlign,
+  afterClose,
 }) => (
   <Dialog
     name={name}
@@ -46,6 +47,11 @@ const GenericModal = ({
     aria-labelledby={`modal-${id}-title`}
     aria-describedby={`modal-${id}-description`}
     scroll="body"
+    TransitionProps={{
+      onExited: () => {
+        afterClose();
+      },
+    }}
   >
     <Box sx={style}>
       {showExitButton && (
