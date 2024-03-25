@@ -135,7 +135,7 @@ const EventDescription = ({ closeFunc, event = {} }) => {
               <ListItemText primary={`$${cost}`}></ListItemText>
             </ListItem>
             <ListItem>
-              <ListItemIcon>
+              <ListItemIcon sx={{ padding: 0, margin: 0 }}>
                 <People />
               </ListItemIcon>
               <ListItemText

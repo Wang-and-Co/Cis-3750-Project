@@ -2,7 +2,7 @@ import { Box, Toolbar } from '@mui/material';
 import NavBarLeft from '../shared-components/Navigation/NavBarLeft';
 import NavBarTop from '../shared-components/Navigation/NavBarTop';
 
-const NAVBAR_LEFT_WIDTH_PERCENT = 15;
+const NAVBAR_LEFT_WIDTH_PERCENT = 12;
 const Layout = ({ children }) => {
   return (
     <Box sx={{ display: 'flex' }}>
@@ -21,3 +21,4 @@ const Layout = ({ children }) => {
 };
 
 export default Layout;
+export { NAVBAR_LEFT_WIDTH_PERCENT };
