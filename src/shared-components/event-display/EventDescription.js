@@ -55,7 +55,7 @@ const EventDescription = ({ closeFunc, event = {} }) => {
     ? 'Online'
     : `${location.address} ${location.road}, ${location.city} ${location.province}, ${location.postalCode}`;
 
-  const dateString = `${dateFormat(startDateTime, 'dd/mm/yyyy hh:mm TT')}`;
+  const dateString = `${dateFormat(startDateTime, 'DDD, mmm dd, hh:mm TT')}`;
   const lengthString = getEventDurationString(startDateTime, endDateTime);
   const registrationTypeString = getRegistrationTypeMessage(registrationType);
 

@@ -51,7 +51,7 @@ const NavBarTop = () => {
           }}
         >
           <img
-            src={'ComboLogo.png'}
+            src={'/ComboLogo.png'}
             alt="ComBo Logo"
             style={{
               height: '100%',
