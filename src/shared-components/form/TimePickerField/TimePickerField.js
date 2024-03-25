@@ -1,12 +1,11 @@
+import { forwardRef, useState } from 'react';
+import { TextField, InputAdornment, IconButton } from '@mui/material';
+import { AccessTime } from '@mui/icons-material';
 import DatePicker from 'react-datepicker';
-import { useField } from 'formik';
-import { IconButton, InputAdornment, TextField } from '@mui/material';
-import { forwardRef } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
-import { CalendarMonth } from '@mui/icons-material';
 
-// We need to make a forward ref to use this input within the date picker component
-//https://stackoverflow.com/questions/74499549/time-is-set-automatically-if-selecting-date-in-react-datepicker
+import { useField } from 'formik';
+
 const InnerMUIInputField = forwardRef(
   ({ value, name, onKeyDown, onClick, onFocus, ...otherProps }, ref) => {
     return (
@@ -19,7 +18,7 @@ const InnerMUIInputField = forwardRef(
           endAdornment: (
             <InputAdornment position="end">
               <IconButton onClick={onFocus} onKeyDown={onKeyDown}>
-                <CalendarMonth></CalendarMonth>
+                <AccessTime />
               </IconButton>
             </InputAdornment>
           ),
@@ -28,9 +27,9 @@ const InnerMUIInputField = forwardRef(
     );
   },
 );
-InnerMUIInputField.displayName = 'test';
+InnerMUIInputField.displayName = 'test2';
 
-const DatePickerField = ({ name, label, helperText, variant, ...props }) => {
+const TimePickerField = ({ name, label, helperText, variant, ...props }) => {
   const [field, meta, helpers] = useField(name);
 
   return (
@@ -41,19 +40,21 @@ const DatePickerField = ({ name, label, helperText, variant, ...props }) => {
       variant={'filled'}
       onSelect={() => {}}
       {...props}
+      customInput={<InnerMUIInputField />}
       name={{
         label: label,
         name: field.name,
         helperText: meta.touched && meta.error ? meta.error : helperText,
         error: !!meta.error && meta.touched,
         variant: variant,
-        sx: { minHeight: '5rem' },
       }}
-      placeholderText="mm/dd/yyyy"
-      customInput={<InnerMUIInputField />}
+      showTimeSelect
+      showTimeSelectOnly
+      timeIntervals={15}
+      timeCaption="Time"
+      dateFormat="h:mm aa"
       onChange={(newDate) => helpers.setValue(newDate, true)}
-      // onChangeRaw={field.onChange}
-    ></DatePicker>
+    />
   );
 };
-export default DatePickerField;
+export default TimePickerField;

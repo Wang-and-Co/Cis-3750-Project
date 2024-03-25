@@ -44,7 +44,7 @@ const NavBarLeft = ({ widthPercent }) => {
             </ListItemButton>
           </ListItem>
           <ListItem key={'Create Event'} disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={() => navigate('/hosting')}>
               <ListItemIcon>
                 <IcecreamOutlined />
               </ListItemIcon>
