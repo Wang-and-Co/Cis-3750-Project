@@ -96,7 +96,7 @@ const EventDescription = ({ closeFunc, event = {} }) => {
           <Typography
             variant="body1"
             color="text.primary"
-            sx={{ marginTop: '16px', marginBottom: '30%'}}
+            sx={{ marginTop: '16px', marginBottom: '40%'}}
           >
             {description}
           </Typography>
