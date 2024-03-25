@@ -15,6 +15,6 @@ export const getSignUpFormValidationSchema = () =>
       .string()
       .oneOf([yup.ref('password'), null], 'Password must match')
       .required('Enter the password again'),
-    firstName: yup.string().required('First name cannot be empty.'),
-    lastName: yup.string().required('Last name cannot be empty.'),
+    fname: yup.string().required('First name cannot be empty.'),
+    lname: yup.string().required('Last name cannot be empty.'),
   });
