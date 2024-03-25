@@ -3,7 +3,7 @@ import NavBarLeft from '../shared-components/Navigation/NavBarLeft';
 import NavBarTop from '../shared-components/Navigation/NavBarTop';
 import Footer from '../shared-components/Navigation/Footer';
 
-const NAVBAR_LEFT_WIDTH_PERCENT = 15;
+const NAVBAR_LEFT_WIDTH_PERCENT = 12;
 const Layout = ({ children }) => {
   return (
     <Box
@@ -36,3 +36,4 @@ const Layout = ({ children }) => {
 };
 
 export default Layout;
+export { NAVBAR_LEFT_WIDTH_PERCENT };

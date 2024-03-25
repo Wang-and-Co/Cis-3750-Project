@@ -4,7 +4,7 @@ import os;
 class Database(): 
 
     def __init__(self, reset=False): 
-        if(reset == True):
+        if(reset == True and os.path.exists('database.db')):
             os.remove('database.db')
         self.create_tables()
 

@@ -52,13 +52,13 @@ const SignupForm = ({ handleSubmit, footerOnClick }) => {
               </Typography>
             </div>
             <InputField
-              name="firstName"
+              name="fname"
               label="First Name"
               required
               autoComplete=""
             ></InputField>
             <InputField
-              name="lastName"
+              name="lname"
               label="Last Name"
               required
               autoComplete=""

@@ -14,8 +14,11 @@ import { useCookies } from 'react-cookie';
 import { Search } from '@mui/icons-material';
 import useAuth from '../hooks/useAuth';
 import { showLoginModal } from '../modals/LoginModal';
+import { NAVBAR_LEFT_WIDTH_PERCENT } from '../../app/Layout';
+import { useNavigate } from 'react-router-dom';
 
 const NavBarTop = () => {
+  const navigate = useNavigate();
   const { isLoggedIn, setAuthInfo, handleLogout } = useAuth();
   return (
     <AppBar
@@ -39,12 +42,17 @@ const NavBarTop = () => {
       >
         <Button
           onClick={() => {
-            console.log('Pressed!');
+            navigate('/');
           }}
-          sx={{ padding: 1, margin: 0, height: '100%', width: '15%' }}
+          sx={{
+            padding: 1,
+            margin: 0,
+            height: '100%',
+            width: `${NAVBAR_LEFT_WIDTH_PERCENT}%`,
+          }}
         >
           <img
-            src={'ComboLogo.png'}
+            src={'/ComboLogo.png'}
             alt="ComBo Logo"
             style={{
               height: '100%',
