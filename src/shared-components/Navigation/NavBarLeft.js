@@ -35,6 +35,12 @@ const NavBarLeft = ({ widthPercent }) => {
           boxSizing: 'border-box',
         },
       }}
+      PaperProps={{
+        sx: {
+          bgcolor: '#c8ffc8',
+          color: 'darkestBlue.main',
+        },
+      }}
     >
       <Toolbar />
       <Box sx={{ overflow: 'auto' }}>
@@ -42,25 +48,58 @@ const NavBarLeft = ({ widthPercent }) => {
           <ListItem key={'Home Page'} disablePadding>
             <ListItemButton onClick={() => navigate('/')}>
               <ListItemIcon sx={{ minWidth: 0, paddingRight: 1 }}>
-                <Home />
+                <Home
+                  sx={{
+                    color: 'darkestBlue.main',
+                  }}
+                />
               </ListItemIcon>
-              <ListItemText primary={'Home Page'} />
+              <ListItemText
+                primary={'Home Page'}
+                primaryTypographyProps={{
+                  style: {
+                    fontWeight: 'bold',
+                  },
+                }}
+              />
             </ListItemButton>
           </ListItem>
           <ListItem key={'Create Event'} disablePadding>
             <ListItemButton onClick={() => navigate('/hosting')}>
               <ListItemIcon sx={{ minWidth: 0, paddingRight: 1 }}>
-                <EditCalendar />
+                <EditCalendar
+                  sx={{
+                    color: 'darkestBlue.main',
+                  }}
+                />
               </ListItemIcon>
-              <ListItemText primary={'Create Event'} />
+              <ListItemText
+                primary={'Create Event'}
+                primaryTypographyProps={{
+                  style: {
+                    fontWeight: 'bold',
+                  },
+                }}
+              />
             </ListItemButton>
           </ListItem>
           <ListItem key={'Sample Page'} disablePadding>
             <ListItemButton onClick={() => navigate('/debug')}>
               <ListItemIcon sx={{ minWidth: 0, paddingRight: 1 }}>
-                <Celebration />
+                <Celebration
+                  sx={{
+                    color: 'darkestBlue.main',
+                  }}
+                />
               </ListItemIcon>
-              <ListItemText primary={'Sample Page'} />
+              <ListItemText
+                primary={'Sample Page'}
+                primaryTypographyProps={{
+                  style: {
+                    fontWeight: 'bold',
+                  },
+                }}
+              />
             </ListItemButton>
           </ListItem>
         </List>

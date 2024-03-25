@@ -30,7 +30,7 @@ const NavBarTop = () => {
         borderBottom: 1,
         borderColor: 'lightgray',
         height: '4rem',
-        bgcolor: 'topNavBar.main',
+        bgcolor: 'lightestBlue.main',
       }}
     >
       <Toolbar
@@ -65,6 +65,12 @@ const NavBarTop = () => {
           id="search"
           placeholder="Search for an event..."
           variant="outlined"
+          sx={{
+            width: '25%',
+            marginLeft: 1,
+            backgroundColor: 'white',
+            borderRadius: 1,
+          }}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -73,17 +79,13 @@ const NavBarTop = () => {
                   sx={{ p: '10px' }}
                   aria-label="search"
                   onClick={() => {
-                    console.log('Now I will search your personal data lol');
+                    alert('Now I will search your personal data lol');
                   }}
                 >
                   <Search />
                 </IconButton>
               </InputAdornment>
             ),
-          }}
-          sx={{
-            width: '25%',
-            marginLeft: 1,
           }}
         />
 
