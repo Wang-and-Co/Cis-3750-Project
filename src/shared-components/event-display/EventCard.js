@@ -130,11 +130,12 @@ const EventCard = ({ id, event = {}, openEventFunc, height }) => {
           >
             <Grid
               container
-              spacing={2}
+              spacing={1}
               sx={{
                 marginTop: 1,
                 flex: 0,
                 paddingLeft: 1,
+                paddingRight: 1,
               }}
             >
               <Grid item xs={6}>
@@ -148,7 +149,7 @@ const EventCard = ({ id, event = {}, openEventFunc, height }) => {
                 </Stack>
               </Grid>
               {registrationType != null && registrationType !== 'none' ? (
-                <Grid item xs={5}>
+                <Grid item xs={6}>
                   <Chip
                     variant="filled"
                     color={`${registrationType}`}

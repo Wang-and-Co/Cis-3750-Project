@@ -35,7 +35,7 @@ const MinimizedEventCard = ({ id, event, openEventFunc }) => {
   const registrationTypeString = getRegistrationTypeMessage(registrationType);
 
   return (
-    <Card>
+    <Card sx={{ border: '1px solid lightgray' }}>
       <CardActionArea
         onClick={() => {
           openEventFunc(event);
