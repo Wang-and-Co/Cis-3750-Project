@@ -6,11 +6,12 @@ app = Flask(__name__)
 CORS(app)
 
 db = comboSql.Database(reset=True)
-#db.__setitem__("EventBookings", (1, 2, "Attendee"))
-#db.__setitem__("EventBookings", (4, 2, "Volunteer"))
-#db.__setitem__("EventBookings", (2, 3, "Volunteer"))
+db.__setitem__("EventBookings", (1, 2, "Attendee"))
+db.__setitem__("EventBookings", (4, 2, "Volunteer"))
+db.__setitem__("EventBookings", (2, 3, "Volunteer"))
 
-#db.add_event({'title': "Yoga Event", 'startTime': 5, 'endTime': 5, 'location': "location", 'description': "description1", 'maxAttendees': 4, 'maxVolunteers': 5, 'wellnessType': "Well", 'isOnline': True, 'organizer_id': 20, 'cost': 40, 'image': "string"})
+db.add_event({'title': "Jackbox Gaming Night", 'startTime': 1711823400000, 'endTime': 1711827000000, 'location': "24 Kortright Rd E--Guelph--Ontario--N1G 4C9--odo", 'description': "Come join us for a fun and interactive game of Jackbox. We hope to provide a safe and social enviroment for you to make new friends and have some laughs!", 'maxAttendees': 10, 'maxVolunteers': 1, 'wellnessType': "social", 'isOnline': True, 'organizer_id': 5, 'cost': 0, 'image': "https://i0.wp.com/voyagecomics.com/wp-content/uploads/2021/10/smaug_dragon.webp?fit=1782%2C937&ssl=1"})
+#db.add_event({'title': "Among Us Mondays (Sus Version)", 'startTime': 1711823400000, 'endTime': 1711827000000, 'location': "24 Kortright Rd E--Guelph--Ontario--N1G 4C9--odo", 'description': "Come join us for a fun and interactive game of Jackbox. We hope to provide a safe and social enviroment for you to make new friends and have some laughs!", 'maxAttendees': 10, 'maxVolunteers': 1, 'wellnessType': "social", 'isOnline': True, 'organizer_id': 5, 'cost': 0, 'image': "https://i0.wp.com/voyagecomics.com/wp-content/uploads/2021/10/smaug_dragon.webp?fit=1782%2C937&ssl=1"})
 
 
 
@@ -18,18 +19,27 @@ db = comboSql.Database(reset=True)
 @app.route('/events', methods=['GET', 'POST'])
 def events():
     if request.method == 'GET':
+
+        userBookings = None
         userID = request.args.get('id')
 
+        print(userID)
         if(userID != None):
             userBookings = db.select_booking(userID)
-
+        else:
+            userBookings = (2000000, 200000000, "invalidValue")
 
         eventValues = db.get_events()
         eventInfo = []
-
+        
+        registrationValue = None
 
 
         for i in range(0, len(eventValues)):
+            for j in range(0, len(userBookings)-1):
+                if userBookings[j][0] == eventValues[j][0]:
+                    registrationValue =  userBookings[i][2]
+
             eventInfo.append({
                 "id": eventValues[i][0], 
                 "title": eventValues[i][1], 
@@ -43,13 +53,10 @@ def events():
                 "isOnline": eventValues[i][9],
                 "organizer_id": eventValues[i][10],
                 "cost": eventValues[i][11],
-                "image": eventValues[i][12]
+                "image": eventValues[i][12],
+                "registrationType": registrationValue
             })
 
-            for i in range(0, len(userBookings)):
-                if userBookings[i][0] == eventValues[i][0]:
-                    eventInfo.append({"type": userBookings[i][2]})
-             
         return json.dumps(eventInfo)
     else:
         eventInfo = request.get_json()
