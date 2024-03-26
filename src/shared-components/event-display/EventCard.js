@@ -50,6 +50,7 @@ const EventCard = ({ id, event = {}, openEventFunc, height }) => {
         height: height,
         maxHeight: height,
         border: '1px solid lightgray',
+        boxShadow: 3,
       }}
     >
       <CardActionArea
