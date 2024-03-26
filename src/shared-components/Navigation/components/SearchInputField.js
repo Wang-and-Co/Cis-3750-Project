@@ -20,6 +20,12 @@ const SearchInputField = ({ id, placeholder, onSearch, value }) => {
       value={searchValue}
       placeholder={placeholder}
       variant="outlined"
+      sx={{
+        width: '25%',
+        marginLeft: 1,
+        backgroundColor: 'white',
+        borderRadius: 1,
+      }}
       onKeyDown={handleKeyDown}
       onChange={(e) => setSearchValue(e.target.value)}
       InputProps={{
@@ -35,10 +41,6 @@ const SearchInputField = ({ id, placeholder, onSearch, value }) => {
             </IconButton>
           </InputAdornment>
         ),
-      }}
-      sx={{
-        width: '25%',
-        marginLeft: 1,
       }}
     />
   );
