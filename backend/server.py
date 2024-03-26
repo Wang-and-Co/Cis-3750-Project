@@ -7,6 +7,16 @@ CORS(app)
 
 db = comboSql.Database(reset=True)
 
+#Intializing certain values into the database:
+db['Accounts'] = (None, "dwang@gmail.com","securePassword","Daniel","Wang")
+db['Accounts'] = (None, "ksuthan@gmail.com","notPassword","Kirisan","Suthanthireswaran")
+db['Accounts'] = (None, "bryanWang@gmail.com","password","Bryan","Wang")
+
+
+
+
+
+
 # API Routes
 @app.route('/events', methods=['GET', 'POST'])
 def events():
