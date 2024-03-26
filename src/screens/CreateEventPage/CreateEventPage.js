@@ -8,16 +8,23 @@ import {
   getLocationFromString,
   getLocationString,
 } from '../../shared-components/form/CreateEventForm/utils';
+import useAsyncResponse from '../../shared-components/axios/useAsyncResponse';
+import { postNewEvent } from '../../app/api/events';
 
 const CreateEventPage = () => {
   const navigate = useNavigate();
-  const handleSubmit = (values, actions) => {
+  const { isLoading, callAsyncFunctionPromise } =
+    useAsyncResponse(postNewEvent);
+
+  const handleSubmit = async (values, actions) => {
     console.log(values);
     getFormattedFormPayload(values);
     const payload = getFormattedFormPayload(values);
     console.log('Payload!!!', payload);
+    const { data, status } = await callAsyncFunctionPromise(payload);
+    console.log(data, status);
 
-    actions.setIsSubmitting(false);
+    actions.setSubmitting(false);
     navigate('/hosting');
     toast('Event Successfully Posted');
   };
