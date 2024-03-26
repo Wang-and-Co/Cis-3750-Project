@@ -29,6 +29,12 @@ const NavBarTop = () => {
       position="fixed"
       sx={{
         zIndex: (theme) => theme.zIndex.drawer + 1,
+        boxShadow: 'none',
+        backgroundColor: 'white',
+        borderBottom: 1,
+        borderColor: 'darkestBlue.main',
+        height: '4rem',
+        bgcolor: 'lightestBlue.main',
       }}
     >
       <Toolbar
@@ -80,7 +86,13 @@ const NavBarTop = () => {
             variant="contained"
             title="Log Out"
             onClick={handleLogout}
-            sx={{ marginLeft: 'auto' }}
+            color="navBarButton"
+            sx={{
+              marginLeft: 'auto',
+              border: '3px solid',
+              borderColor: 'darkestBlue.main',
+              borderRadius: 3,
+            }}
           >
             Log Out
           </Button>
@@ -89,6 +101,12 @@ const NavBarTop = () => {
             <Button
               variant="contained"
               title="Log In"
+              color="navBarButton"
+              sx={{
+                border: '3px solid',
+                borderColor: 'darkestBlue.main',
+                borderRadius: 3,
+              }}
               onClick={() => {
                 showLoginModal({
                   onSubmit: (values) => setAuthInfo({ id: '123', ...values }),
@@ -101,6 +119,12 @@ const NavBarTop = () => {
             <Button
               variant="contained"
               title="Sign Up"
+              color="navBarButton"
+              sx={{
+                border: '3px solid',
+                borderColor: 'darkestBlue.main',
+                borderRadius: 3,
+              }}
               onClick={() => {
                 showLoginModal({
                   onSubmit: (values) => setAuthInfo({ id: '123', ...values }),
