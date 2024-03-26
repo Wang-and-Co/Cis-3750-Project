@@ -2,7 +2,9 @@
 
 ## /events 
 
-GET REQUEST: this requires no parameters inputted. It will return a list of json objects. The format of the json objects will be: 
+GET REQUEST: this requires no parameters inputted **UNLESS** you are required to retrieve the events once the user is logged in, as this will retrieve the registration type if the user is registered for a given event. All that is required is an integer value that represents the userID. 
+
+It will return a list of json objects. The format of the json objects will be: 
 ```
 {id: eventID, title: 'someTitle', startTime: someInteger, endTime: someInteger, location: 'someString', description: 'someString', maxAttendees: someInteger, maxVolunteers: someInteger, wellnessType: 'someString', isOnline: someBoolean, cost: someInteger, image: 'someString'
 ```
