@@ -14,7 +14,7 @@ This returns the ID of the event
 
 ## /eventBooking
 
-GET REQUEST (Retrieving all event bookings from the database): this requires a simple integer only (the user id). Because this is a get request it does not require a json object. Example provided below of how it would be called 
+GET REQUEST (Retrieving all event bookings from the database): this requires a simple integer only (the user id). Because this is a get request it does not require a json object. Example provided below of how it would be called: 
 ```
 retrieveBookings(user_id) 
 ```
@@ -26,7 +26,10 @@ POST REQUEST (Adding a booking to the database) : This requires a json object. T
 ```
 {'event_id': 5, 'user_id': 1, 'type': "Volunteer"} 
 ```
-
+DELETE REQUEST (Deleting a booking from the database) : This requires two integers, the event id and the user id. Because this is a delete request it does not require a json object. The example provided below is how it would be called:
+```
+http://localhost:5000/eventBooking?userID=1&eventID=1
+```
 ## /createAccount 
 
 POST REQUEST (Creating account and returning the user id and names): this requires the following json object: 
