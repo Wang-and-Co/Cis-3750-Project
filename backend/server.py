@@ -63,6 +63,8 @@ def booking():
                 'type': table[i][2]
             })
 
+        
+
         return (json.dumps(eventBookings))
     
     else:
