@@ -60,8 +60,8 @@ class Database():
         connect = sqlite3.connect('database.db')
         cursor = connect.cursor()
 
-        cursor.execute(""" SELECT * FROM Events;""")
-        eventData = cursor.fetchall() # this is a python dictionary, need to convert it to JSON in the server.py file
+        eventData = cursor.execute(""" SELECT * FROM Events;""").fetchall()
+        #eventData = cursor.fetchall() # this is a python dictionary, need to convert it to JSON in the server.py file
 
         connect.close()
         return eventData
@@ -69,25 +69,23 @@ class Database():
     def add_event(self, eventInfo):
         connect = sqlite3.connect('database.db')
         cursor = connect.cursor()
+        tempString = "( " + "?, "*12 + "?)"
+        tempValue = [None]
+        for values in eventInfo.values():
+            tempValue.append(values)
 
-        if eventInfo['image'] == None:
-            cursor.execute(""" INSERT INTO Events (TITLE, START_TIME, END_TIME, LOCATION, DESCRIPTION, MAX_ATTENDEES, MAX_VOLUNTEERS, COST) 
-                                VALUES('%s', '%s', '%s', '%s', '%s', '%s','%s', '%s');""" % (eventInfo['title'], eventInfo['startTime'], eventInfo['endTime'], eventInfo['location'], eventInfo['description'], eventInfo['maxAttendees'], eventInfo['maxVolunteers'], eventInfo['cost']))
-        else:
-            cursor.execute(""" INSERT INTO Events (TITLE, START_TIME, END_TIME, LOCATION, DESCRIPTION, MAX_ATTENDEES, MAX_VOLUNTEERS, COST, IMAGE) 
-                                VALUES('%s', '%s', '%s', '%s', '%s', '%s','%s', '%s');""" % (eventInfo['title'], eventInfo['startTime'], eventInfo['endTime'], eventInfo['location'], eventInfo['description'], eventInfo['maxAttendees'], eventInfo['maxVolunteers'], eventInfo['cost'], eventInfo['image']))
-    
+        cursor.execute(f""" INSERT INTO Events
+                            VALUES  {tempString} ;""", tempValue)
+
         userID = cursor.execute(f""" SELECT EVENT_ID FROM Events 
-                                        WHERE TITLE = "{eventInfo}" """).fetchone()
-
+                                        WHERE TITLE = "{eventInfo['title']}" """).fetchone()
+        
         connect.commit()
         connect.close()
 
         return userID
 
         
-
-
     def select_booking(self, userID):
         connect = sqlite3.connect('database.db')
         cursor = connect.cursor()
@@ -95,6 +93,7 @@ class Database():
         table = cursor.execute(f""" SELECT * FROM EventBookings
                                          WHERE USER_ID = {userID};""").fetchall()
         
+        print(table)
         connect.commit()
         connect.close()
 
@@ -113,6 +112,7 @@ class Database():
         if table == None:
             return (1, "Bryan","Wang")
         
+        connect.close()
         return (table[0], table[3], table[4])
             
 
@@ -120,9 +120,12 @@ class Database():
         
 #TESTING PURPOSES ONLY
 # db = Database(reset=True)
-#  db.__setitem__("EventBookings", (1, 2, "Attendee"))
-#  db.__setitem__("EventBookings", (4, 2, "Volunteer"))
-#  db.__setitem__("EventBookings", (2, 3, "Volunteer"))
+# db.add_event({'title': "someTitle", 'startTime': 5, 'endTime': 5, 'location': "location", 'description': "description1", 'maxAttendees': 4, 'maxVolunteers': 5, 'wellnessType': "Well", 'isOnline': True, 'organized_id': 20, 'cost': 40, 'image': "string"})
+
+# db.__setitem__("EventBookings", (1, 2, "Attendee"))
+# db.__setitem__("EventBookings", (4, 2, "Volunteer"))
+# db.__setitem__("EventBookings", (2, 3, "Volunteer"))
+# x = 0
 
 # db.select_booking(2)
 

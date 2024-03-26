@@ -6,6 +6,7 @@ import { useCookies } from 'react-cookie';
 import { showLoginModal } from '../../shared-components/modals/LoginModal';
 import { addBooking } from '../../app/api/events';
 import { createAccount } from '../../app/api/accounts';
+import { retrieveBookings } from '../../app/api/events';
 import React, { useState } from 'react';
 import EventDescription from '../../shared-components/event-display/EventDescription';
 
@@ -46,12 +47,7 @@ const SamplePage = () => {
         <Button
           variant="contained"
           onClick={() =>
-            createAccount({
-              email: 'sussy@gmail.com',
-              password: 'HiAll',
-              fname: 'Daniel',
-              lname: 'Wang',
-            })
+            retrieveBookings(1)
           }
         >
           add Booking
