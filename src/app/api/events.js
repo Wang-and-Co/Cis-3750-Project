@@ -37,7 +37,7 @@ const addBooking = async (payload) => {
   }
 }
 
-const deleteBooking = async (params, cookies) => {
+const deleteBooking = async (params) => {
   try{
     const { data } = await Axios.delete('/eventBooking', { params })
     return { status: 200, ...data};
@@ -46,7 +46,7 @@ const deleteBooking = async (params, cookies) => {
   }
 }
 
-const deleteEvent = async (params, cookies) => {
+const deleteEvent = async (params) => {
   try {
     const { data } = await Axios.delete('/events', { params })
     return { status: 200, ...data};

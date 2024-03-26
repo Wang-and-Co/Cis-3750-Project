@@ -19,10 +19,10 @@ const SamplePage = () => {
   };
 
   const handleDeleteBooking = () => {
-    console.log(deleteBooking({'eventID': 1, 'userID': 1}, {})) 
+    console.log(deleteBooking({'eventID': 1, 'userID': 1})) 
   }
   const handleDeleteEvent = () => {
-    console.log(deleteEvent({'id': 1}, {}))
+    console.log(deleteEvent({'id': 1}))
   }
   return (
     <div className="App">

@@ -12,6 +12,11 @@ POST REQUEST: This requests data in the same format as listed above but does not
 ```
 This returns the ID of the event 
 
+DELETE REQUEST: this requires one parameter as input - the id of the event to be deleted. It will return True if the event was deleted and return a 404 error if the event does not exist (and thus cannot be deleted). The following is an example of how it would be called:
+```
+deleteEvent({'id': 1})
+```
+
 ## /eventBooking
 
 GET REQUEST (Retrieving all event bookings from the database): this requires a simple integer only (the user id). Because this is a get request it does not require a json object. Example provided below of how it would be called: 
