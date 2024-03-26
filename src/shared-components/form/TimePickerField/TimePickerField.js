@@ -1,4 +1,4 @@
-import { forwardRef, useState } from 'react';
+import { forwardRef } from 'react';
 import { TextField, InputAdornment, IconButton } from '@mui/material';
 import { AccessTime } from '@mui/icons-material';
 import DatePicker from 'react-datepicker';
@@ -7,13 +7,18 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { useField } from 'formik';
 
 const InnerMUIInputField = forwardRef(
-  ({ value, name, onKeyDown, onClick, onFocus, ...otherProps }, ref) => {
+  (
+    // eslint-disable-next-line no-unused-vars
+    { value, name, onKeyDown, onClick, onFocus, sx = {}, ...otherProps },
+    ref,
+  ) => {
     return (
       <TextField
         value={value}
         ref={ref}
         {...name}
         {...otherProps}
+        sx={{ minHeight: '5rem', ...sx }}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
