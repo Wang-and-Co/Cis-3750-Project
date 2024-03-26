@@ -1,43 +1,57 @@
 import { createTheme } from '@mui/material';
 import { green } from '@mui/material/colors';
+
+const lightestBlue = {
+  main: '#97e7f5',
+  light: '#c4f5fd',
+  dark: '#51c4d8',
+  contrast: '#000000',
+};
+
+const mediumBlue = {
+  main: '#009dd1',
+  light: '#34abd3',
+  dark: '#007ba4',
+  contrast: '#ffffff',
+};
+
+const darkestBlue = {
+  main: '#01377d',
+  light: '#244a7d',
+  dark: '#00295e',
+  contrast: '#ffffff',
+};
+
+const lightestGreen = {
+  main: '#7ed348',
+  light: '#97d272',
+  dark: '#67b438',
+  contrast: '#ffffff',
+};
+
+const mediumGreen = {
+  main: '#26b170',
+  light: '#52b486',
+  dark: '#26905e',
+  contrast: '#ffffff',
+};
+
+const backgroundColour = {
+  main: '#fff',
+  light: '#fff',
+  dark: '#97d272',
+  contrast: '#000',
+};
+
 export const theme = createTheme({
   palette: {
-    primary: {
-      main: '#26b170',
-      light: '#26b170',
-      dark: '#26905e',
-      contrast: '#ffffff',
-    },
-    lightestBlue: {
-      main: '#97e7f5',
-      light: '#c4f5fd',
-      dark: '#51c4d8',
-      contrast: '#000000',
-    },
-    mediumBlue: {
-      main: '#009dd1',
-      light: '#34abd3',
-      dark: '#007ba4',
-      contrast: '#ffffff',
-    },
-    darkestBlue: {
-      main: '#01377d',
-      light: '#244a7d',
-      dark: '#00295e',
-      contrast: '#ffffff',
-    },
-    lightestGreen: {
-      main: '#7ed348',
-      light: '#97d272',
-      dark: '#67b438',
-      contrast: '#ffffff',
-    },
-    mediumGreen: {
-      main: '#26b170',
-      light: '#52b486',
-      dark: '#26905e',
-      contrast: '#ffffff',
-    },
+    primary: darkestBlue,
+    navBarButton: backgroundColour,
+    lightestBlue: lightestBlue,
+    mediumBlue: mediumBlue,
+    darkestBlue: darkestBlue,
+    lightestGreen: lightestGreen,
+    mediumGreen: mediumGreen,
     volunteer: {
       main: '#87e1ff',
       light: '#b3ecff',
