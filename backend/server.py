@@ -23,7 +23,7 @@ def events():
         userBookings = None
         userID = request.args.get('id')
 
-        print(userID)
+        #print(userID)
         if(userID != None):
             userBookings = db.select_booking(userID)
         else:

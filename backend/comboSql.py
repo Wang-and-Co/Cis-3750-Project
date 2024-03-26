@@ -119,12 +119,12 @@ class Database():
 
         
 #TESTING PURPOSES ONLY
-db = Database(reset=True)
-db.add_event({'title': "someTitle", 'startTime': 5, 'endTime': 5, 'location': "location", 'description': "description1", 'maxAttendees': 4, 'maxVolunteers': 5, 'wellnessType': "Well", 'isOnline': True, 'organizer_id': 20, 'cost': 40, 'image': "string"})
-print(db.get_events())
+#db = Database(reset=True)
+#db.add_event({'title': "someTitle", 'startTime': 5, 'endTime': 5, 'location': "location", 'description': "description1", 'maxAttendees': 4, 'maxVolunteers': 5, 'wellnessType': "Well", 'isOnline': True, 'organizer_id': 20, 'cost': 40, 'image': "string"})
+#print(db.get_events())
 # x = 0
 
-db.select_booking(2)
+#db.select_booking(2)
 
 
 
