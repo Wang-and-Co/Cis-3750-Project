@@ -23,9 +23,6 @@ def events():
     if request.method == 'GET':
         eventValues = db.get_events()
         eventInfo = []
-        
-        locationValues = locationValues.split("--")
-
 
         for i in range(0, len(eventValues)):
             eventInfo.append({
