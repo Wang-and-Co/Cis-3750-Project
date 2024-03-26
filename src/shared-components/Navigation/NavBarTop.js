@@ -28,7 +28,7 @@ const NavBarTop = () => {
         boxShadow: 'none',
         backgroundColor: 'white',
         borderBottom: 1,
-        borderColor: 'lightgray',
+        borderColor: 'darkestBlue.main',
         height: '4rem',
         bgcolor: 'lightestBlue.main',
       }}

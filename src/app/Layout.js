@@ -12,6 +12,7 @@ const Layout = ({ children }) => {
         flexDirection: 'column',
         minHeight: '100vh',
       }}
+      color="backgroundColor"
     >
       <NavBarTop />
       <Box

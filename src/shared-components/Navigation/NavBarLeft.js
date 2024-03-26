@@ -39,6 +39,7 @@ const NavBarLeft = ({ widthPercent }) => {
         sx: {
           bgcolor: '#c8ffc8',
           color: 'darkestBlue.main',
+          borderColor: 'mediumGreen.dark',
         },
       }}
     >
