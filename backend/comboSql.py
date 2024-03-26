@@ -98,7 +98,17 @@ class Database():
         connect.close()
 
         return table
-    
+    def delete_booking(self, userID, eventID):
+        connect = sqlite3.connect('database.db')
+        cursor = connect.cursor()
+
+        cursor.execute(f""" DELETE FROM EventBookings WHERE EVENT_ID='{eventID}' AND USER_ID='{userID}';""")
+
+        connect.commit()
+        connect.close()
+
+        return eventID
+
     def select_account(self, credentials):
         connect = sqlite3.connect('database.db')
         cursor = connect.cursor() 

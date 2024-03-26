@@ -40,7 +40,7 @@ def events():
         return json.dumps(idInfo)
 
 
-@app.route('/eventBooking', methods=['POST','GET'])
+@app.route('/eventBooking', methods=['GET', 'POST', 'DELETE'])
 def booking():
 
     # Retrieve all events that the user is assosiated with.
@@ -64,7 +64,14 @@ def booking():
             })
 
         return (json.dumps(eventBookings))
-    
+    elif request.method == "DELETE":
+        userID = request.args.get('userID')
+        eventID = request.args.get('eventID')
+        print("userID", userID)
+        print("eventID", eventID)
+        db.delete_booking(userID, eventID)
+
+        return json.dumps(True)
     else:
 
         bookingInfo = request.get_json()

@@ -1,10 +1,10 @@
-# Paramters and Returns for Backend
+# Parameters and Returns for Backend
 
 ## /events 
 
 GET REQUEST: this requires no parameters inputted. It will return a list of json objects. The format of the json objects will be: 
 ```
-{id: eventID, title: 'someTitle', startTime: someInteger, endTime: someInteger, location: 'someString', description: 'someString', maxAttendees: someInteger, maxVolunteers: someInteger, wellnessType: 'someString', isOnline: someBoolean, cost: someInteger, image: 'someString'
+{id: eventID, title: 'someTitle', startTime: someInteger, endTime: someInteger, location: 'someString', description: 'someString', maxAttendees: someInteger, maxVolunteers: someInteger, wellnessType: 'someString', isOnline: someBoolean, cost: someInteger, image: 'someString'}
 ```
 POST REQUEST: This requests data in the same format as listed above but does not require an ID. Example below.
 ```
@@ -20,7 +20,7 @@ retrieveBookings(user_id)
 ```
 This will return a list of json objects in the following structure
 ```
-[{'event_id': someID, 'user_id': userID, 'type': "typeOfBooking"}, {'event_id': someID2, 'user_id': someID3, 'type': "typeOfBooking"]
+[{'event_id': someID, 'user_id': userID, 'type': "typeOfBooking"}, {'event_id': someID2, 'user_id': someID3, 'type': "typeOfBooking"}]
 ```
 POST REQUEST (Adding a booking to the database) : This requires a json object. The following is an example of the formatting: 
 ```
