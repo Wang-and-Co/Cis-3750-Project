@@ -39,7 +39,7 @@ const HomePage = () => {
   const [currentViewedEvent, setCurrentViewedEvent] = useState(null);
 
   return (
-    <Box width={`${100 - sidebarWidthToUse}%`} marginBottom={5}>
+    <Box width={`${100 - sidebarWidthToUse}%`}>
       <Container
         sx={{
           backgroundImage: `url(${GUELPH_SPLASH_IMAGE})`,
@@ -48,7 +48,7 @@ const HomePage = () => {
           backgroundPositionY: '50%',
           boxShadow: 5,
           width: '100%',
-          height: '30rem',
+          height: isLoggedIn ? '10rem' : '30rem',
           margin: 0,
           padding: 0,
         }}
@@ -72,7 +72,7 @@ const HomePage = () => {
         >
           <Typography
             sx={{
-              fontSize: 60,
+              fontSize: isLoggedIn ? 30 : 60,
               fontWeight: 'bold',
             }}
             color="darkestBlue.main"
@@ -82,11 +82,11 @@ const HomePage = () => {
           </Typography>
           <img
             src={'/ComboLogo.png'}
-            style={{ height: '20%', objectFit: 'contain' }}
+            style={{ height: isLoggedIn ? '40%' : '20%', objectFit: 'contain' }}
           />
           <Typography
             sx={{
-              fontSize: 30,
+              fontSize: isLoggedIn ? 20 : 30,
               fontWeight: 'bold',
             }}
             color="darkestBlue.main"

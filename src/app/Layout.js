@@ -25,6 +25,7 @@ const Layout = ({ children }) => {
         <Box
           sx={{
             width: `${100 - NAVBAR_LEFT_WIDTH_PERCENT}%`,
+            marginBottom: 5,
           }}
         >
           <Toolbar />
