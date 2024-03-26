@@ -45,21 +45,28 @@ const addBooking = async (payload) => {
 };
 
 const deleteBooking = async (params) => {
-  try{
-    const { data } = await Axios.delete('/eventBooking', { params })
-    return { status: 200, ...data};
+  try {
+    const { data } = await Axios.delete('/eventBooking', { params });
+    return { status: 200, ...data };
   } catch (error) {
-    return {status: 400, ...error};
+    return { status: 400, ...error };
   }
-}
+};
 
 const deleteEvent = async (params) => {
   try {
-    const { data } = await Axios.delete('/events', { params })
-    return { status: 200, ...data};
+    const { data } = await Axios.delete('/events', { params });
+    return { status: 200, ...data };
   } catch (error) {
-    return { status: 400, ...error};
+    return { status: 400, ...error };
   }
-}
+};
 
-export { retrieveEvents , retrieveBookings, addBooking, deleteBooking, deleteEvent };
+export {
+  retrieveEvents,
+  retrieveBookings,
+  addBooking,
+  deleteBooking,
+  deleteEvent,
+  postNewEvent,
+};
