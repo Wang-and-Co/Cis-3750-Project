@@ -70,20 +70,20 @@ class Database():
         connect = sqlite3.connect('database.db')
         cursor = connect.cursor()
         tempString = "( " + "?, "*12 + "?)"
-        tempValue = [None]
-        for values in eventInfo.values():
-            tempValue.append(values)
-
+        tempValue = [None, eventInfo['title'], eventInfo['startTime'], eventInfo['endTime'], eventInfo['location'],
+                           eventInfo['description'], eventInfo['maxAttendees'], eventInfo['maxVolunteers'], eventInfo['wellnessType'],
+                           eventInfo['isOnline'], eventInfo['organizer_id'], eventInfo['cost'], eventInfo['image']]
+        
         cursor.execute(f""" INSERT INTO Events
                             VALUES  {tempString} ;""", tempValue)
 
-        userID = cursor.execute(f""" SELECT EVENT_ID FROM Events 
+        eventID = cursor.execute(f""" SELECT EVENT_ID FROM Events 
                                         WHERE TITLE = "{eventInfo['title']}" """).fetchone()
         
         connect.commit()
         connect.close()
 
-        return userID
+        return eventID
 
         
     def select_booking(self, userID):
@@ -119,15 +119,12 @@ class Database():
 
         
 #TESTING PURPOSES ONLY
-# db = Database(reset=True)
-# db.add_event({'title': "someTitle", 'startTime': 5, 'endTime': 5, 'location': "location", 'description': "description1", 'maxAttendees': 4, 'maxVolunteers': 5, 'wellnessType': "Well", 'isOnline': True, 'organized_id': 20, 'cost': 40, 'image': "string"})
-
-# db.__setitem__("EventBookings", (1, 2, "Attendee"))
-# db.__setitem__("EventBookings", (4, 2, "Volunteer"))
-# db.__setitem__("EventBookings", (2, 3, "Volunteer"))
+db = Database(reset=True)
+db.add_event({'title': "someTitle", 'startTime': 5, 'endTime': 5, 'location': "location", 'description': "description1", 'maxAttendees': 4, 'maxVolunteers': 5, 'wellnessType': "Well", 'isOnline': True, 'organizer_id': 20, 'cost': 40, 'image': "string"})
+print(db.get_events())
 # x = 0
 
-# db.select_booking(2)
+db.select_booking(2)
 
 
 

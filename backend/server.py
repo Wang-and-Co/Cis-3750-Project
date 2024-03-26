@@ -6,13 +6,28 @@ app = Flask(__name__)
 CORS(app)
 
 db = comboSql.Database(reset=True)
+#db.__setitem__("EventBookings", (1, 2, "Attendee"))
+#db.__setitem__("EventBookings", (4, 2, "Volunteer"))
+#db.__setitem__("EventBookings", (2, 3, "Volunteer"))
+
+#db.add_event({'title': "Yoga Event", 'startTime': 5, 'endTime': 5, 'location': "location", 'description': "description1", 'maxAttendees': 4, 'maxVolunteers': 5, 'wellnessType': "Well", 'isOnline': True, 'organizer_id': 20, 'cost': 40, 'image': "string"})
+
+
 
 # API Routes
 @app.route('/events', methods=['GET', 'POST'])
 def events():
     if request.method == 'GET':
+        userID = request.args.get('id')
+
+        if(userID != None):
+            userBookings = db.select_booking(userID)
+
+
         eventValues = db.get_events()
         eventInfo = []
+
+
 
         for i in range(0, len(eventValues)):
             eventInfo.append({
@@ -30,6 +45,10 @@ def events():
                 "cost": eventValues[i][11],
                 "image": eventValues[i][12]
             })
+
+            for i in range(0, len(userBookings)):
+                if userBookings[i][0] == eventValues[i][0]:
+                    eventInfo.append({"type": userBookings[i][2]})
              
         return json.dumps(eventInfo)
     else:
