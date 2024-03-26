@@ -33,10 +33,12 @@ const addBooking = async (payload) => {
     return { status: 200, ...error };
   }
 };
+
 const searchEvents = async (searchQuery, cookies) => {
   try {
     const id = cookies?.auth?.id ? { userId: cookies?.auth?.id } : {};
-    const options = { params: { ...id, ...searchQuery } };
+    const nameQuery = searchQuery?.name ? { name: searchQuery.name } : {};
+    const options = { params: { ...id, ...nameQuery } };
     const { data } = await Axios.get('/events', options);
     return { status: 200, data };
   } catch (error) {
