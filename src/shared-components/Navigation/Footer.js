@@ -1,8 +1,8 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography, Link } from '@mui/material';
+import { NAVBAR_LEFT_WIDTH_PERCENT } from '../../app/Layout';
 
 const Footer = () => {
-  const NAVBAR_LEFT_WIDTH_PERCENT = 15;
 
   return (
     <AppBar
