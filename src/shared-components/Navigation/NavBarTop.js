@@ -16,7 +16,6 @@ import useAuth from '../hooks/useAuth';
 import { showLoginModal } from '../modals/LoginModal';
 import { NAVBAR_LEFT_WIDTH_PERCENT } from '../../app/Layout';
 import { useNavigate } from 'react-router-dom';
-import ComboLogo from '../../assets/ComboLogo.png';
 
 const NavBarTop = () => {
   const navigate = useNavigate();
@@ -53,7 +52,7 @@ const NavBarTop = () => {
           }}
         >
           <img
-            src={ComboLogo}
+            src={'/ComboLogo.png'}
             alt="ComBo Logo"
             style={{
               height: '100%',
