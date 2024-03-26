@@ -28,7 +28,7 @@ POST REQUEST (Adding a booking to the database) : This requires a json object. T
 ```
 DELETE REQUEST (Deleting a booking from the database) : This requires two integers, the event id and the user id. Because this is a delete request it does not require a json object. The example provided below is how it would be called:
 ```
-http://localhost:5000/eventBooking?userID=1&eventID=1
+deleteBooking({'eventID': 1, 'userID': 1})
 ```
 ## /createAccount 
 
