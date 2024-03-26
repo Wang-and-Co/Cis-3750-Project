@@ -31,6 +31,8 @@ class Database():
                       END_TIME          INTEGER     NOT NULL,
                       LOCATION          TEXT        NOT NULL,
                       DESCRIPTION       TEXT        NOT NULL,
+                      CURR_ATTENDEES    INTEGER     NOT NULL,
+                      CURR_VOLUNTEERS   INTEGER     NOT NULL,
                       MAX_ATTENDEES     INTEGER     NOT NULL,
                       MAX_VOLUNTEERS    INTEGER,
                       WELLNESS_TYPE     TEXT,
@@ -69,9 +71,9 @@ class Database():
     def add_event(self, eventInfo):
         connect = sqlite3.connect('database.db')
         cursor = connect.cursor()
-        tempString = "( " + "?, "*12 + "?)"
+        tempString = "( " + "?, "*14 + "?)"
         tempValue = [None, eventInfo['title'], eventInfo['startTime'], eventInfo['endTime'], eventInfo['location'],
-                           eventInfo['description'], eventInfo['maxAttendees'], eventInfo['maxVolunteers'], eventInfo['wellnessType'],
+                           eventInfo['description'], 0, 0, eventInfo['maxAttendees'], eventInfo['maxVolunteers'], eventInfo['wellnessType'],
                            eventInfo['isOnline'], eventInfo['organizer_id'], eventInfo['cost'], eventInfo['image']]
         
         cursor.execute(f""" INSERT INTO Events
@@ -80,12 +82,32 @@ class Database():
         eventID = cursor.execute(f""" SELECT EVENT_ID FROM Events 
                                         WHERE TITLE = "{eventInfo['title']}" """).fetchone()
         
+        #print("hi all")
         connect.commit()
         connect.close()
 
         return eventID
 
+    def add_booking(self, bookingInfo):
+        connect = sqlite3.connect('database.db')
+        cursor = connect.cursor()
+
+        if (bookingInfo['type'] == 'Attendee'):
+            columnName = "CURR_ATTENDEES"
+        else:
+            columnName - "CURR_VOLUNTEERS"
+
         
+        self.__setitem__('EventBookings', (bookingInfo['event_id'], bookingInfo['user_id'], bookingInfo['type']))
+        
+        
+        cursor.execute(f""" UPDATE Events SET '{columnName}' = '{columnName}' + 1
+                            WHERE  EVENT_ID = {bookingInfo['event_id']};""")
+    
+        
+        connect.commit()
+        connect.close()
+
     def select_booking(self, userID):
         connect = sqlite3.connect('database.db')
         cursor = connect.cursor()
@@ -119,8 +141,12 @@ class Database():
 
         
 #TESTING PURPOSES ONLY
-#db = Database(reset=True)
+db = Database(reset=True)
 #db.add_event({'title': "someTitle", 'startTime': 5, 'endTime': 5, 'location': "location", 'description': "description1", 'maxAttendees': 4, 'maxVolunteers': 5, 'wellnessType': "Well", 'isOnline': True, 'organizer_id': 20, 'cost': 40, 'image': "string"})
+#db.add_booking({'event_id': 1, 'user_id': 5, 'type': 'Attendee'})
+
+#print(db.get_events())
+
 #print(db.get_events())
 # db.__setitem__("EventBookings", (1, 2, "Attendee"))
 # db.__setitem__("EventBookings", (4, 2, "Volunteer"))

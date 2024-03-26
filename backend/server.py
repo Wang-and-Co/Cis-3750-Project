@@ -23,6 +23,9 @@ def events():
     if request.method == 'GET':
         eventValues = db.get_events()
         eventInfo = []
+        
+        locationValues = locationValues.split("--")
+
 
         for i in range(0, len(eventValues)):
             eventInfo.append({
@@ -30,18 +33,18 @@ def events():
                 "title": eventValues[i][1], 
                 "startTime": eventValues[i][2], 
                 "endTime": eventValues[i][3], 
-                "location": eventValues[i][4], 
+                "location": eventValues[i][4],
                 "description": eventValues[i][5], 
-                "maxAttendees": eventValues[i][6],
-                "maxVolunteers": eventValues[i][7],
-                "wellnessType": eventValues[i][8],
-                "isOnline": eventValues[i][9],
-                "organizer_id": eventValues[i][10],
-                "cost": eventValues[i][11],
-                "image": eventValues[i][12]
+                "attendees": {'current': eventValues[i][6], 'max': eventValues[i][8]},
+                "volunteers":{'current': eventValues[i][7], 'max': eventValues[i][9]},
+                "wellnessType": eventValues[i][10],
+                "isOnline": eventValues[i][11],
+                "organizer_id": eventValues[i][12],
+                "cost": eventValues[i][13],
+                "imageUri": eventValues[i][14]
             })
              
-        return json.dumps(eventInfo)
+        return json.dumps(eventInfo) 
     else:
         eventInfo = request.get_json()
         eventID = db.add_event(eventInfo)
@@ -80,8 +83,9 @@ def booking():
     else:
 
         bookingInfo = request.get_json()
-        db['EventBookings'] = (bookingInfo['event_id'], bookingInfo['user_id'],
-                                                        bookingInfo['type'])
+        db.add_booking(bookingInfo)
+        #db['EventBookings'] = (bookingInfo['event_id'], bookingInfo['user_id'],
+        #                                                bookingInfo['type'])
         return json.dumps(True)
 
 @app.route('/createAccount', methods=['POST'])
