@@ -1,7 +1,6 @@
 import { Box, Button, Typography, CardMedia} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import eventImage from '../../assets/guelph.jpg'
-import cityHall from '../../assets/cityhall.jpg'
 import community from '../../assets/community.jpg'
 
 const HostingPage = () => {
@@ -10,9 +9,8 @@ const HostingPage = () => {
     <Box sx={{ textAlign: 'center', position: 'relative' }}>
       <CardMedia
         component="img"
-        height="610"
         image={eventImage}
-        style={{ width: '100%', marginBottom: '2rem' }}
+        style={{ width: '100%', height: '66vh', marginBottom: '2rem' }}
         alt="Event Image"
       />
       <Box>
@@ -30,9 +28,8 @@ const HostingPage = () => {
         </Typography>
         <CardMedia
           component="img"
-          height="610"
           image={community}
-          style={{ width: '100%', marginTop: '2rem' }}
+          style={{ width: '100%', height: '66vh', marginTop: '2rem' }}
           alt="Event Image"
         />
       </Box>

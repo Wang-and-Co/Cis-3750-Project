@@ -25,12 +25,6 @@ const NavBarTop = () => {
       position="fixed"
       sx={{
         zIndex: (theme) => theme.zIndex.drawer + 1,
-        boxShadow: 'none',
-        backgroundColor: 'white',
-        borderBottom: 1,
-        borderColor: 'lightgray',
-        height: '4rem',
-        bgcolor: 'topNavBar.main',
       }}
     >
       <Toolbar
