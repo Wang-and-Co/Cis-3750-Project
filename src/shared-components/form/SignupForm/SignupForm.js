@@ -47,7 +47,7 @@ const SignupForm = ({ handleSubmit, footerOnClick }) => {
                   href={'http://localhost:3000/legal/terms-of-service'}
                   target="_blank"
                 >
-                  privacy policy
+                  Privacy Policy
                 </Link>
               </Typography>
             </div>

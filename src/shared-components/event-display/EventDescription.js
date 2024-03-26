@@ -18,6 +18,7 @@ import {
 import CloseIcon from '@mui/icons-material/Close';
 import React from 'react';
 import PropTypes from 'prop-types';
+import toast from 'react-hot-toast';
 import getEventDurationString from '../../utils/getEventDurationString';
 import dateFormat from 'dateformat';
 import { CalendarContainer } from 'react-datepicker';
@@ -176,7 +177,8 @@ const EventDescription = ({ closeFunc, event = {} }) => {
                     variant="contained"
                     color="attendee"
                     onClick={() => {
-                      console.log('Asked to register as attendee');
+                      console.log('Asked to register as attendee'); // replace with sign up as attendee function
+                      toast('Registeration Successful'); // move later to real function
                     }}
                     sx={{
                       width: '100%',
@@ -194,7 +196,8 @@ const EventDescription = ({ closeFunc, event = {} }) => {
                     variant="contained"
                     color="volunteer"
                     onClick={() => {
-                      console.log('Asked to register as volunteer');
+                      console.log('Asked to register as volunteer'); // replace with sign up as volunteer function
+                      toast('Registeration Successful'); // move later to real function
                     }}
                     sx={{
                       width: '100%',
@@ -209,12 +212,16 @@ const EventDescription = ({ closeFunc, event = {} }) => {
                 </Grid>
               </>
             ) : (
-              <Grid item xs={12} key="cancel">
+              <Grid item xs={12} key="cancel"> 
                 {registrationType === 'Host' ? (
                   <Button
-                    sx={{ width: '100%' }}
+                    sx={{ width: '100%' }} //doesnt this code need the cancel functions?
                     variant="contained"
                     color="error"
+                    onClick={() => {
+                      console.log('Canceled event'); // replace with real function
+                      toast('Event Canceled'); // move later to real function
+                    }}
                   >
                     Cancel Event
                   </Button>
@@ -223,9 +230,13 @@ const EventDescription = ({ closeFunc, event = {} }) => {
                     sx={{ width: '100%' }}
                     variant="contained"
                     color="error"
+                    onClick={() => {
+                      console.log('Cancel registration to event'); // replace with real function
+                      toast('Canceled registration'); // move later to real function
+                    }}
                   >
                     Cancel Registration
-                  </Button>
+                  </Button> // add cancel registration function
                 )}
               </Grid>
             )}

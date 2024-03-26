@@ -21,9 +21,10 @@ const LoginModal = ({ onSubmit, initalFormShown = 'Login', ...otherProps }) => {
     const { data, status } = await callAsyncFunctionPromise(formValues);
     actions.setSubmitting(false);
     if (status !== 200) {
-      toast(getResponseStatus(status));
+      toast(getResponseStatus(status)); // toast for unsuccessful login
       return;
     }
+    toast('Login successful!'); // toast for successful login 
     otherProps.onClose();
     onSubmit(data);
   };

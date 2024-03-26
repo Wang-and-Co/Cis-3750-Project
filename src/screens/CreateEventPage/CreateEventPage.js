@@ -7,10 +7,10 @@ import sampleImage from '../../assets/sampleImage.png';
 const CreateEventPage = () => {
   const navigate = useNavigate();
   const handleSubmit = (values, actions) => {
-    console.log(values);
+    console.log(values); // need to add backend check for fail/error message 
     actions.setIsSubmitting(false);
     navigate('/hosting');
-    toast('Event Successfully Posted');
+    toast('Event Successfully Posted'); // toast for successful event creation
   };
   return (
     <div

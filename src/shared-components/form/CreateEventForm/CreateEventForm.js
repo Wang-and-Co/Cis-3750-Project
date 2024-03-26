@@ -34,6 +34,7 @@ const styles = {
   gap: '0.5rem',
   marginBottom: '2rem',
 };
+
 const CreateEventForm = ({ handleSubmit }) => {
   const schema = getCreateEventValidationSchema();
   const initialValues = getInitialFormValues();
