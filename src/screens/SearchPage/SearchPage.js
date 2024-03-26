@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import { searchEvents } from '../../app/api/events';
 import useAsyncResponse from '../../shared-components/axios/useAsyncResponse';
 import toast from 'react-hot-toast';
+import EventsGrid from '../../shared-components/Navigation/EventsGrid';
 
 const SearchPage = () => {
   const [searchParams] = useSearchParams();
@@ -22,6 +23,16 @@ const SearchPage = () => {
       <Typography variant="h3" align="center" marginTop={'2rem'}>
         {`Results for events named: '${searchParams.get('name')}'`}
       </Typography>
+      {/* <EventsGrid
+        events={searchResults}
+        eventDetailsOpenFunc={(event) => {
+          if (isLoggedIn) {
+            setCurrentViewedEvent(event);
+          } else {
+            toast('You must be logged in to view events!');
+          }
+        }}
+      /> */}
     </div>
   );
 };
