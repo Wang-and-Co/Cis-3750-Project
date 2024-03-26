@@ -46,4 +46,13 @@ const deleteBooking = async (params, cookies) => {
   }
 }
 
-export { retrieveEvents , retrieveBookings, addBooking, deleteBooking };
+const deleteEvent = async (params, cookies) => {
+  try {
+    const { data } = await Axios.delete('/events', { params })
+    return { status: 200, ...data};
+  } catch (error) {
+    return { status: 400, ...error};
+  }
+}
+
+export { retrieveEvents , retrieveBookings, addBooking, deleteBooking, deleteEvent };

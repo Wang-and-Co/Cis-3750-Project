@@ -88,7 +88,7 @@ class Database():
         connect = sqlite3.connect('database.db')
         cursor = connect.cursor()
         
-        event = cursor.execute(f""" SELECT * FROM Events WHERE EVENT_ID='{eventID}';""")
+        event = cursor.execute(f""" SELECT * FROM Events WHERE EVENT_ID='{eventID}';""").fetchone()
 
         if event:
             cursor.execute(f""" DELETE FROM Events WHERE EVENT_ID='{eventID}';""")
@@ -116,7 +116,7 @@ class Database():
         connect = sqlite3.connect('database.db')
         cursor = connect.cursor()
 
-        event = cursor.execute(f""" SELECT * FROM EventBookings WHERE EVENT_ID='{eventID}';""").fetchone()
+        event = cursor.execute(f""" SELECT * FROM EventBookings WHERE EVENT_ID='{eventID}' AND USER_ID='{userID};""").fetchone()
         print(event)
 
         if event:
