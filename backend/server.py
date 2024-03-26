@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, abort
 from flask_cors import CORS 
 import comboSql as comboSql 
 import json
@@ -8,7 +8,7 @@ CORS(app)
 db = comboSql.Database(reset=True)
 
 # API Routes
-@app.route('/events', methods=['GET', 'POST'])
+@app.route('/events', methods=['GET', 'POST', 'DELETE'])
 def events():
     if request.method == 'GET':
         eventValues = db.get_events()
@@ -32,6 +32,14 @@ def events():
             })
              
         return json.dumps(eventInfo)
+    elif request.method == 'DELETE':
+        eventID = request.args.get('id')
+        deleteCheck = db.delete_event(eventID)
+        
+        if deleteCheck:
+            return json.dumps(True)
+        else:
+            abort(404)
     else:
         eventInfo = request.get_json()
         eventID = db.add_event(eventInfo)
@@ -69,9 +77,12 @@ def booking():
         eventID = request.args.get('eventID')
         print("userID", userID)
         print("eventID", eventID)
-        db.delete_booking(userID, eventID)
+        checkDelete = db.delete_booking(userID, eventID)
 
-        return json.dumps(True)
+        if checkDelete:
+            return json.dumps(True)
+        else:
+            abort(404)
     else:
 
         bookingInfo = request.get_json()

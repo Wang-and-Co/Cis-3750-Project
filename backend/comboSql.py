@@ -84,7 +84,21 @@ class Database():
         connect.close()
 
         return userID
+    def delete_event(self, eventID):
+        connect = sqlite3.connect('database.db')
+        cursor = connect.cursor()
+        
+        event = cursor.execute(f""" SELECT * FROM Events WHERE EVENT_ID='{eventID}';""")
 
+        if event:
+            cursor.execute(f""" DELETE FROM Events WHERE EVENT_ID='{eventID}';""")
+            connect.commit()
+            connect.close()
+            return True
+        else:
+            connect.commit()
+            connect.close()
+            return False
         
     def select_booking(self, userID):
         connect = sqlite3.connect('database.db')
@@ -102,12 +116,20 @@ class Database():
         connect = sqlite3.connect('database.db')
         cursor = connect.cursor()
 
-        cursor.execute(f""" DELETE FROM EventBookings WHERE EVENT_ID='{eventID}' AND USER_ID='{userID}';""")
+        event = cursor.execute(f""" SELECT * FROM EventBookings WHERE EVENT_ID='{eventID}';""").fetchone()
+        print(event)
 
-        connect.commit()
-        connect.close()
+        if event:
+            cursor.execute(f""" DELETE FROM EventBookings WHERE EVENT_ID='{eventID}' AND USER_ID='{userID}';""")
+            connect.commit()
+            connect.close()
+            return True
+        else:
+            connect.commit()
+            connect.close()
+            return False
 
-        return eventID
+        
 
     def select_account(self, credentials):
         connect = sqlite3.connect('database.db')
