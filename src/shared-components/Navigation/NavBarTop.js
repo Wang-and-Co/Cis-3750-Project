@@ -19,7 +19,6 @@ const NavBarTop = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    console.log(pathname, searchParams);
     pathname !== '/search'
       ? setSearchQuery('')
       : setSearchQuery(searchParams.name);
