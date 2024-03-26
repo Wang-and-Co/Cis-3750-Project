@@ -17,16 +17,18 @@ def events():
         for i in range(0, len(eventValues)):
             eventInfo.append({
                 "id": eventValues[i][0], 
-                "createdAt": eventValues[i][1], 
-                "title": eventValues[i][2], 
-                "startTime": eventValues[i][3], 
-                "endTime": eventValues[i][4], 
-                "location": eventValues[i][5], 
-                "description": eventValues[i][6], 
-                "maxAttendees": eventValues[i][7],
-                "maxVolunteers": eventValues[i][8],
-                "cost": eventValues[i][9],
-                "image": eventValues[i][10]
+                "title": eventValues[i][1], 
+                "startTime": eventValues[i][2], 
+                "endTime": eventValues[i][3], 
+                "location": eventValues[i][4], 
+                "description": eventValues[i][5], 
+                "maxAttendees": eventValues[i][6],
+                "maxVolunteers": eventValues[i][7],
+                "wellnessType": eventValues[i][8],
+                "isOnline": eventValues[i][9],
+                "organizer_id": eventValues[i][10],
+                "cost": eventValues[i][11],
+                "image": eventValues[i][12]
             })
              
         return json.dumps(eventInfo)
@@ -44,6 +46,12 @@ def booking():
     # Retrieve all events that the user is assosiated with.
     if request.method == "GET":
 
+        # db['EventBookings'] = (5, 1, "Volunteer")
+        # db['EventBookings'] = (4, 1, "Volunteer")
+        # db['EventBookings'] = (3, 1, "Organizer")
+        # db['EventBookings'] = (2, 2, "Attendee")
+
+
         userID = request.args.get('id')
         table = db.select_booking(userID)
         eventBookings = []
@@ -54,7 +62,6 @@ def booking():
                 'user_id': table[i][1],
                 'type': table[i][2]
             })
-
 
         return (json.dumps(eventBookings))
     
