@@ -3,11 +3,20 @@ import { useNavigate } from 'react-router-dom';
 import CreateEventForm from '../../shared-components/form/CreateEventForm/CreateEventForm';
 import toast from 'react-hot-toast';
 import sampleImage from '../../assets/sampleImage.png';
+import {
+  getFormattedFormPayload,
+  getLocationFromString,
+  getLocationString,
+} from '../../shared-components/form/CreateEventForm/utils';
 
 const CreateEventPage = () => {
   const navigate = useNavigate();
   const handleSubmit = (values, actions) => {
     console.log(values);
+    getFormattedFormPayload(values);
+    const payload = getFormattedFormPayload(values);
+    console.log('Payload!!!', payload);
+
     actions.setIsSubmitting(false);
     navigate('/hosting');
     toast('Event Successfully Posted');

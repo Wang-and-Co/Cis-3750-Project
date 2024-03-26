@@ -1,4 +1,5 @@
 import { InputAdornment } from '@mui/material';
+import { getLocationString } from '../../event-display/utils';
 
 const getInitialFormValues = () => ({
   title: '',
@@ -13,7 +14,6 @@ const getInitialFormValues = () => ({
   eventDate: '',
   location: {
     address: '',
-    road: '',
     city: '',
     province: '',
     postalCode: '',
@@ -140,10 +140,57 @@ const participantLevelsProperties = [
     type: 'number',
   },
 ];
+
+const getDateAdjustedByTime = (date, dateTimeAdjustment) => {
+  const newDate = new Date(date);
+  newDate.setHours(dateTimeAdjustment.getHours());
+  newDate.setMinutes(dateTimeAdjustment.getMinutes());
+  newDate.getSeconds(dateTimeAdjustment.getSeconds());
+  return newDate;
+};
+
+const getFormattedFormPayload = (eventFormData) => {
+  console.log(eventFormData);
+  const {
+    image,
+    title,
+    description,
+    startDateTime,
+    endDateTime,
+    eventDate,
+    location,
+    wellnessType,
+    isOnline,
+    cost,
+    maxVolunteers,
+    maxAttendees,
+  } = eventFormData;
+  const locationString = getLocationString(location);
+  const startDate = getDateAdjustedByTime(eventDate, startDateTime);
+  const endDate = getDateAdjustedByTime(eventDate, endDateTime);
+  const imageName = image?.name ?? 'default';
+  console.log(imageName);
+  const payload = {
+    title,
+    description,
+    wellnessType,
+    maxAttendees,
+    maxVolunteers,
+    startTime: startDate,
+    endDate: endDate,
+    isOnline,
+    location: locationString,
+    cost: Math.round(cost * 100),
+    image: imageName,
+  };
+  return payload;
+};
+
 export {
   getInitialFormValues,
   overviewProperties,
   locationTimeProperties,
   otherInfoProperties,
   participantLevelsProperties,
+  getFormattedFormPayload,
 };
