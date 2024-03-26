@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, abort
 from flask_cors import CORS 
 import comboSql as comboSql 
 import json
@@ -18,7 +18,7 @@ db['Accounts'] = (None, "bryanWang@gmail.com","password","Bryan","Wang")
 
 
 # API Routes
-@app.route('/events', methods=['GET', 'POST'])
+@app.route('/events', methods=['GET', 'POST', 'DELETE'])
 def events():
     if request.method == 'GET':
         eventValues = db.get_events()
@@ -44,7 +44,15 @@ def events():
                 "imageUri": eventValues[i][14]
             })
              
-        return json.dumps(eventInfo) 
+        return json.dumps(eventInfo)
+    elif request.method == 'DELETE':
+        eventID = request.args.get('id')
+        deleteCheck = db.delete_event(eventID)
+        
+        if deleteCheck:
+            return json.dumps(True)
+        else:
+            abort(404)
     else:
         eventInfo = request.get_json()
         eventID = db.add_event(eventInfo)
@@ -53,7 +61,7 @@ def events():
         return json.dumps(idInfo)
 
 
-@app.route('/eventBooking', methods=['POST','GET'])
+@app.route('/eventBooking', methods=['GET', 'POST', 'DELETE'])
 def booking():
 
     # Retrieve all events that the user is assosiated with.
@@ -79,7 +87,17 @@ def booking():
         
 
         return (json.dumps(eventBookings))
-    
+    elif request.method == "DELETE":
+        userID = request.args.get('userID')
+        eventID = request.args.get('eventID')
+        print("userID", userID)
+        print("eventID", eventID)
+        checkDelete = db.delete_booking(userID, eventID)
+
+        if checkDelete:
+            return json.dumps(True)
+        else:
+            abort(404)
     else:
 
         bookingInfo = request.get_json()

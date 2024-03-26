@@ -4,7 +4,7 @@ import logo from './../../logo.svg';
 import { Button, Stack } from '@mui/material';
 import { useCookies } from 'react-cookie';
 import { showLoginModal } from '../../shared-components/modals/LoginModal';
-import { addBooking } from '../../app/api/events';
+import { addBooking, deleteBooking, deleteEvent } from '../../app/api/events';
 import { createAccount } from '../../app/api/accounts';
 import { retrieveBookings } from '../../app/api/events';
 import React, { useState } from 'react';
@@ -17,6 +17,13 @@ const SamplePage = () => {
   const handleOpenDrawer = () => {
     setIsEventDescriptionOpen(true);
   };
+
+  const handleDeleteBooking = () => {
+    console.log(deleteBooking({'eventID': 1, 'userID': 1})) 
+  }
+  const handleDeleteEvent = () => {
+    console.log(deleteEvent({'id': 1}))
+  }
   return (
     <div className="App">
       <header className="App-header">
@@ -84,6 +91,12 @@ const SamplePage = () => {
         </Button> */}
         <Button variant="contained" onClick={handleOpenDrawer}>
           Open Drawer
+        </Button>
+        <Button variant="contained" onClick={handleDeleteBooking}>
+          Delete Booking
+        </Button>
+        <Button variant="contained" onClick={handleDeleteEvent}>
+          Delete Event
         </Button>
       </header>
     </div>
