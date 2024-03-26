@@ -25,6 +25,12 @@ const NavBarTop = () => {
       position="fixed"
       sx={{
         zIndex: (theme) => theme.zIndex.drawer + 1,
+        boxShadow: 'none',
+        backgroundColor: 'white',
+        borderBottom: 1,
+        borderColor: 'darkestBlue.main',
+        height: '4rem',
+        bgcolor: 'lightestBlue.main',
       }}
     >
       <Toolbar
@@ -59,6 +65,12 @@ const NavBarTop = () => {
           id="search"
           placeholder="Search for an event..."
           variant="outlined"
+          sx={{
+            width: '25%',
+            marginLeft: 1,
+            backgroundColor: 'white',
+            borderRadius: 1,
+          }}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -67,17 +79,13 @@ const NavBarTop = () => {
                   sx={{ p: '10px' }}
                   aria-label="search"
                   onClick={() => {
-                    console.log('Now I will search your personal data lol');
+                    alert('Now I will search your personal data lol');
                   }}
                 >
                   <Search />
                 </IconButton>
               </InputAdornment>
             ),
-          }}
-          sx={{
-            width: '25%',
-            marginLeft: 1,
           }}
         />
 
@@ -86,7 +94,13 @@ const NavBarTop = () => {
             variant="contained"
             title="Log Out"
             onClick={handleLogout}
-            sx={{ marginLeft: 'auto' }}
+            color="navBarButton"
+            sx={{
+              marginLeft: 'auto',
+              border: '3px solid',
+              borderColor: 'darkestBlue.main',
+              borderRadius: 3,
+            }}
           >
             Log Out
           </Button>
@@ -95,6 +109,12 @@ const NavBarTop = () => {
             <Button
               variant="contained"
               title="Log In"
+              color="navBarButton"
+              sx={{
+                border: '3px solid',
+                borderColor: 'darkestBlue.main',
+                borderRadius: 3,
+              }}
               onClick={() => {
                 showLoginModal({
                   onSubmit: (values) => setAuthInfo({ id: '123', ...values }),
@@ -107,6 +127,12 @@ const NavBarTop = () => {
             <Button
               variant="contained"
               title="Sign Up"
+              color="navBarButton"
+              sx={{
+                border: '3px solid',
+                borderColor: 'darkestBlue.main',
+                borderRadius: 3,
+              }}
               onClick={() => {
                 showLoginModal({
                   onSubmit: (values) => setAuthInfo({ id: '123', ...values }),
