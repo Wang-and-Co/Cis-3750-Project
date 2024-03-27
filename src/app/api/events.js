@@ -13,7 +13,7 @@ const postNewEvent = async (params, cookies) => {
   try {
     const id = cookies?.auth?.id;
     const payload = { ...params, organizer_id: id };
-    const { data } = await Axios.post('/events', payload);
+    const { data } = await Axios.post('/events', payload, { params: { id } });
     return { status: 200, data };
   } catch (error) {
     return { status: 0, ...error };
