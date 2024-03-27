@@ -48,6 +48,7 @@ const getParsedEventPayload = (event) => {
     organizer_id,
     cost,
     imageUri,
+    registrationType,
   } = event;
 
   const newEvent = {
@@ -63,7 +64,7 @@ const getParsedEventPayload = (event) => {
     wellnessType,
     cost: cost / 100,
     imageUri,
-    registrationType: 'host',
+    registrationType: registrationType ?? 'none',
     organizerID: organizer_id,
   };
   return newEvent;

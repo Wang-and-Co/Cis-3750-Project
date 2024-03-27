@@ -16,56 +16,24 @@ import SidebarRight from '../../shared-components/Navigation/SidebarRight';
 import MyEventsStack from '../../shared-components/Navigation/MyEventsStack';
 import EventDescription from '../../shared-components/event-display/EventDescription.js';
 import { getParsedEventPayload } from '../../shared-components/event-display/utils.js';
+import useEventFetching from '../../shared-components/hooks/useEventFetching.js';
 
 const SIDEBAR_RIGHT_WIDTH_PERCENT = 25;
 
 const SearchPage = () => {
   const { isLoggedIn } = useAuth();
   const [searchParams] = useSearchParams();
-
-  const [searchResults, setSearchResults] = useState([]);
-  const [registeredEvents, setRegisteredEvents] = useState([]);
+  const { mainEventList, registeredEvents, forceFetchData, isLoading } =
+    useEventFetching({ name: `${searchParams.get('name')}` }, searchEvents);
 
   const [selectedEvent, setSelectedEvent] = useState(undefined);
-  const [forceFetch, setForceFetch] = useState(false);
-  const triggerRefresh = () => {
-    setForceFetch(true);
-  };
   // Fetching data from server
-  const { isLoading: isSearchLoading, callAsyncFunction: callSearchAsync } =
-    useAsyncResponse(
-      searchEvents,
-      ({ data }) => {
-        setSearchResults(data?.map((event) => getParsedEventPayload(event)));
-      },
-      () => toast('Something went wrong (search results), please try again.'),
-    );
-
-  const {
-    isLoading: isRegisteredLoading,
-    callAsyncFunction: callRegisteredAsync,
-  } = useAsyncResponse(
-    retrieveEvents,
-    ({ data }) => {
-      setRegisteredEvents(data?.map((event) => getParsedEventPayload(event)));
-    },
-    () => toast('Something went wrong (registered events), please try again.'),
-  );
-
-  // Effects
-  useEffect(() => {
-    callSearchAsync({ name: `${searchParams.get('name')}` });
-  }, [searchParams, forceFetch]);
-
-  useEffect(() => {
-    callRegisteredAsync();
-  }, [forceFetch]);
 
   const sidebarWidthToUse = isLoggedIn ? SIDEBAR_RIGHT_WIDTH_PERCENT + 3 : 0;
 
   return (
     <Box width={`${100 - sidebarWidthToUse}%`}>
-      {isSearchLoading && <LinearProgress />}
+      {isLoading && <LinearProgress />}
 
       <Container
         sx={{
@@ -73,11 +41,11 @@ const SearchPage = () => {
         }}
       >
         <Typography variant="h6" align="left" marginTop={'2rem'}>
-          {`We found ${searchResults?.length ?? 0} results for events named '${searchParams.get('name')}'.`}
+          {`We found ${mainEventList?.length ?? 0} results for events named '${searchParams.get('name')}'.`}
         </Typography>
-        {searchResults?.length > 0 ? (
+        {mainEventList?.length > 0 ? (
           <EventsGrid
-            events={searchResults?.length > 0 ? searchResults : []}
+            events={mainEventList?.length > 0 ? mainEventList : []}
             eventDetailsOpenFunc={(event) => {
               if (isLoggedIn) {
                 setSelectedEvent(event);
@@ -103,7 +71,7 @@ const SearchPage = () => {
             <MyEventsStack
               events={registeredEvents}
               eventDetailsOpenFunc={setSelectedEvent}
-              triggerRefresh={triggerRefresh}
+              triggerRefresh={forceFetchData}
             />
           )}
         </SidebarRight>
