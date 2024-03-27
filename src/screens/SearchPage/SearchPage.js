@@ -12,26 +12,28 @@ import useAsyncResponse from '../../shared-components/axios/useAsyncResponse';
 import toast from 'react-hot-toast';
 import EventsGrid from '../../shared-components/Navigation/EventsGrid';
 import useAuth from '../../shared-components/hooks/useAuth';
-import * as sampleEvents from '../../stories/sampleEvents.js';
 import SidebarRight from '../../shared-components/Navigation/SidebarRight';
 import MyEventsStack from '../../shared-components/Navigation/MyEventsStack';
 import EventDescription from '../../shared-components/event-display/EventDescription.js';
+import { getParsedEventPayload } from '../../shared-components/event-display/utils.js';
 
 const SIDEBAR_RIGHT_WIDTH_PERCENT = 25;
 
 const SearchPage = () => {
-  const { isLoggedIn, setAuthInfo, handleLogout } = useAuth();
+  const { isLoggedIn } = useAuth();
   const [searchParams] = useSearchParams();
+
   const [searchResults, setSearchResults] = useState([]);
   const [registeredEvents, setRegisteredEvents] = useState([]);
-  const [currentViewedEvent, setCurrentViewedEvent] = useState(null);
+
+  const [selectedEvent, setSelectedEvent] = useState(undefined);
 
   // Fetching data from server
   const { isLoading: isSearchLoading, callAsyncFunction: callSearchAsync } =
     useAsyncResponse(
       searchEvents,
-      (eventData) => {
-        setSearchResults(eventData.data);
+      ({ data }) => {
+        setSearchResults(data?.map((event) => getParsedEventPayload(event)));
       },
       () => toast('Something went wrong (search results), please try again.'),
     );
@@ -41,8 +43,10 @@ const SearchPage = () => {
     callAsyncFunction: callRegisteredAsync,
   } = useAsyncResponse(
     retrieveEvents,
-    (eventData) => {
-      setRegisteredEvents(eventData.data);
+    ({ data }) => {
+      setRegisteredEvents(
+        setSearchResults(data?.map((event) => getParsedEventPayload(event))),
+      );
     },
     () => toast('Something went wrong (registered events), please try again.'),
   );
@@ -54,7 +58,7 @@ const SearchPage = () => {
 
   useEffect(() => {
     callRegisteredAsync();
-  }, [currentViewedEvent, searchParams]);
+  }, []);
 
   const sidebarWidthToUse = isLoggedIn ? SIDEBAR_RIGHT_WIDTH_PERCENT + 3 : 0;
 
@@ -68,14 +72,14 @@ const SearchPage = () => {
         }}
       >
         <Typography variant="h6" align="left" marginTop={'2rem'}>
-          {`We found ${searchResults.length > 0 ? searchResults.length : 0} results for events named '${searchParams.get('name')}'.`}
+          {`We found ${searchResults?.length > 0 ? searchResults?.length : 0} results for events named '${searchParams.get('name')}'.`}
         </Typography>
-        {searchResults.length > 0 ? (
+        {searchResults?.length > 0 ? (
           <EventsGrid
-            events={searchResults.length > 0 ? searchResults : []}
+            events={searchResults?.length > 0 ? searchResults : []}
             eventDetailsOpenFunc={(event) => {
               if (isLoggedIn) {
-                setCurrentViewedEvent(event);
+                setSelectedEvent(event);
               } else {
                 toast('You must be logged in to view events!');
               }
@@ -85,19 +89,19 @@ const SearchPage = () => {
           <></>
         )}
       </Container>
-      {isLoggedIn ? (
+      {isLoggedIn || selectedEvent ? (
         <SidebarRight widthPercent={SIDEBAR_RIGHT_WIDTH_PERCENT}>
-          {currentViewedEvent == null ? (
-            <MyEventsStack
-              events={registeredEvents}
-              eventDetailsOpenFunc={setCurrentViewedEvent}
-            />
-          ) : (
+          {selectedEvent ? (
             <EventDescription
               closeFunc={() => {
-                setCurrentViewedEvent(null);
+                setSelectedEvent(null);
               }}
-              event={currentViewedEvent}
+              event={selectedEvent}
+            />
+          ) : (
+            <MyEventsStack
+              events={registeredEvents}
+              eventDetailsOpenFunc={setSelectedEvent}
             />
           )}
         </SidebarRight>
