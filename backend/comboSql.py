@@ -68,6 +68,17 @@ class Database():
         connect.close()
         return eventData
     
+    def search_events(self, keyword):
+        connect = sqlite3.connect('database.db')
+        cursor = connect.cursor()
+
+        eventData = cursor.execute(f""" SELECT * FROM Events WHERE 
+                                        TITLE LIKE '%{keyword}%' OR
+                                        LOCATION LIKE '%{keyword}%' OR
+                                        DESCRIPTION LIKE '%{keyword}%';""").fetchall()
+        connect.close()
+        return eventData
+    
     def add_event(self, eventInfo):
         connect = sqlite3.connect('database.db')
         cursor = connect.cursor()

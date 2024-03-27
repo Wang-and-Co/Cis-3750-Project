@@ -30,7 +30,6 @@ db['Accounts'] = (None, "bryanWang@gmail.com","password","Bryan","Wang")
 @app.route('/events', methods=['GET', 'POST', 'DELETE'])
 def events():
     if request.method == 'GET':
-
         userBookings = None
         userID = request.args.get('id')
         check = 0
@@ -41,16 +40,28 @@ def events():
         else:
             check = 1
 
-        eventValues = db.get_events()
+        if len(request.args) == 1:
+            keyword = request.args.get('name')
+            if userID == None and keyword:
+                eventValues = db.search_events(keyword)
+            elif keyword == None and userID:
+                eventValues = db.get_events()
+        elif len(request.args) == 2:
+            keyword = request.args.get('name')
+            if keyword and keyword != '':
+                eventValues = db.search_events(keyword)
+            else:
+                eventValues = db.get_events()
+        else:
+            eventValues = db.get_events()
         eventInfo = []
-        
         registrationValue = None
 
         for i in range(0, len(eventValues)):
             if check == 0:
                 for bookings in userBookings:
                     if bookings[0] == eventValues[i][0]:
-                        registrationValue =  bookings[2]
+                        registrationValue = bookings[2]
 
             eventInfo.append({
                 "id": eventValues[i][0], 
@@ -69,7 +80,7 @@ def events():
                 "registrationType": registrationValue
             })
             registrationValue = None
-
+        
         return json.dumps(eventInfo)
     elif request.method == 'DELETE':
         eventID = request.args.get('id')
