@@ -84,10 +84,12 @@ class Database():
                                         WHERE TITLE = "{eventInfo['title']}" """).fetchone()
 
         bookingInfo = {'event_id': eventID[0], 'user_id': eventInfo['organizer_id'], 'type': "Organizer"}
-        db.add_booking(bookingInfo)
 
         connect.commit()
         connect.close()
+        
+        db.add_booking(bookingInfo)
+
         return eventID[0]
 
     def delete_event(self, eventID):
