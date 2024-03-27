@@ -109,7 +109,7 @@ const NavBarTop = () => {
               }}
               onClick={() => {
                 showLoginModal({
-                  onSubmit: (values) => setAuthInfo({ id: '123', ...values }),
+                  onSubmit: (values) => setAuthInfo(values),
                   initalFormShown: 'Login',
                 });
               }}
@@ -127,7 +127,7 @@ const NavBarTop = () => {
               }}
               onClick={() => {
                 showLoginModal({
-                  onSubmit: (values) => setAuthInfo({ id: '123', ...values }),
+                  onSubmit: (values) => setAuthInfo(values),
                   initalFormShown: 'Sign up',
                 });
               }}
