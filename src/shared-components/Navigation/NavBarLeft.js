@@ -84,25 +84,6 @@ const NavBarLeft = ({ widthPercent }) => {
               />
             </ListItemButton>
           </ListItem>
-          <ListItem key={'Sample Page'} disablePadding>
-            <ListItemButton onClick={() => navigate('/debug')}>
-              <ListItemIcon sx={{ minWidth: 0, paddingRight: 1 }}>
-                <Celebration
-                  sx={{
-                    color: 'darkestBlue.main',
-                  }}
-                />
-              </ListItemIcon>
-              <ListItemText
-                primary={'Sample Page'}
-                primaryTypographyProps={{
-                  style: {
-                    fontWeight: 'bold',
-                  },
-                }}
-              />
-            </ListItemButton>
-          </ListItem>
         </List>
       </Box>
     </Drawer>
