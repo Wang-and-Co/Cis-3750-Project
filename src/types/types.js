@@ -9,5 +9,5 @@ export const getRegistrationTypeMessage = (userType) =>
     volunteer: 'Volunteering',
     attendee: 'Attending',
     host: 'Hosting',
-    none: null,
+    none: '',
   })[userType];

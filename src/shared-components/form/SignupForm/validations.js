@@ -3,6 +3,8 @@ import * as yup from 'yup';
 // getter for the validation schema. Is not a constant because we want an instance per usage
 export const getSignUpFormValidationSchema = () =>
   yup.object({
+    fname: yup.string().required('First name cannot be empty.'),
+    lname: yup.string().required('Last name cannot be empty.'),
     email: yup
       .string()
       .email('Email cannot be empty.')
@@ -15,6 +17,4 @@ export const getSignUpFormValidationSchema = () =>
       .string()
       .oneOf([yup.ref('password'), null], 'Password must match')
       .required('Enter the password again'),
-    fname: yup.string().required('First name cannot be empty.'),
-    lname: yup.string().required('Last name cannot be empty.'),
   });
