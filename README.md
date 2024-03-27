@@ -1,11 +1,16 @@
-# Getting Started with Create React App
+# ComBo: Community Event Board
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![alt text](readmeSrc/image.png)
+A community board connecting Guelph residents to various wellness events and activities in the city.
+Users can attend, volunteer for and host various wellness events.
+![alt text](readmeSrc/image2.png)
 
 ## Required Libraries
 
 - Node (v20.11)
 - Yarn
+- Python 3.10.1
+- Serve
 
 In addition, you will need to have the VS Code extension Prettier Eslint.
 
@@ -19,7 +24,7 @@ yarn
 
 This should install all modules, and should take a few minutes.
 
-## How to enter the virtual environment for the back-end
+### Initialization of Flask Back-end
 
 ```
 cd backend
@@ -37,7 +42,7 @@ then run
 venv\Scripts\activate
 ```
 
-From here, ensure to install Flask and python-dotenv
+Installing required python libraries:
 
 ```
 pip install flask python-dotenv
@@ -45,12 +50,6 @@ pip install flask python-dotenv
 
 ```
 pip install -U flask-cors
-```
-
-Now you can finally run the program with the following command
-
-```
-yarn start-server
 ```
 
 ## Available Scripts
@@ -97,6 +96,25 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
+## Development File Structure
+
+Components and screens follow the general file structure:
+
+```
+📁shared-components
+📁screen
+|-🖹 Screen.js
+|-🖹 Screen.unit.test.js
+|-🖹 utils.js
+|-📁Component A
+| |- Component A.js
+| |- Component A.unit.test.js
+|-📁hooks
+| |-useHook.js
+| |-useHook.js
+|-🖹 index.js
+```
+
 ## Libraries used:
 
 - [Nice Modal React](https://github.com/eBay/nice-modal-react)
@@ -110,4 +128,6 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 - [Yup](https://github.com/jquense/yup?tab=readme-ov-file#yup)
   Validation schemas used for formik validations
 - [React Hot Toast](https://react-hot-toast.com/docs/toaster)
-  Handles toasts
+  Handles toast messages
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
