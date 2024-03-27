@@ -34,7 +34,9 @@ const HomePage = () => {
   );
   const [currentViewedEvent, setCurrentViewedEvent] = useState(null);
   const [isForceFetched, setIsForceFetched] = useState(true);
-  console.log(displayedEvents);
+  useEffect(() => {
+    setIsForceFetched(true);
+  }, [isLoggedIn]);
 
   const { isLoading, callAsyncFunction } = useAsyncResponse(
     retrieveEvents,
