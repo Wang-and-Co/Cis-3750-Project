@@ -125,10 +125,10 @@ class Database():
 
         x = 0
 
-        if (bookingInfo['type'] == 'Attendee'):
+        if (bookingInfo['type'] == 'attendee'):
             columnName = "CURR_ATTENDEES"
             x = 1
-        else:
+        elif (bookingInfo['type'] == 'volunteer'):
             columnName = "CURR_VOLUNTEERS"
             x = 1
 
@@ -159,7 +159,7 @@ class Database():
         connect = sqlite3.connect('database.db')
         cursor = connect.cursor()
 
-        event = cursor.execute(f""" SELECT * FROM EventBookings WHERE EVENT_ID='{eventID}' AND USER_ID='{userID};""").fetchone()
+        event = cursor.execute(f""" SELECT * FROM EventBookings WHERE EVENT_ID='{eventID}' AND USER_ID='{userID}';""").fetchone()
         print(event)
 
         if event:

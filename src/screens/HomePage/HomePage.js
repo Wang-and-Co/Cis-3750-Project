@@ -45,6 +45,14 @@ const HomePage = () => {
     },
     () => toast('Something went wrong (search results), please try again.'),
   );
+  useEffect(() => {
+    if (!currentViewedEvent) return;
+    setCurrentViewedEvent(
+      displayedEvents.find(
+        (event) => event.eventID === currentViewedEvent.eventID,
+      ),
+    );
+  }, [displayedEvents]);
 
   useEffect(() => {
     if (!isForceFetched) return;
@@ -141,6 +149,7 @@ const HomePage = () => {
                 setCurrentViewedEvent(null);
               }}
               event={currentViewedEvent}
+              triggerRefresh={() => setIsForceFetched(true)}
             />
           )}
         </SidebarRight>
