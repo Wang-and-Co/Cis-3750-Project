@@ -32,11 +32,8 @@ import {
   TaskAlt,
 } from '@mui/icons-material';
 import { getRegistrationTypeMessage } from '../../types/types';
-import useAsyncResponse from '../axios/useAsyncResponse';
-import { addBooking } from '../../app/api/events';
-import toast from 'react-hot-toast';
 
-const EventDescription = ({ closeFunc, event = {}, triggerRefresh }) => {
+const EventDescription = ({ closeFunc, event = {} }) => {
   const {
     eventID,
     organizerID,
@@ -62,19 +59,6 @@ const EventDescription = ({ closeFunc, event = {}, triggerRefresh }) => {
   const lengthString = getEventDurationString(startDateTime, endDateTime);
   const registrationTypeString = getRegistrationTypeMessage(registrationType);
 
-  const { isLoading, callAsyncFunction, callAsyncFunctionPromise } =
-    useAsyncResponse(
-      addBooking,
-      (response) => {
-        toast('Successfully registered!');
-        triggerRefresh();
-      },
-      (err) => {
-        toast(
-          'There was an issue completing your registration. Please try again.',
-        );
-      },
-    );
   const handleDrawerClose = () => {
     closeFunc();
   };
@@ -192,10 +176,7 @@ const EventDescription = ({ closeFunc, event = {}, triggerRefresh }) => {
                     variant="contained"
                     color="attendee"
                     onClick={() => {
-                      callAsyncFunction({
-                        event_id: eventID,
-                        type: 'Attendee',
-                      });
+                      console.log('Asked to register as attendee');
                     }}
                     sx={{
                       width: '100%',
@@ -213,10 +194,7 @@ const EventDescription = ({ closeFunc, event = {}, triggerRefresh }) => {
                     variant="contained"
                     color="volunteer"
                     onClick={() => {
-                      callAsyncFunction({
-                        event_id: eventID,
-                        type: 'Volunteer',
-                      });
+                      console.log('Asked to register as volunteer');
                     }}
                     sx={{
                       width: '100%',
