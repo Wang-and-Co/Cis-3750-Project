@@ -46,12 +46,11 @@ def events():
         
         registrationValue = None
 
-
         for i in range(0, len(eventValues)):
             if check == 0:
-                for j in range(0, len(userBookings)-1):
-                    if userBookings[j][0] == eventValues[j][0]:
-                        registrationValue =  userBookings[i][2]
+                for bookings in userBookings:
+                    if bookings[0] == eventValues[i][0]:
+                        registrationValue =  bookings[2]
 
             eventInfo.append({
                 "id": eventValues[i][0], 
@@ -69,6 +68,7 @@ def events():
                 "imageUri": eventValues[i][14],
                 "registrationType": registrationValue
             })
+            registrationValue = None
 
         return json.dumps(eventInfo)
     elif request.method == 'DELETE':

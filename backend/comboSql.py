@@ -79,11 +79,11 @@ class Database():
         
         cursor.execute(f""" INSERT INTO Events
                             VALUES  {tempString} ;""", tempValue)
-
+        
         eventID = cursor.execute(f""" SELECT EVENT_ID FROM Events 
                                         WHERE TITLE = "{eventInfo['title']}" """).fetchone()
 
-        bookingInfo = {'event_id': eventID[0], 'user_id': eventInfo['organizer_id'], 'type': "Organizer"}
+        bookingInfo = {'event_id': eventID[0], 'user_id': eventInfo['organizer_id'], 'type': "host"}
 
         connect.commit()
         connect.close()
