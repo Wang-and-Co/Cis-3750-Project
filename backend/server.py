@@ -7,6 +7,16 @@ CORS(app)
 
 db = comboSql.Database(reset=True)
 
+#Intializing certain values into the database:
+db['Accounts'] = (None, "dwang@gmail.com","securePassword","Daniel","Wang")
+db['Accounts'] = (None, "ksuthan@gmail.com","notPassword","Kirisan","Suthanthireswaran")
+db['Accounts'] = (None, "bryanWang@gmail.com","password","Bryan","Wang")
+
+
+
+
+
+
 # API Routes
 @app.route('/events', methods=['GET', 'POST', 'DELETE'])
 def events():
@@ -20,15 +30,15 @@ def events():
                 "title": eventValues[i][1], 
                 "startTime": eventValues[i][2], 
                 "endTime": eventValues[i][3], 
-                "location": eventValues[i][4], 
+                "location": eventValues[i][4],
                 "description": eventValues[i][5], 
-                "maxAttendees": eventValues[i][6],
-                "maxVolunteers": eventValues[i][7],
-                "wellnessType": eventValues[i][8],
-                "isOnline": eventValues[i][9],
-                "organizer_id": eventValues[i][10],
-                "cost": eventValues[i][11],
-                "image": eventValues[i][12]
+                "attendees": {'current': eventValues[i][6], 'max': eventValues[i][8]},
+                "volunteers":{'current': eventValues[i][7], 'max': eventValues[i][9]},
+                "wellnessType": eventValues[i][10],
+                "isOnline": eventValues[i][11],
+                "organizer_id": eventValues[i][12],
+                "cost": eventValues[i][13],
+                "imageUri": eventValues[i][14]
             })
              
         return json.dumps(eventInfo)
@@ -71,6 +81,8 @@ def booking():
                 'type': table[i][2]
             })
 
+        
+
         return (json.dumps(eventBookings))
     elif request.method == "DELETE":
         userID = request.args.get('userID')
@@ -86,8 +98,9 @@ def booking():
     else:
 
         bookingInfo = request.get_json()
-        db['EventBookings'] = (bookingInfo['event_id'], bookingInfo['user_id'],
-                                                        bookingInfo['type'])
+        db.add_booking(bookingInfo)
+        #db['EventBookings'] = (bookingInfo['event_id'], bookingInfo['user_id'],
+        #                                                bookingInfo['type'])
         return json.dumps(True)
 
 @app.route('/createAccount', methods=['POST'])
