@@ -149,7 +149,7 @@ const EventCard = ({ id, event = {}, openEventFunc, height }) => {
                   </Typography>
                 </Stack>
               </Grid>
-              {registrationType != null && registrationType !== 'none' ? (
+              {registrationTypeString && (
                 <Grid item xs={6}>
                   <Chip
                     variant="filled"
@@ -159,8 +159,6 @@ const EventCard = ({ id, event = {}, openEventFunc, height }) => {
                     sx={{ width: '100%' }}
                   ></Chip>
                 </Grid>
-              ) : (
-                <></>
               )}
             </Grid>
           </Box>

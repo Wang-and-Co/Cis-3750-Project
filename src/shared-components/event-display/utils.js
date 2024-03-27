@@ -48,6 +48,7 @@ const getParsedEventPayload = (event) => {
     organizer_id,
     cost,
     imageUri,
+    registrationType,
   } = event;
 
   const newEvent = {
@@ -62,11 +63,25 @@ const getParsedEventPayload = (event) => {
     volunteers,
     wellnessType,
     cost: cost / 100,
-    imageUri,
-    registrationType: 'host',
+    imageUri: replaceImageURI(imageUri),
+    registrationType: registrationType ?? 'none',
     organizerID: organizer_id,
   };
   return newEvent;
 };
 
-export { getLocationFromString, getLocationString, getParsedEventPayload };
+const replaceImageURI = (imageUri) => {
+  console.log(imageUri);
+  const knownImageMaps = {
+    'Untitled (1).png':
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Man_talking_on_the_phone_in_Montr%C3%A9al-Pierre_Elliott_Trudeau_International_Airport_006.jpg/1280px-Man_talking_on_the_phone_in_Montr%C3%A9al-Pierre_Elliott_Trudeau_International_Airport_006.jpg',
+  };
+  return knownImageMaps[imageUri] ?? imageUri;
+};
+
+export {
+  getLocationFromString,
+  getLocationString,
+  getParsedEventPayload,
+  replaceImageURI,
+};

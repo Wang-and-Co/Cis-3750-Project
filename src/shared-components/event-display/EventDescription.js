@@ -36,7 +36,7 @@ import useAsyncResponse from '../axios/useAsyncResponse';
 import { addBooking, deleteEvent } from '../../app/api/events';
 import toast from 'react-hot-toast';
 
-const EventDescription = ({ closeFunc, event = {}, triggerRefresh }) => {
+const EventDescription = ({ closeFunc, event = {} }) => {
   const {
     eventID,
     organizerID,
@@ -61,7 +61,6 @@ const EventDescription = ({ closeFunc, event = {}, triggerRefresh }) => {
   const dateString = `${dateFormat(startDateTime, 'DDD, mmm dd, hh:mm TT')}`;
   const lengthString = getEventDurationString(startDateTime, endDateTime);
   const registrationTypeString = getRegistrationTypeMessage(registrationType);
-
   const { isLoading, callAsyncFunction, callAsyncFunctionPromise } =
     useAsyncResponse(
       addBooking,
@@ -207,10 +206,7 @@ const EventDescription = ({ closeFunc, event = {}, triggerRefresh }) => {
                     variant="contained"
                     color="attendee"
                     onClick={() => {
-                      callAsyncFunction({
-                        event_id: eventID,
-                        type: 'Attendee',
-                      });
+                      console.log('Asked to register as attendee');
                     }}
                     sx={{
                       width: '100%',
@@ -228,10 +224,7 @@ const EventDescription = ({ closeFunc, event = {}, triggerRefresh }) => {
                     variant="contained"
                     color="volunteer"
                     onClick={() => {
-                      callAsyncFunction({
-                        event_id: eventID,
-                        type: 'Volunteer',
-                      });
+                      console.log('Asked to register as volunteer');
                     }}
                     sx={{
                       width: '100%',
