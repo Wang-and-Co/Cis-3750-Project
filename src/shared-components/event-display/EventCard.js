@@ -59,9 +59,6 @@ const EventCard = ({ id, event = {}, openEventFunc, height }) => {
         }}
         sx={{
           height: '100%',
-          justifyContent: 'flex-start',
-          display: 'flex',
-          flexDirection: 'column',
         }}
       >
         <CardMedia

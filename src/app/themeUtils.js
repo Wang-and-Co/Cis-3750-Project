@@ -1,5 +1,4 @@
 import { createTheme } from '@mui/material';
-import { green } from '@mui/material/colors';
 
 const lightestBlue = {
   main: '#97e7f5',
@@ -71,11 +70,7 @@ export const theme = createTheme({
       contrastText: '#000000',
     },
   },
-  typography:{
-    fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Kanit"',
-    ].join(',')
-  }
+  typography: {
+    fontFamily: ['-apple-system', 'BlinkMacSystemFont', '"Kanit"'].join(','),
+  },
 });
