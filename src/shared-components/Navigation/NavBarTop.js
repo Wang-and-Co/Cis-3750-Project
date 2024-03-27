@@ -1,30 +1,40 @@
-import {
-  Toolbar,
-  Typography,
-  AppBar,
-  Box,
-  Button,
-  TextField,
-  InputAdornment,
-  Stack,
-  IconButton,
-} from '@mui/material';
-import { InputField } from '../form/InputField';
-import { useCookies } from 'react-cookie';
-import { Search } from '@mui/icons-material';
+import { Toolbar, AppBar, Button, Stack } from '@mui/material';
 import useAuth from '../hooks/useAuth';
 import { showLoginModal } from '../modals/LoginModal';
 import { NAVBAR_LEFT_WIDTH_PERCENT } from '../../app/Layout';
-import { useNavigate } from 'react-router-dom';
+import {
+  createSearchParams,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from 'react-router-dom';
+import SearchInputField from './components/SearchInputField';
+import { useEffect, useState } from 'react';
 
 const NavBarTop = () => {
   const navigate = useNavigate();
   const { isLoggedIn, setAuthInfo, handleLogout } = useAuth();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchQuery, setSearchQuery] = useState('');
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    pathname !== '/search'
+      ? setSearchQuery('')
+      : setSearchQuery(searchParams.get('name'));
+  }, [pathname, searchParams]);
+
   return (
     <AppBar
       position="fixed"
       sx={{
         zIndex: (theme) => theme.zIndex.drawer + 1,
+        boxShadow: 'none',
+        backgroundColor: 'white',
+        borderBottom: 1,
+        borderColor: 'darkestBlue.main',
+        height: '4rem',
+        bgcolor: 'lightestBlue.main',
       }}
     >
       <Toolbar
@@ -55,29 +65,19 @@ const NavBarTop = () => {
             }}
           />
         </Button>
-        <TextField
+        <SearchInputField
           id="search"
           placeholder="Search for an event..."
-          variant="outlined"
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  type="button"
-                  sx={{ p: '10px' }}
-                  aria-label="search"
-                  onClick={() => {
-                    console.log('Now I will search your personal data lol');
-                  }}
-                >
-                  <Search />
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-          sx={{
-            width: '25%',
-            marginLeft: 1,
+          value={searchQuery}
+          onSearch={(value) => {
+            pathname !== '/search'
+              ? navigate({
+                  pathname: 'search',
+                  search: createSearchParams({
+                    name: value,
+                  }).toString(),
+                })
+              : setSearchParams({ name: value });
           }}
         />
 
@@ -86,7 +86,13 @@ const NavBarTop = () => {
             variant="contained"
             title="Log Out"
             onClick={handleLogout}
-            sx={{ marginLeft: 'auto' }}
+            color="navBarButton"
+            sx={{
+              marginLeft: 'auto',
+              border: '3px solid',
+              borderColor: 'darkestBlue.main',
+              borderRadius: 3,
+            }}
           >
             Log Out
           </Button>
@@ -95,9 +101,15 @@ const NavBarTop = () => {
             <Button
               variant="contained"
               title="Log In"
+              color="navBarButton"
+              sx={{
+                border: '3px solid',
+                borderColor: 'darkestBlue.main',
+                borderRadius: 3,
+              }}
               onClick={() => {
                 showLoginModal({
-                  onSubmit: (values) => setAuthInfo({ id: '123', ...values }),
+                  onSubmit: (values) => setAuthInfo(values),
                   initalFormShown: 'Login',
                 });
               }}
@@ -107,9 +119,15 @@ const NavBarTop = () => {
             <Button
               variant="contained"
               title="Sign Up"
+              color="navBarButton"
+              sx={{
+                border: '3px solid',
+                borderColor: 'darkestBlue.main',
+                borderRadius: 3,
+              }}
               onClick={() => {
                 showLoginModal({
-                  onSubmit: (values) => setAuthInfo({ id: '123', ...values }),
+                  onSubmit: (values) => setAuthInfo(values),
                   initalFormShown: 'Sign up',
                 });
               }}

@@ -26,6 +26,7 @@ const InputField = ({
   required,
   variant,
   type,
+  InputProps = {},
   ...otherProps
 }) => {
   const { submitForm } = useFormikContext();
@@ -71,7 +72,11 @@ const InputField = ({
       name={name}
       sx={{ minHeight: '5rem' }}
       type={type === 'password' ? (showPassword ? 'text' : 'password') : type}
-      InputProps={type === 'password' ? { endAdornment: iconAdnornments } : {}}
+      InputProps={
+        type === 'password'
+          ? { endAdornment: iconAdnornments, ...InputProps }
+          : { ...InputProps }
+      }
       {...otherProps}
     ></TextField>
   );

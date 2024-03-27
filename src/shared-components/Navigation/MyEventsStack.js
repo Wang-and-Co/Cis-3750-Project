@@ -11,15 +11,7 @@ import {
   Typography,
 } from '@mui/material';
 import PropTypes from 'prop-types';
-import dateFormat from 'dateformat';
-import getEventDurationString from '../../utils/getEventDurationString';
-import { CheckCircleOutline } from '@mui/icons-material';
-import {
-  getRegistrationTypeColour,
-  getRegistrationTypeMessage,
-} from '../../types/types';
 import MinimizedEventCard from '../event-display/MinimizedEventCard';
-import { theme } from '../../app/themeUtils';
 
 const MyEventsStack = ({ events, eventDetailsOpenFunc }) => {
   return (
@@ -32,7 +24,7 @@ const MyEventsStack = ({ events, eventDetailsOpenFunc }) => {
         sx={{ marginBottom: 1, borderBottomWidth: 3 }}
       />
       <Stack spacing={2} sx={{ maxHeight: '100%', overflow: 'auto' }}>
-        {events.map((item, index) => {
+        {events?.map((item, index) => {
           return (
             <MinimizedEventCard
               key={index}

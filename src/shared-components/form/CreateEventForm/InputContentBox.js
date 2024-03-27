@@ -17,6 +17,7 @@ const InputContentBox = ({
   fieldProps,
   key,
   type = 'input',
+  boxSX,
 }) => {
   const RenderedInputField = inputField[type];
 
@@ -26,6 +27,7 @@ const InputContentBox = ({
       display={'inline-flex'}
       flexDirection={'column'}
       gap={'0.5rem'}
+      sx={boxSX}
     >
       <Typography variant="h5">{title}</Typography>
       <Typography variant="body">{description}</Typography>
