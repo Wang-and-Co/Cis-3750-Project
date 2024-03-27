@@ -10,18 +10,8 @@ const getCreateEventValidationSchema = () =>
       .string()
       .required('Description of event is required.')
       .max(500, 'Description must be 500 characters maximum'),
-    wellnessType: yup.string().required(),
-    isOnline: yup.boolean(),
-    maxVolunteers: yup
-      .number()
-      .required('Must specify how many volunteers are required')
-      .min(0),
-    maxAttendees: yup
-      .number()
-      .min(1, 'Event must have atleast 1 attendee')
-      .required('You must specify number of attendees'),
-    cost: yup.number().min(0, 'cost cannot be negative'),
-    startDateTime: yup.date(),
+
+    startDateTime: yup.date().required('Must specify time event starts.'),
     endDateTime: yup
       .date()
       .test(
@@ -48,6 +38,19 @@ const getCreateEventValidationSchema = () =>
       extraInstructions: yup.string(),
     }),
     image: yup.mixed().required('Required'),
+    wellnessType: yup.string().required("Must specify event's wellness type."),
+    cost: yup.number().min(0, 'Cost cannot be negative'),
+    isOnline: yup.boolean(),
+    maxVolunteers: yup
+      .number()
+      .required('Must specify how many volunteers are required')
+      .min(0)
+      .integer('Limit cannot be a decimal.'),
+    maxAttendees: yup
+      .number()
+      .min(1, 'Event must have atleast 1 attendee')
+      .required('You must specify number of attendees')
+      .integer('Limit cannot be a decimal.'),
   });
 
 export { getCreateEventValidationSchema };

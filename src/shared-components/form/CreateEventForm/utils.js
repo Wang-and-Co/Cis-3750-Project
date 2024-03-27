@@ -1,3 +1,6 @@
+import { InputAdornment } from '@mui/material';
+import { getLocationString } from '../../event-display/utils';
+
 const getInitialFormValues = () => ({
   title: '',
   description: '',
@@ -5,13 +8,12 @@ const getInitialFormValues = () => ({
   isOnline: false,
   maxVolunteers: undefined,
   maxAttendees: undefined,
-  cost: 0,
+  cost: undefined,
   startDateTime: '',
   endDateTime: '',
   eventDate: '',
   location: {
     address: '',
-    road: '',
     city: '',
     province: '',
     postalCode: '',
@@ -23,12 +25,13 @@ const getInitialFormValues = () => ({
 const overviewProperties = [
   {
     title: 'Event Title',
-    description: 'You better make a good title',
+    description: 'Give a short title to represent your event!',
     fieldProps: { name: 'title', label: 'Event Title', required: true },
   },
   {
     title: 'Description',
-    description: 'Write a short description of your event!',
+    description:
+      'Describe what your event here. It can be helpful to include what activities will happen, and what to do.',
     fieldProps: {
       name: 'description',
       label: 'Description',
@@ -46,14 +49,13 @@ const locationTimeProperties = [
   },
   {
     spacing: 4,
-    fieldProps: { name: 'location.city', label: 'City', required: true },
+    fieldProps: { name: 'location.city', label: 'City' },
   },
   {
     spacing: 4,
     fieldProps: {
       name: 'location.province',
       label: 'Province',
-      required: true,
     },
   },
   {
@@ -61,7 +63,6 @@ const locationTimeProperties = [
     fieldProps: {
       name: 'location.postalCode',
       label: 'Postal Code',
-      required: true,
     },
   },
   {
@@ -69,7 +70,6 @@ const locationTimeProperties = [
     fieldProps: {
       name: 'location.extraInstructions',
       label: 'Extra instructions',
-      required: true,
     },
   },
 ];
@@ -77,7 +77,7 @@ const locationTimeProperties = [
 const otherInfoProperties = [
   {
     title: 'Wellness Category',
-    description: 'What wellness type does your event fit into?',
+    description: 'What wellness type does your event fit into?* ',
     fieldProps: {
       name: 'wellnessType',
       options: [
@@ -87,14 +87,19 @@ const otherInfoProperties = [
       ],
     },
     type: 'radio',
+    required: true,
   },
   {
     title: 'Cost',
-    description: 'how many',
+    description:
+      'Will you be charging for tickets to your event? Leave 0 for free attendance.',
     fieldProps: {
       name: 'cost',
       label: 'Event Cost',
-      required: false,
+      required: true,
+      InputProps: {
+        startAdornment: <InputAdornment position="start">$</InputAdornment>,
+      },
     },
     type: 'number',
   },
@@ -115,29 +120,77 @@ const otherInfoProperties = [
 const participantLevelsProperties = [
   {
     title: 'Attendees',
-    description: 'how many',
+    description: 'How many attendees do you expect to come?',
     fieldProps: {
       name: 'maxAttendees',
       label: 'Maximum Attendees',
-      required: false,
+      required: true,
     },
     type: 'number',
   },
   {
     title: 'Volunteers',
-    description: 'how many',
+    description: 'How many volunteers will you need to run the event?',
     fieldProps: {
       name: 'maxVolunteers',
       label: 'Maximum Volunteers',
-      required: false,
+      helperText: 'Can enter none (0) or more',
+      required: true,
     },
     type: 'number',
   },
 ];
+
+const getDateAdjustedByTime = (date, dateTimeAdjustment) => {
+  const newDate = new Date(date);
+  newDate.setHours(dateTimeAdjustment.getHours());
+  newDate.setMinutes(dateTimeAdjustment.getMinutes());
+  newDate.getSeconds(dateTimeAdjustment.getSeconds());
+  return newDate;
+};
+
+const getFormattedFormPayload = (eventFormData) => {
+  console.log(eventFormData);
+  const {
+    image,
+    title,
+    description,
+    startDateTime,
+    endDateTime,
+    eventDate,
+    location,
+    wellnessType,
+    isOnline,
+    cost,
+    maxVolunteers,
+    maxAttendees,
+  } = eventFormData;
+  const locationString = getLocationString(location);
+  const startDate = getDateAdjustedByTime(eventDate, startDateTime);
+  const endDate = getDateAdjustedByTime(eventDate, endDateTime);
+  const imageName = image?.name ?? 'default';
+  console.log(imageName);
+  const payload = {
+    title,
+    description,
+    wellnessType,
+    maxAttendees,
+    maxVolunteers,
+    startTime: startDate.valueOf(),
+    endTime: endDate.valueOf(),
+    isOnline,
+    location: locationString,
+    cost: Math.round(cost * 100),
+    image: imageName,
+  };
+  return payload;
+};
+
 export {
   getInitialFormValues,
   overviewProperties,
   locationTimeProperties,
   otherInfoProperties,
   participantLevelsProperties,
+  getFormattedFormPayload,
 };

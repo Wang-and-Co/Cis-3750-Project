@@ -1,11 +1,4 @@
-import {
-  Stack,
-  Box,
-  Typography,
-  Button,
-  Paper,
-  Container,
-} from '@mui/material';
+import { Stack, Box, Typography, Button, Container } from '@mui/material';
 import { Form, Formik } from 'formik';
 import { getCreateEventValidationSchema } from './validations';
 import {
@@ -82,6 +75,7 @@ const CreateEventForm = ({ handleSubmit }) => {
                   <TimePickerField
                     name="startDateTime"
                     label="Starting Time"
+                    required
                   ></TimePickerField>
                   <TimePickerField
                     name="endDateTime"
@@ -106,9 +100,15 @@ const CreateEventForm = ({ handleSubmit }) => {
                 {otherInfoProperties.map((values, index) => (
                   <InputContentBox {...values} key={index} />
                 ))}
-                <Stack direction="row-reverse" justifyContent="space-between">
+                <Typography variant="h4">Registration Numbers</Typography>
+
+                <Stack direction="row" justifyContent="space-between">
                   {participantLevelsProperties.map((values, index) => (
-                    <InputContentBox {...values} key={index} />
+                    <InputContentBox
+                      {...values}
+                      key={index}
+                      boxSX={{ width: '15rem' }}
+                    />
                   ))}
                 </Stack>
               </Box>
