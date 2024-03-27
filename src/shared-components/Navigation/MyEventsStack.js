@@ -24,16 +24,18 @@ const MyEventsStack = ({ events, eventDetailsOpenFunc }) => {
         sx={{ marginBottom: 1, borderBottomWidth: 3 }}
       />
       <Stack spacing={2} sx={{ maxHeight: '100%', overflow: 'auto' }}>
-        {events?.map((item, index) => {
-          return (
-            <MinimizedEventCard
-              key={index}
-              id={index}
-              event={item}
-              openEventFunc={eventDetailsOpenFunc}
-            />
-          );
-        })}
+        {events
+          ?.filter((event) => event.registrationType !== 'none')
+          .map((item, index) => {
+            return (
+              <MinimizedEventCard
+                key={index}
+                id={index}
+                event={item}
+                openEventFunc={eventDetailsOpenFunc}
+              />
+            );
+          })}
       </Stack>
     </Container>
   );
