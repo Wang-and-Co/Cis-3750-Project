@@ -25,17 +25,8 @@ const HomePage = () => {
   const { isLoggedIn, setAuthInfo, handleLogout } = useAuth();
   const sidebarWidthToUse = isLoggedIn ? SIDEBAR_RIGHT_WIDTH_PERCENT + 3 : 0;
 
-  const [displayedEvents, setDisplayedEvents] = useState([
-    sampleEvents.attendingEvent,
-    sampleEvents.hostingEvent,
-    sampleEvents.volunteeringEvent,
-    sampleEvents.unregisteredEvent,
-  ]);
-  const [registeredEvents, setRegisteredEvents] = useState([
-    sampleEvents.attendingEvent,
-    sampleEvents.hostingEvent,
-    sampleEvents.volunteeringEvent,
-  ]);
+  const [displayedEvents, setDisplayedEvents] = useState([]);
+  const [registeredEvents, setRegisteredEvents] = useState([]);
   const [currentViewedEvent, setCurrentViewedEvent] = useState(null);
 
   return (
