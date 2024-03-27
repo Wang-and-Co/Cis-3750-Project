@@ -11,9 +11,7 @@ db.__setitem__("EventBookings", (4, 2, "Volunteer"))
 db.__setitem__("EventBookings", (2, 3, "Volunteer"))
 
 db.add_event({'title': "Jackbox Gaming Night", 'startTime': 1711823400000, 'endTime': 1711827000000, 'location': "24 Kortright Rd E--Guelph--Ontario--N1G 4C9--odo", 'description': "Come join us for a fun and interactive game of Jackbox. We hope to provide a safe and social enviroment for you to make new friends and have some laughs!", 'maxAttendees': 10, 'maxVolunteers': 1, 'wellnessType': "social", 'isOnline': True, 'organizer_id': 5, 'cost': 0, 'image': "https://i0.wp.com/voyagecomics.com/wp-content/uploads/2021/10/smaug_dragon.webp?fit=1782%2C937&ssl=1"})
-#db.add_event({'title': "Among Us Mondays (Sus Version)", 'startTime': 1711823400000, 'endTime': 1711827000000, 'location': "24 Kortright Rd E--Guelph--Ontario--N1G 4C9--odo", 'description': "Come join us for a fun and interactive game of Jackbox. We hope to provide a safe and social enviroment for you to make new friends and have some laughs!", 'maxAttendees': 10, 'maxVolunteers': 1, 'wellnessType': "social", 'isOnline': True, 'organizer_id': 5, 'cost': 0, 'image': "https://i0.wp.com/voyagecomics.com/wp-content/uploads/2021/10/smaug_dragon.webp?fit=1782%2C937&ssl=1"})
-
-
+db.add_event({'title': "Among Us Mondays (Sus Version)", 'startTime': 1711846800000, 'endTime': 1711854000000, 'location': "25 Island of Greece St W-- Toronto--Ontario--N6B 3S1--odo", 'description': "Among Us is back in the meta and we are here to reignite your passion for the game. Atend for some wacky games and some social deduction!", 'maxAttendees': 30, 'maxVolunteers': 2, 'wellnessType': "social", 'isOnline': True, 'organizer_id': 4, 'cost': 2, 'image': "https://i0.wp.com/voyagecomics.com/wp-content/uploads/2021/10/smaug_dragon.webp?fit=1782%2C937&ssl=1"})
 
 #Intializing certain values into the database:
 db['Accounts'] = (None, "dwang@gmail.com","securePassword","Daniel","Wang")
@@ -32,12 +30,13 @@ def events():
 
         userBookings = None
         userID = request.args.get('id')
+        check = 0
 
         #print(userID)
         if(userID != None):
             userBookings = db.select_booking(userID)
         else:
-            userBookings = (2000000, 200000000, "invalidValue")
+            check = 1
 
         eventValues = db.get_events()
         eventInfo = []
@@ -46,9 +45,10 @@ def events():
 
 
         for i in range(0, len(eventValues)):
-            for j in range(0, len(userBookings)-1):
-                if userBookings[j][0] == eventValues[j][0]:
-                    registrationValue =  userBookings[i][2]
+            if check == 0:
+                for j in range(0, len(userBookings)-1):
+                    if userBookings[j][0] == eventValues[j][0]:
+                        registrationValue =  userBookings[i][2]
 
             eventInfo.append({
                 "id": eventValues[i][0], 
