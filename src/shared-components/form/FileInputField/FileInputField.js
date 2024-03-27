@@ -5,11 +5,11 @@ import {
   CardMedia,
   Typography,
 } from '@mui/material';
-import { FileUpload } from '@mui/icons-material';
 import { useField } from 'formik';
 import { useEffect, useRef, useState } from 'react';
 
-const FileInputField = ({ name, label, description, defaultImage }) => {
+const FileInputField = ({ name, label, defaultImage }) => {
+  // eslint-disable-next-line no-unused-vars
   const [field, meta, helpers] = useField(name);
   const [image, setImage] = useState(null);
   const [imageUrl, setImageUrl] = useState(defaultImage);
