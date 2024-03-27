@@ -56,7 +56,7 @@ const EventDescription = ({ closeFunc, event = {}, triggerRefresh }) => {
 
   const locationString = isOnline
     ? 'Online'
-    : `${location.address} ${location.road}, ${location.city} ${location.province}, ${location.postalCode}`;
+    : `${location.address}, ${location.city} ${location.province}, ${location.postalCode}`;
 
   const dateString = `${dateFormat(startDateTime, 'DDD, mmm dd, hh:mm TT')}`;
   const lengthString = getEventDurationString(startDateTime, endDateTime);

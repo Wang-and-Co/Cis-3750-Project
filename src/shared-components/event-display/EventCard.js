@@ -37,7 +37,7 @@ const EventCard = ({ id, event = {}, openEventFunc, height }) => {
   } = event;
   const locationString = isOnline
     ? 'Online'
-    : `${location.address} ${location.road}, ${location.city}`;
+    : `${location.address}, ${location.city}`;
   const dateString = `${dateFormat(startDateTime, 'DDD, mmm dd, hh:mm TT')}`;
   const lengthString = getEventDurationString(startDateTime, endDateTime);
   const registrationTypeString = getRegistrationTypeMessage(registrationType);

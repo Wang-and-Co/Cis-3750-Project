@@ -10,11 +10,38 @@ db.__setitem__("EventBookings", (1, 2, "Attendee"))
 db.__setitem__("EventBookings", (4, 2, "Volunteer"))
 db.__setitem__("EventBookings", (2, 3, "Volunteer"))
 
-db.add_event({'title': "Jackbox Gaming Night", 'startTime': 1711823400000, 'endTime': 1711827000000, 'location': "24 Kortright Rd E--Guelph--Ontario--N1G 4C9--odo", 'description': "Come join us for a fun and interactive game of Jackbox. We hope to provide a safe and social enviroment for you to make new friends and have some laughs!", 'maxAttendees': 10, 'maxVolunteers': 1, 'wellnessType': "social", 'isOnline': True, 'organizer_id': 5, 'cost': 0, 'image': "jackbox.png"})
-db.add_event({'title': "Among Us Philosophical Discussion", 'startTime': 1711846800000, 'endTime': 1711854000000, 'location': "25 Island of Greece St W--Toronto--Ontario--N6B 3S1--odo", 'description': "Join us in a heated discussion on the hit game AmongUs. We wish to delve into the intricies of the game and want you to help us.", 'maxAttendees': 50, 'maxVolunteers': 2, 'wellnessType': "social", 'isOnline': True, 'organizer_id': 4, 'cost': 2, 'image': "amongUsFungle.png"})
-db.add_event({'title': "Learning Programming: Scratch", 'startTime': 1713189600000, 'endTime': 1713236400000, 'location': "45 Trent Ln Rd N--Guelph--Ontario--N6B 3S1--odo", 'description': "Excited to enter the field of Computer Science? Come join us at Johnston Hall for your first ever coding lesson in Scratch!", 'maxAttendees': 30, 'maxVolunteers': 10, 'wellnessType': "intellectual", 'isOnline': True, 'organizer_id': 6, 'cost': 15, 'image': "scratch.png"})
-db.add_event({'title': "Dodgeball Intramurals", 'startTime': 1712165400000, 'endTime': 1712172600000, 'location': "50 E Ring Rd--Guelph--Ontario--N6B 3S1--odo", 'description': "Want a way to get active while also having fun? Come down to the Athletics Center and join us for some all ages DodgeBall! Everyone is welcome, let's see who's the best!", 'maxAttendees': 50, 'maxVolunteers': 5, 'wellnessType': "intellectual", 'isOnline': True, 'organizer_id': 8, 'cost': 0, 'image': "dodgeball.jpg"})
-
+db.add_event({'title': "Jackbox Gaming Night", 'startTime': 1711823400000, 'endTime': 1711827000000, 'location': "24 Kortright Rd E--Guelph--Ontario--N1G 4C9--odo", 'description': "Come join us for a fun and interactive game of Jackbox. We hope to provide a safe and social enviroment for you to make new friends and have some laughs!", 'maxAttendees': 10, 'maxVolunteers': 1, 'wellnessType': "social", 'isOnline': True, 'organizer_id': 2, 'cost': 0, 'image': "jackbox.png"})
+db.add_event({'title': "Among Us Philosophical Discussion", 'startTime': 1711846800000, 'endTime': 1711854000000, 'location': "25 Island of Greece St W--Toronto--Ontario--N6B 3S1--odo", 'description': "Join us in a heated discussion on the hit game AmongUs. We wish to delve into the intricies of the game and want you to help us.", 'maxAttendees': 50, 'maxVolunteers': 2, 'wellnessType': "social", 'isOnline': True, 'organizer_id': 2, 'cost': 2, 'image': "amongUsFungle.png"})
+db.add_event({'title': "Learning Programming: Scratch", 'startTime': 1713189600000, 'endTime': 1713236400000, 'location': "45 Trent Ln Rd N--Guelph--Ontario--N6B 3S1--odo", 'description': "Excited to enter the field of Computer Science? Come join us at Johnston Hall for your first ever coding lesson in Scratch!", 'maxAttendees': 30, 'maxVolunteers': 10, 'wellnessType': "intellectual", 'isOnline': True, 'organizer_id': 2, 'cost': 15, 'image': "scratch.png"})
+db.add_event({'title': "Dodgeball Intramurals", 'startTime': 1712165400000, 'endTime': 1712172600000, 'location': "50 E Ring Rd--Guelph--Ontario--N6B 3S1--odo", 'description': "Want a way to get active while also having fun? Come down to the Athletics Center and join us for some all ages DodgeBall! Everyone is welcome, let's see who's the best!", 'maxAttendees': 50, 'maxVolunteers': 5, 'wellnessType': "intellectual", 'isOnline': True, 'organizer_id': 2, 'cost': 0, 'image': "dodgeball.jpg"})
+db.add_event({
+    "title": "Guelph Grotto Dyno Competition",
+    "description": "Experience the adrenaline rush at the Guelph Grotto Dyno Competition! Held at The Grotto, climbers of all levels compete in leaping from hold to hold, showcasing agility and strength. Set against thrilling routes, it's a must-see event in Guelph's climbing scene, promising excitement and camaraderie.",
+    "wellnessType": "physical",
+    "maxAttendees": "100",
+    "maxVolunteers": "5",
+    "startTime": 1713016800000,
+    "endTime": 1713038400000,
+    "isOnline": False,
+    "location": "199 Victoria Rd S--Guelph--ON--N1E 6T9--",
+    "cost": 4000,
+    "image": "https://cdn.walltopia.com/wp-content/uploads/20231027210617/IMG_1770-11-500x280.jpg",
+    "organizer_id": 1
+})
+db.add_event({
+    "title": "Mindfulness Meditation Workshop",
+    "description": "Dive into the practice of mindfulness with our immersive workshop. Learn techniques to cultivate present-moment awareness and foster a sense of inner calm. Led by seasoned meditation teachers, this workshop offers practical tools for reducing stress and enhancing mental clarity.",
+    "wellnessType": "mental",
+    "maxAttendees": "30",
+    "maxVolunteers": "2",
+    "startTime": 1760544000000,
+    "endTime": 1760558400000,
+    "isOnline": False,
+    "location": "University Center--Guelph--ON--N1G 1Y4--UC225",
+    "cost": 30,
+    "image": "https://www.vmcdn.ca/f/files/villagelife/images/health-and-wellness/meditating/adobestock_178183149.jpeg;w=960",
+    "organizer_id": 1
+})
 
 #Intializing certain values into the database:
 db['Accounts'] = (None, "dwang@gmail.com","securePassword","Daniel","Wang")
