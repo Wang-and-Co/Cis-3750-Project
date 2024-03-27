@@ -81,6 +81,7 @@ const SignupForm = ({ handleSubmit, footerOnClick }) => {
               name="verifyPassword"
               label="Verify Password"
               required
+              type="password"
             ></InputField>
             <Button
               onClick={formikProps.handleSubmit}
