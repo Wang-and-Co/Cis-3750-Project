@@ -32,8 +32,11 @@ import {
   TaskAlt,
 } from '@mui/icons-material';
 import { getRegistrationTypeMessage } from '../../types/types';
+import useAsyncResponse from '../axios/useAsyncResponse';
+import { addBooking } from '../../app/api/events';
+import toast from 'react-hot-toast';
 
-const EventDescription = ({ closeFunc, event = {} }) => {
+const EventDescription = ({ closeFunc, event = {}, triggerRefresh }) => {
   const {
     eventID,
     organizerID,
@@ -59,6 +62,19 @@ const EventDescription = ({ closeFunc, event = {} }) => {
   const lengthString = getEventDurationString(startDateTime, endDateTime);
   const registrationTypeString = getRegistrationTypeMessage(registrationType);
 
+  const { isLoading, callAsyncFunction, callAsyncFunctionPromise } =
+    useAsyncResponse(
+      addBooking,
+      (response) => {
+        toast('Successfully registered!');
+        triggerRefresh();
+      },
+      (err) => {
+        toast(
+          'There was an issue completing your registration. Please try again.',
+        );
+      },
+    );
   const handleDrawerClose = () => {
     closeFunc();
   };
@@ -176,7 +192,10 @@ const EventDescription = ({ closeFunc, event = {} }) => {
                     variant="contained"
                     color="attendee"
                     onClick={() => {
-                      console.log('Asked to register as attendee');
+                      callAsyncFunction({
+                        event_id: eventID,
+                        type: 'Attendee',
+                      });
                     }}
                     sx={{
                       width: '100%',
@@ -194,7 +213,10 @@ const EventDescription = ({ closeFunc, event = {} }) => {
                     variant="contained"
                     color="volunteer"
                     onClick={() => {
-                      console.log('Asked to register as volunteer');
+                      callAsyncFunction({
+                        event_id: eventID,
+                        type: 'Volunteer',
+                      });
                     }}
                     sx={{
                       width: '100%',
