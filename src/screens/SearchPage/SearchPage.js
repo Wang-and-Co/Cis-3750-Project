@@ -25,7 +25,10 @@ const SearchPage = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [registeredEvents, setRegisteredEvents] = useState([]);
   const [currentViewedEvent, setCurrentViewedEvent] = useState(null);
-
+  const [forceFetch, setForceFetch] = useState(false);
+  const triggerRefresh = () => {
+    setForceFetch(true);
+  };
   // Fetching data from server
   const { isLoading: isSearchLoading, callAsyncFunction: callSearchAsync } =
     useAsyncResponse(
@@ -50,11 +53,11 @@ const SearchPage = () => {
   // Effects
   useEffect(() => {
     callSearchAsync({ name: `${searchParams.get('name')}` });
-  }, [searchParams]);
+  }, [searchParams, forceFetch]);
 
   useEffect(() => {
     callRegisteredAsync();
-  }, [currentViewedEvent, searchParams]);
+  }, [currentViewedEvent, searchParams, forceFetch]);
 
   const sidebarWidthToUse = isLoggedIn ? SIDEBAR_RIGHT_WIDTH_PERCENT + 3 : 0;
 
@@ -98,6 +101,7 @@ const SearchPage = () => {
                 setCurrentViewedEvent(null);
               }}
               event={currentViewedEvent}
+              triggerRefresh={triggerRefresh}
             />
           )}
         </SidebarRight>
