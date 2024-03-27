@@ -16,7 +16,7 @@ const CreateEventPage = () => {
       toast('You must be logged in to create an event!');
       navigate('/hosting');
     }
-  }, []);
+  }, [isLoggedIn]);
   const { callAsyncFunctionPromise } = useAsyncResponse(postNewEvent);
 
   const handleSubmit = async (values, actions) => {
@@ -34,17 +34,17 @@ const CreateEventPage = () => {
     toast('Event Successfully Posted');
   };
   return (
-      <div 
-        style={{
-          backgroundImage: `url(${createEventBG})`,
-          backgroundAttachment: 'fixed',
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-          padding: '1rem',
-        }}
-      >
-        <CreateEventForm handleSubmit={handleSubmit}></CreateEventForm>
-      </div>
+    <div
+      style={{
+        backgroundImage: `url(${createEventBG})`,
+        backgroundAttachment: 'fixed',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        padding: '1rem',
+      }}
+    >
+      <CreateEventForm handleSubmit={handleSubmit}></CreateEventForm>
+    </div>
   );
 };
 export default CreateEventPage;
