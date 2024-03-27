@@ -46,7 +46,7 @@ const addBooking = async (payload) => {
 
 const searchEvents = async (searchQuery, cookies) => {
   try {
-    const id = cookies?.auth?.id ? { userId: cookies?.auth?.id } : {};
+    const id = cookies?.auth?.id ? { id: cookies?.auth?.id } : {};
     const nameQuery = searchQuery?.name ? { name: searchQuery.name } : {};
     const options = { params: { ...id, ...nameQuery } };
     const { data } = await Axios.get('/events', options);
