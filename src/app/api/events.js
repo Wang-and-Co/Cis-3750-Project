@@ -33,8 +33,10 @@ const retrieveBookings = async (payload) => {
   }
 };
 
-const addBooking = async (payload) => {
+const addBooking = async (params, cookies) => {
   try {
+    const id = cookies?.auth?.id;
+    const payload = { ...params, user_id: id };
     const { data } = await Axios.post('/eventBooking', payload);
     return { status: 200, ...data };
   } catch (error) {

@@ -25,6 +25,10 @@ const HomePage = () => {
   const { isLoggedIn, setAuthInfo, handleLogout } = useAuth();
   const sidebarWidthToUse = isLoggedIn ? SIDEBAR_RIGHT_WIDTH_PERCENT + 3 : 0;
 
+  const [forceFetch, setForceFetch] = useState(false);
+  const triggerRefresh = () => {
+    setForceFetch(true);
+  };
   const [displayedEvents, setDisplayedEvents] = useState([
     sampleEvents.attendingEvent,
     sampleEvents.hostingEvent,
@@ -126,6 +130,7 @@ const HomePage = () => {
                 setCurrentViewedEvent(null);
               }}
               event={currentViewedEvent}
+              triggerRefresh={triggerRefresh}
             />
           )}
         </SidebarRight>
