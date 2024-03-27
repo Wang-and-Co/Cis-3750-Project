@@ -32,8 +32,11 @@ import {
   TaskAlt,
 } from '@mui/icons-material';
 import { getRegistrationTypeMessage } from '../../types/types';
+import useAsyncResponse from '../axios/useAsyncResponse';
+import { addBooking, deleteBooking, deleteEvent } from '../../app/api/events';
+import toast from 'react-hot-toast';
 
-const EventDescription = ({ closeFunc, event = {} }) => {
+const EventDescription = ({ closeFunc, event = {}, triggerRefresh }) => {
   const {
     eventID,
     organizerID,
@@ -58,6 +61,50 @@ const EventDescription = ({ closeFunc, event = {} }) => {
   const dateString = `${dateFormat(startDateTime, 'DDD, mmm dd, hh:mm TT')}`;
   const lengthString = getEventDurationString(startDateTime, endDateTime);
   const registrationTypeString = getRegistrationTypeMessage(registrationType);
+  const {
+    isLoading: isRegistrationLoading,
+    callAsyncFunction: registerForEvent,
+  } = useAsyncResponse(
+    addBooking,
+    () => {
+      toast('Successfully registered!');
+      triggerRefresh();
+    },
+    () => {
+      toast(
+        'There was an issue completing your registration. Please try again.',
+      );
+    },
+  );
+
+  const {
+    isLoading: isDeleteEventLoading,
+    callAsyncFunction: deleteEventHosting,
+  } = useAsyncResponse(
+    deleteEvent,
+    () => {
+      toast('Event successfully cancelled!');
+      triggerRefresh();
+    },
+    () => {
+      toast('There was an issue deleting this event. Please try again.');
+    },
+  );
+  const {
+    isLoading: isDeleteBookingLoading,
+    callAsyncFunction: deleteBookingCall,
+  } = useAsyncResponse(
+    deleteBooking,
+    () => {
+      toast('Registration cancelled!');
+      triggerRefresh();
+    },
+    () => {
+      toast(
+        'There was an issue cancelling your registration. Please try again.',
+      );
+    },
+  );
 
   const handleDrawerClose = () => {
     closeFunc();
@@ -175,14 +222,17 @@ const EventDescription = ({ closeFunc, event = {} }) => {
                   <Button
                     variant="contained"
                     color="attendee"
-                    onClick={() => {
-                      console.log('Asked to register as attendee');
-                    }}
+                    onClick={() =>
+                      registerForEvent({ event_id: eventID, type: 'attendee' })
+                    }
                     sx={{
                       width: '100%',
                       height: '100%',
                     }}
-                    disabled={attendees.current === attendees.max} // Disable button if current attendees reach max
+                    disabled={
+                      attendees.current === attendees.max ||
+                      isRegistrationLoading
+                    } // Disable button if current attendees reach max
                   >
                     {attendees.current === attendees.max
                       ? 'Attend Event (FULL)'
@@ -193,14 +243,17 @@ const EventDescription = ({ closeFunc, event = {} }) => {
                   <Button
                     variant="contained"
                     color="volunteer"
-                    onClick={() => {
-                      console.log('Asked to register as volunteer');
-                    }}
+                    onClick={() =>
+                      registerForEvent({ event_id: eventID, type: 'volunteer' })
+                    }
                     sx={{
                       width: '100%',
                       height: '100%',
                     }}
-                    disabled={volunteers.current === volunteers.max} // Disable button if current volunteers reach max
+                    disabled={
+                      volunteers.current === volunteers.max ||
+                      isRegistrationLoading
+                    } // Disable button if current volunteers reach max
                   >
                     {volunteers.current === volunteers.max
                       ? 'Volunteer Here (FULL)'
@@ -210,11 +263,15 @@ const EventDescription = ({ closeFunc, event = {} }) => {
               </>
             ) : (
               <Grid item xs={12} key="cancel">
-                {registrationType === 'Host' ? (
+                {registrationType === 'host' ? (
                   <Button
                     sx={{ width: '100%' }}
                     variant="contained"
                     color="error"
+                    onClick={() => {
+                      deleteEventHosting({ id: eventID });
+                    }}
+                    disabled={isDeleteEventLoading}
                   >
                     Cancel Event
                   </Button>
@@ -223,6 +280,8 @@ const EventDescription = ({ closeFunc, event = {} }) => {
                     sx={{ width: '100%' }}
                     variant="contained"
                     color="error"
+                    onClick={() => deleteBookingCall({ eventID })}
+                    disabled={isDeleteBookingLoading}
                   >
                     Cancel Registration
                   </Button>
