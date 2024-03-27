@@ -13,9 +13,8 @@ const AppRoutes = () => (
     <Route path="/" exact element={<HomePage />} />
     <Route path="e/:eventId" element={<HomePage />} />
     <Route path="search" element={<SearchPage />} />
-    <Route path="hosting" element={<HostingPage />}>
-      <Route path="create" element={<CreateEventPage />} />
-    </Route>
+    <Route path="hosting" element={<HostingPage />} />
+    <Route path="hosting/create" element={<CreateEventPage />} />
     <Route path="debug" element={<SamplePage />} />
     <Route path="legal/terms-of-service" element={<Terms />} />
     <Route path="*" element={<ErrorPage />} />
