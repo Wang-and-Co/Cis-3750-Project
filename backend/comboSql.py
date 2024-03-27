@@ -128,7 +128,7 @@ class Database():
         if (bookingInfo['type'] == 'attendee'):
             columnName = "CURR_ATTENDEES"
             x = 1
-        else:
+        elif (bookingInfo['type'] == 'volunteer'):
             columnName = "CURR_VOLUNTEERS"
             x = 1
 
