@@ -1,6 +1,6 @@
 import { Box, Button, Typography, CardMedia} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import eventImage from '../../assets/guelph.jpg'
+import eventImage from '../../assets/hostingpage.jpg'
 import community from '../../assets/community.jpg'
 
 const HostingPage = () => {

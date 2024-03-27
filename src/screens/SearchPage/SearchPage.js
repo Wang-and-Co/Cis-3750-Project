@@ -26,6 +26,10 @@ const SearchPage = () => {
   const { mainEventList, registeredEvents, forceFetchData, isLoading } =
     useEventFetching({ name: `${searchParams.get('name')}` }, searchEvents);
 
+  useEffect(() => {
+    forceFetchData();
+  }, [isLoggedIn, searchParams.get('name')]);
+
   const [selectedEvent, setSelectedEvent] = useState(undefined);
   // Fetching data from server
 

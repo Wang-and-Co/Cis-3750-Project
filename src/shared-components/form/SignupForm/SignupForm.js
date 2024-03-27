@@ -43,7 +43,7 @@ const SignupForm = ({ handleSubmit, footerOnClick }) => {
                 </Link>{' '}
                 {' and acknowledge you have read our '}
                 <Link
-                  aria-label="Go to privacy policy"
+                  aria-label="Go to Privacy Policy"
                   href={'http://localhost:3000/legal/terms-of-service'}
                   target="_blank"
                 >
