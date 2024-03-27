@@ -83,7 +83,9 @@ class Database():
         eventID = cursor.execute(f""" SELECT EVENT_ID FROM Events 
                                         WHERE TITLE = "{eventInfo['title']}" """).fetchone()
         
-        #print("hi all")
+        
+        db.add_booking(eventID, eventInfo['id'], "Organizer")
+
         connect.commit()
         connect.close()
         return eventID
@@ -108,18 +110,21 @@ class Database():
         connect = sqlite3.connect('database.db')
         cursor = connect.cursor()
 
+        x = 0
+
         if (bookingInfo['type'] == 'Attendee'):
             columnName = "CURR_ATTENDEES"
+            x = 1
         else:
             columnName - "CURR_VOLUNTEERS"
+            x = 1
 
 
-        
         self.__setitem__('EventBookings', (bookingInfo['event_id'], bookingInfo['user_id'], bookingInfo['type']))
         
-        
-        cursor.execute(f""" UPDATE Events SET '{columnName}' = '{columnName}' + 1
-                            WHERE  EVENT_ID = {bookingInfo['event_id']};""")
+        if x == 1:
+            cursor.execute(f""" UPDATE Events SET '{columnName}' = '{columnName}' + 1
+                                WHERE  EVENT_ID = {bookingInfo['event_id']};""")
     
         
         connect.commit()
@@ -153,8 +158,6 @@ class Database():
             connect.commit()
             connect.close()
             return False
-
-        
 
     def select_account(self, credentials):
         connect = sqlite3.connect('database.db')
