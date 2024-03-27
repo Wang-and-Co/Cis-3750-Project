@@ -38,15 +38,20 @@ def events():
             check = 1
 
         if len(request.args) == 1:
-            eventValues = db.get_events()
+            keyword = request.args.get('name')
+            if userID == None and keyword:
+                eventValues = db.search_events(keyword)
+            elif keyword == None and userID:
+                eventValues = db.get_events()
         elif len(request.args) == 2:
             keyword = request.args.get('name')
             if keyword and keyword != '':
                 eventValues = db.search_events(keyword)
             else:
                 eventValues = db.get_events()
+        else:
+            eventValues = db.get_events()
         eventInfo = []
-        
         registrationValue = None
 
         for i in range(0, len(eventValues)):
