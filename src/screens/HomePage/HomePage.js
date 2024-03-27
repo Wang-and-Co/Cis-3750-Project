@@ -8,13 +8,17 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import SidebarRight from '../../shared-components/Navigation/SidebarRight';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import MyEventsStack from '../../shared-components/Navigation/MyEventsStack';
 import EventDescription from '../../shared-components/event-display/EventDescription';
 import EventsGrid from '../../shared-components/Navigation/EventsGrid';
 import * as sampleEvents from '../../stories/sampleEvents.js';
 import useAuth from '../../shared-components/hooks/useAuth.js';
 import toast from 'react-hot-toast';
+import useEventFetching from '../../shared-components/hooks/useEventFetching.js';
+import { retrieveEvents } from '../../app/api/events.js';
+import { getParsedEventPayload } from '../../shared-components/event-display/utils.js';
+import useAsyncResponse from '../../shared-components/axios/useAsyncResponse.js';
 
 // CONSTANTS
 const SIDEBAR_RIGHT_WIDTH_PERCENT = 25;
@@ -22,21 +26,32 @@ const GUELPH_SPLASH_IMAGE =
   'https://fusionhomes.com/app/uploads/2019/09/Guelph-July-2014-63-2.jpg';
 
 const HomePage = () => {
-  const { isLoggedIn, setAuthInfo, handleLogout } = useAuth();
+  const { isLoggedIn, userId } = useAuth();
   const sidebarWidthToUse = isLoggedIn ? SIDEBAR_RIGHT_WIDTH_PERCENT + 3 : 0;
-
-  const [displayedEvents, setDisplayedEvents] = useState([
-    sampleEvents.attendingEvent,
-    sampleEvents.hostingEvent,
-    sampleEvents.volunteeringEvent,
-    sampleEvents.unregisteredEvent,
-  ]);
-  const [registeredEvents, setRegisteredEvents] = useState([
-    sampleEvents.attendingEvent,
-    sampleEvents.hostingEvent,
-    sampleEvents.volunteeringEvent,
-  ]);
+  const [displayedEvents, setDisplayedEvents] = useState([]);
+  const registeredEvents = displayedEvents.filter(
+    (events) => events.registeredEvents !== 'none',
+  );
   const [currentViewedEvent, setCurrentViewedEvent] = useState(null);
+  const [isForceFetched, setIsForceFetched] = useState(true);
+  useEffect(() => {
+    setIsForceFetched(true);
+  }, [isLoggedIn]);
+
+  const { isLoading, callAsyncFunction } = useAsyncResponse(
+    retrieveEvents,
+    ({ data }) => {
+      setDisplayedEvents(data?.map((event) => getParsedEventPayload(event)));
+    },
+    () => toast('Something went wrong (search results), please try again.'),
+  );
+
+  useEffect(() => {
+    if (!isForceFetched) return;
+
+    callAsyncFunction();
+    setIsForceFetched(false);
+  }, [isForceFetched, isLoggedIn]);
 
   return (
     <Box width={`${100 - sidebarWidthToUse}%`}>
