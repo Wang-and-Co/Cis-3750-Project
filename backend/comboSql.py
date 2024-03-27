@@ -71,6 +71,7 @@ class Database():
     def add_event(self, eventInfo):
         connect = sqlite3.connect('database.db')
         cursor = connect.cursor()
+        
         tempString = "( " + "?, "*14 + "?)"
         tempValue = [None, eventInfo['title'], eventInfo['startTime'], eventInfo['endTime'], eventInfo['location'],
                            eventInfo['description'], 0, 0, eventInfo['maxAttendees'], eventInfo['maxVolunteers'], eventInfo['wellnessType'],
@@ -111,6 +112,7 @@ class Database():
             columnName = "CURR_ATTENDEES"
         else:
             columnName - "CURR_VOLUNTEERS"
+
 
         
         self.__setitem__('EventBookings', (bookingInfo['event_id'], bookingInfo['user_id'], bookingInfo['type']))
@@ -174,6 +176,7 @@ class Database():
 
         
 #TESTING PURPOSES ONLY
+
 db = Database(reset=True)
 #db.add_event({'title': "someTitle", 'startTime': 5, 'endTime': 5, 'location': "location", 'description': "description1", 'maxAttendees': 4, 'maxVolunteers': 5, 'wellnessType': "Well", 'isOnline': True, 'organizer_id': 20, 'cost': 40, 'image': "string"})
 #db.add_booking({'event_id': 1, 'user_id': 5, 'type': 'Attendee'})
@@ -186,7 +189,7 @@ db = Database(reset=True)
 # db.__setitem__("EventBookings", (2, 3, "Volunteer"))
 # x = 0
 
-# db.select_booking(2)
+#db.select_booking(2)
 
 
 

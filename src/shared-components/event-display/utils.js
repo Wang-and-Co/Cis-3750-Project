@@ -33,4 +33,40 @@ const getLocationFromString = (locationString) => {
   return location;
 };
 
-export { getLocationFromString, getLocationString };
+const getParsedEventPayload = (event) => {
+  const {
+    id,
+    title,
+    startTime,
+    endTime,
+    location,
+    isOnline,
+    description,
+    attendees,
+    volunteers,
+    wellnessType,
+    organizer_id,
+    cost,
+    imageUri,
+  } = event;
+
+  const newEvent = {
+    eventID: id,
+    title,
+    description,
+    startDateTime: new Date(startTime),
+    endDateTime: new Date(endTime),
+    location: getLocationFromString(location),
+    isOnline,
+    attendees,
+    volunteers,
+    wellnessType,
+    cost: cost / 100,
+    imageUri,
+    registrationType: 'host',
+    organizerID: organizer_id,
+  };
+  return newEvent;
+};
+
+export { getLocationFromString, getLocationString, getParsedEventPayload };

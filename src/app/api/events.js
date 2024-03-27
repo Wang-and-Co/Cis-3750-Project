@@ -1,10 +1,8 @@
 import { Axios } from '../../shared-components/axios/Axios';
-const retrieveEvents = async (params, cookies) => {
+const retrieveEvents = async (cookies) => {
   try {
     const id = cookies?.auth?.id;
-    const options = id
-      ? { params: { ...params, ...(id ? { id: id } : {}) } }
-      : {};
+    const options = id ? { params: { id } } : {};
     const { data } = await Axios.get('/events', options);
     return { status: 200, data };
   } catch (error) {
@@ -46,6 +44,18 @@ const addBooking = async (params, cookies) => {
   }
 };
 
+const searchEvents = async (searchQuery, cookies) => {
+  try {
+    const id = cookies?.auth?.id ? { id: cookies?.auth?.id } : {};
+    const nameQuery = searchQuery?.name ? { name: searchQuery.name } : {};
+    const options = { params: { ...id, ...nameQuery } };
+    const { data } = await Axios.get('/events', options);
+    return { status: 200, data };
+  } catch (error) {
+    return { status: 0, ...error };
+  }
+};
+
 const deleteBooking = async (params) => {
   try {
     const { data } = await Axios.delete('/eventBooking', { params });
@@ -70,4 +80,6 @@ export {
   addBooking,
   deleteBooking,
   deleteEvent,
+  postNewEvent,
+  searchEvents,
 };

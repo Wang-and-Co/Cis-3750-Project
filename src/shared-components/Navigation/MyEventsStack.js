@@ -24,7 +24,7 @@ const MyEventsStack = ({ events, eventDetailsOpenFunc }) => {
         sx={{ marginBottom: 1, borderBottomWidth: 3 }}
       />
       <Stack spacing={2} sx={{ maxHeight: '100%', overflow: 'auto' }}>
-        {events.map((item, index) => {
+        {events?.map((item, index) => {
           return (
             <MinimizedEventCard
               key={index}
