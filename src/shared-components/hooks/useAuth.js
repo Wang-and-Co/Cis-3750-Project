@@ -10,6 +10,6 @@ const useAuth = () => {
   const handleLogout = () => {
     removeCookie('auth');
   };
-  return { isLoggedIn, setAuthInfo, handleLogout };
+  return { isLoggedIn, setAuthInfo, handleLogout, userId: cookies?.auth?.id };
 };
 export default useAuth;
