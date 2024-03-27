@@ -37,9 +37,11 @@ const addBooking = async (params, cookies) => {
   try {
     const id = cookies?.auth?.id;
     const payload = { ...params, user_id: id };
+    console.log('payload is ', payload)
     const { data } = await Axios.post('/eventBooking', payload);
     return { status: 200, ...data };
   } catch (error) {
+    console.log('no !!')
     return { status: 200, ...error };
   }
 };

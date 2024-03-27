@@ -33,7 +33,7 @@ import {
 } from '@mui/icons-material';
 import { getRegistrationTypeMessage } from '../../types/types';
 import useAsyncResponse from '../axios/useAsyncResponse';
-import { addBooking } from '../../app/api/events';
+import { addBooking, deleteEvent } from '../../app/api/events';
 import toast from 'react-hot-toast';
 
 const EventDescription = ({ closeFunc, event = {}, triggerRefresh }) => {
@@ -75,6 +75,21 @@ const EventDescription = ({ closeFunc, event = {}, triggerRefresh }) => {
         );
       },
     );
+
+    const { isLoadingDelEvent, deleteEventAsyncFunction, deleteEventAsyncFunctionPromise } = 
+      useAsyncResponse(
+        deleteEvent,
+        (response) => {
+          toast('Event successfully deleted!');
+          triggerRefresh();
+        },
+        (err) => {
+          toast(
+            'There was an issue deleting this event. Please try again.',
+          );
+        },
+      );
+
   const handleDrawerClose = () => {
     closeFunc();
   };
@@ -237,6 +252,11 @@ const EventDescription = ({ closeFunc, event = {}, triggerRefresh }) => {
                     sx={{ width: '100%' }}
                     variant="contained"
                     color="error"
+                    onClick={() => {
+                      callAsyncFunction({
+                        event_id: eventID
+                      })
+                    }}
                   >
                     Cancel Event
                   </Button>
