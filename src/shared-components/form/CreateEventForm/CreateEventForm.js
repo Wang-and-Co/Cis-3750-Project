@@ -13,6 +13,7 @@ import InputContentBox from './InputContentBox';
 import TimePickerField from '../TimePickerField/TimePickerField';
 import InputAddressGrid from './InputAddressGrid';
 import { ConnectedFocusError } from 'focus-formik-error';
+import { theme } from '../../../app/themeUtils';
 
 const styles = {
   padding: '1rem',
@@ -27,6 +28,7 @@ const styles = {
   gap: '0.5rem',
   marginBottom: '2rem',
 };
+
 const CreateEventForm = ({ handleSubmit }) => {
   const schema = getCreateEventValidationSchema();
   const initialValues = getInitialFormValues();
@@ -50,10 +52,10 @@ const CreateEventForm = ({ handleSubmit }) => {
         onSubmit={handleSubmit}
       >
         {(formikProps) => (
-          <Form>
+          <Form sx={{}}>
             <ConnectedFocusError />
             <Stack maxWidth="inherit" gap="0.5rem">
-              <Typography variant="h2">Create Event</Typography>
+              <Typography variant="h2" fontWeight={'bold'}>Create Event</Typography>
               <FileInputField
                 name="image"
                 label={'Upload an image to represent your event!'}

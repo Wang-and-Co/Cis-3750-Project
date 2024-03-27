@@ -8,7 +8,7 @@ const Footer = () => {
     <AppBar
       position="static"
       sx={{
-        top: 'auto',
+        top: '',
         bottom: 0,
         backgroundColor: 'primary',
         color: 'white',

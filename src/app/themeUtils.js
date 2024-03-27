@@ -71,4 +71,11 @@ export const theme = createTheme({
       contrastText: '#000000',
     },
   },
+  typography:{
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Kanit"',
+    ].join(',')
+  }
 });
