@@ -51,7 +51,7 @@ const getParsedEventPayload = (event) => {
   } = event;
 
   const newEvent = {
-    id,
+    eventID: id,
     title,
     description,
     startDateTime: new Date(startTime),
