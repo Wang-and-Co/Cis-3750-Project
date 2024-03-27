@@ -33,16 +33,14 @@ const retrieveBookings = async (payload) => {
   }
 };
 
-const addBooking = async (payload) => {
+const addBooking = async (payload, cookies) => {
   try {
     const id = cookies?.auth?.id;
-    const payload = { ...params, user_id: id };
-    console.log('payload is ', payload)
-    const { data } = await Axios.post('/eventBooking', payload);
-    return { status: 200, ...data };
+    const dataPayload = { user_id: id, ...payload };
+    const { data } = await Axios.post('/eventBooking', dataPayload);
+    return { status: 200, data };
   } catch (error) {
-    console.log('no !!')
-    return { status: 200, ...error };
+    return { status: 0, ...error };
   }
 };
 
@@ -58,9 +56,12 @@ const searchEvents = async (searchQuery, cookies) => {
   }
 };
 
-const deleteBooking = async (params) => {
+const deleteBooking = async (params, cookies) => {
   try {
-    const { data } = await Axios.delete('/eventBooking', { params });
+    const id = cookies?.auth?.id ? { userID: cookies?.auth?.id } : {};
+    const { data } = await Axios.delete('/eventBooking', {
+      params: { ...params, ...id },
+    });
     return { status: 200, ...data };
   } catch (error) {
     return { status: 400, ...error };
