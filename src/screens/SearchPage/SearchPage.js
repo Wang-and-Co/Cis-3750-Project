@@ -31,6 +31,14 @@ const SearchPage = () => {
   }, [isLoggedIn, searchParams.get('name')]);
 
   const [selectedEvent, setSelectedEvent] = useState(undefined);
+
+  useEffect(() => {
+    if (!selectedEvent) return;
+    setSelectedEvent(
+      mainEventList.find((event) => event.eventID === selectedEvent.eventID),
+    );
+  }, [mainEventList]);
+
   // Fetching data from server
 
   const sidebarWidthToUse = isLoggedIn ? SIDEBAR_RIGHT_WIDTH_PERCENT + 3 : 0;
@@ -70,6 +78,7 @@ const SearchPage = () => {
                 setSelectedEvent(null);
               }}
               event={selectedEvent}
+              triggerRefresh={forceFetchData}
             />
           ) : (
             <MyEventsStack
