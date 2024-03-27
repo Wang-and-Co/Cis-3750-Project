@@ -47,9 +47,7 @@ const SearchPage = () => {
   } = useAsyncResponse(
     retrieveEvents,
     ({ data }) => {
-      setRegisteredEvents(
-        setSearchResults(data?.map((event) => getParsedEventPayload(event))),
-      );
+      setRegisteredEvents(data?.map((event) => getParsedEventPayload(event)));
     },
     () => toast('Something went wrong (registered events), please try again.'),
   );
@@ -75,7 +73,7 @@ const SearchPage = () => {
         }}
       >
         <Typography variant="h6" align="left" marginTop={'2rem'}>
-          {`We found ${searchResults?.length > 0 ? searchResults?.length : 0} results for events named '${searchParams.get('name')}'.`}
+          {`We found ${searchResults?.length ?? 0} results for events named '${searchParams.get('name')}'.`}
         </Typography>
         {searchResults?.length > 0 ? (
           <EventsGrid

@@ -1,10 +1,8 @@
 import { Axios } from '../../shared-components/axios/Axios';
-const retrieveEvents = async (params, cookies) => {
+const retrieveEvents = async (cookies) => {
   try {
     const id = cookies?.auth?.id;
-    const options = id
-      ? { params: { ...params, ...(id ? { userId: id } : {}) } }
-      : {};
+    const options = id ? { params: { id } } : {};
     const { data } = await Axios.get('/events', options);
     return { status: 200, data };
   } catch (error) {
