@@ -82,13 +82,13 @@ class Database():
 
         eventID = cursor.execute(f""" SELECT EVENT_ID FROM Events 
                                         WHERE TITLE = "{eventInfo['title']}" """).fetchone()
-        
-        
-        db.add_booking(eventID, eventInfo['id'], "Organizer")
+
+        bookingInfo = {'event_id': eventID[0], 'user_id': eventInfo['organizer_id'], 'type': "Organizer"}
+        db.add_booking(bookingInfo)
 
         connect.commit()
         connect.close()
-        return eventID
+        return eventID[0]
 
     def delete_event(self, eventID):
         connect = sqlite3.connect('database.db')
@@ -116,7 +116,7 @@ class Database():
             columnName = "CURR_ATTENDEES"
             x = 1
         else:
-            columnName - "CURR_VOLUNTEERS"
+            columnName = "CURR_VOLUNTEERS"
             x = 1
 
 
