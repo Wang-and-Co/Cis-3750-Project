@@ -1,0 +1,172 @@
+@startuml frontEndDiagrams
+
+package "Container Components" {
+    class App {
+        --
+        render()
+    }
+    class AppRoutes
+    class DataProviders {
+        cookies
+        theme
+        toasts
+        api
+    }
+    class Layout
+
+    App *-- DataProviders
+    DataProviders *-- Layout
+    Layout *-- AppRoutes
+}
+package Screens {
+    class HomePage {
+        allEvents
+    }
+    class CreateEventPage
+    class ErrorPage {
+        errorMessage
+    }
+    class HostingPage
+    class SearchPage {
+        searchResults
+    }
+    class UsageTermsPage
+
+    HostingPage *-- CreateEventPage
+}
+
+AppRoutes *-- HomePage
+AppRoutes *-- SearchPage
+AppRoutes *-- UsageTermsPage
+AppRoutes *-- ErrorPage
+AppRoutes *-- SearchPage
+AppRoutes *-- HostingPage
+
+class NavBarLeft {
+    width
+    homepageLink
+    hostingpageLink
+}
+
+class NavBarTop {
+    homepageLink
+    searchBar
+    signupButton
+    loginButton
+    logoutButton
+    --
+    search()
+    openLoginModal()
+    openSignupModal()
+    logOut()
+}
+
+class Footer {
+    termsAndConditionsLink
+}
+
+Layout *-- NavBarLeft
+Layout *-- NavBarTop
+Layout *-- Footer
+
+class GenericModal {
+    name
+    title
+    body
+    id
+    onClose
+    open
+    disabled
+    showExitButton
+}
+class LoginModal
+class SignupModal 
+
+GenericModal <|-- LoginModal
+GenericModal <|-- SignupModal
+
+NavBarTop *-- LoginModal
+NavBarTop *-- SignupModal
+
+class SidebarRight {
+    width
+}
+class MyEventsStack {
+    registeredEvents
+}
+class EventDescription {
+    eventData
+    --
+    register()
+    cancelRegistration()
+    cancelEvent()
+}
+class EventCard {
+    eventData
+    --
+    showEventDescription()
+}
+class MinimizedEventCard
+
+EventCard <|-- MinimizedEventCard
+MyEventsStack *-- MinimizedEventCard
+
+SidebarRight *-- MyEventsStack
+SidebarRight *-- EventDescription
+
+class EventsGrid {
+    events
+}
+
+EventsGrid *-- EventCard
+
+HomePage *-- SidebarRight
+HomePage *-- EventsGrid
+
+SearchPage *-- SidebarRight
+SearchPage *-- EventsGrid
+
+class CreateEventForm {
+    eventData
+    --
+    createEvent()
+}
+
+class SignupForm {
+    termsAndConditionsLink
+    --
+    signUp()
+}
+
+class LoginForm {
+    termsAndConditionsLink
+    --
+    logIn()
+}
+
+SignupModal *-- SignupForm
+LoginModal *-- LoginForm
+CreateEventPage *-- CreateEventForm
+
+package "Form Components" {
+    class DatePickerField
+    class FileInputField
+    class InputField
+    class NumberField
+    class RadioGroupField
+    class TimePickerField
+}
+
+CreateEventForm *-- DatePickerField
+CreateEventForm *-- FileInputField
+CreateEventForm *-- InputField
+CreateEventForm *-- NumberField
+CreateEventForm *-- RadioGroupField
+CreateEventForm *-- TimePickerField
+
+SignupForm *-- InputField
+
+LoginForm *-- InputField
+
+NavBarTop *-- InputField
+@enduml
