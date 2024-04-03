@@ -1,0 +1,32 @@
+@startuml eventBookingEndpoint
+package eventBooking {
+    package "GET /eventBooking" {
+        json "Request" as GETEventBookReq {
+            "userID": "number"
+        }
+        json "Response" as GETEventBookResp {
+            "bookings": [
+                {
+                    "eventID": "number",
+                    "userID": "number",
+                    "type": "string"
+                }
+            ]
+        }
+    }
+    package "POST /eventBooking" {
+        json "Request" as POSTEventBookReq {
+            "eventID": "number",
+            "userID": "number",
+            "type": "string"
+        }
+    }
+    package "DELETE /eventBooking" {
+        json "Request" as DELETEEventBookReq {
+            "eventID": "number",
+            "userID": "number"
+        }
+    }
+}
+
+@enduml

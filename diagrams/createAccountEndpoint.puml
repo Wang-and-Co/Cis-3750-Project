@@ -1,0 +1,18 @@
+@startuml createAccountEndpoint
+package createAccount {
+    package "POST /createAccount" {
+        json "Request" as POSTCreateAccountReq {
+            "email": "string",
+            "password": "string",
+            "fname": "string",
+            "lname": "string"
+        }
+        json "Response" as POSTCreateAccountResp {
+            "userID": "number",
+            "fname": "string",
+            "lname": "string"
+        }
+    }
+}
+
+@enduml

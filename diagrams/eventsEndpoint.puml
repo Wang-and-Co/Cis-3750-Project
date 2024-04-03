@@ -1,0 +1,38 @@
+@startuml eventsEndpoint
+package events {
+    package "GET /events" {
+        json "Request" as GETEventsReq {
+        }
+    }
+    package "POST /events" {
+
+        json "Request" as POSTEventsReq {
+            "title": "string", 
+            "startTime": "number",
+            "endTime": "number", 
+            "location": "string", 
+            "description": "string", 
+            "maxAttendees": "number", 
+            "maxVolunteers": "number", 
+            "wellnessType": "string", 
+            "isOnline": "boolean", 
+            "organized_id": "number", 
+            "cost": "number", 
+            "image": "string"
+        }
+
+        json "Response" as POSTEventsResp {
+            "eventID" : "number"
+        }
+
+    }
+    package "DELETE /events" {
+        json "Request" as DELETEEventsReq {
+            "eventID": "number"
+        }
+        json "Response" as DELETEEventsResp {
+            "wasDeleted": "boolean"
+        }
+    }
+}
+@enduml

@@ -1,0 +1,16 @@
+@startuml loginEndpoint
+
+package login {
+    package "POST /login" {
+        json "Request" as POSTLoginReq {
+            "email": "string",
+            "password": "string"
+        }
+        json "Response" as POSTLoginResp {
+            "userID": "number",
+            "fname": "string",
+            "lname": "string"
+        }
+    }
+}
+@enduml

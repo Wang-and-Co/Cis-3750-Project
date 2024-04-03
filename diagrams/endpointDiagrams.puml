@@ -1,0 +1,98 @@
+@startuml endpointDiagrams
+package events {
+    package "GET /events" {
+        json "Request" as GETEventsReq {
+        }
+    }
+    package "POST /events" {
+
+        json "Request" as POSTEventsReq {
+            "title": "string", 
+            "startTime": "number",
+            "endTime": "number", 
+            "location": "string", 
+            "description": "string", 
+            "maxAttendees": "number", 
+            "maxVolunteers": "number", 
+            "wellnessType": "string", 
+            "isOnline": "boolean", 
+            "organized_id": "number", 
+            "cost": "number", 
+            "image": "string"
+        }
+
+        json "Response" as POSTEventsResp {
+            "eventID" : "number"
+        }
+
+    }
+    package "DELETE /events" {
+        json "Request" as DELETEEventsReq {
+            "eventID": "number"
+        }
+        json "Response" as DELETEEventsResp {
+            "wasDeleted": "boolean"
+        }
+    }
+}
+
+
+package eventBooking {
+    package "GET /eventBooking" {
+        json "Request" as GETEventBookReq {
+            "userID": "number"
+        }
+        json "Response" as GETEventBookResp {
+            "bookings": [
+                {
+                    "eventID": "number",
+                    "userID": "number",
+                    "type": "string"
+                }
+            ]
+        }
+    }
+    package "POST /eventBooking" {
+        json "Request" as POSTEventBookReq {
+            "eventID": "number",
+            "userID": "number",
+            "type": "string"
+        }
+    }
+    package "DELETE /eventBooking" {
+        json "Request" as DELETEEventBookReq {
+            "eventID": "number",
+            "userID": "number"
+        }
+    }
+}
+
+package createAccount {
+    package "POST /createAccount" {
+        json "Request" as POSTCreateAccountReq {
+            "email": "string",
+            "password": "string",
+            "fname": "string",
+            "lname": "string"
+        }
+        json "Response" as POSTCreateAccountResp {
+            "userID": "number",
+            "fname": "string",
+            "lname": "string"
+        }
+    }
+}
+package login {
+    package "POST /login" {
+        json "Request" as POSTLoginReq {
+            "email": "string",
+            "password": "string"
+        }
+        json "Response" as POSTLoginResp {
+            "userID": "number",
+            "fname": "string",
+            "lname": "string"
+        }
+    }
+}
+@enduml

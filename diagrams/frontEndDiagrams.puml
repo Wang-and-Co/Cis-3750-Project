@@ -26,13 +26,13 @@ package Screens {
     class ErrorPage {
         errorMessage
     }
-    class HostingPage
+    class HostingPage {
+        createEventPageLink
+    }
     class SearchPage {
         searchResults
     }
     class UsageTermsPage
-
-    HostingPage *-- CreateEventPage
 }
 
 AppRoutes *-- HomePage
@@ -41,6 +41,7 @@ AppRoutes *-- UsageTermsPage
 AppRoutes *-- ErrorPage
 AppRoutes *-- SearchPage
 AppRoutes *-- HostingPage
+AppRoutes *-- CreateEventPage
 
 class NavBarLeft {
     width
@@ -85,8 +86,8 @@ class SignupModal
 GenericModal <|-- LoginModal
 GenericModal <|-- SignupModal
 
-NavBarTop *-- LoginModal
-NavBarTop *-- SignupModal
+NavBarTop o-- LoginModal
+NavBarTop o-- SignupModal
 
 class SidebarRight {
     width
