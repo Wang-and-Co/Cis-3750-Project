@@ -1,6 +1,6 @@
 @startuml classDiagrams
 
-package Database {
+package Backend {
     class Event {
         eventID
         title
@@ -14,13 +14,65 @@ package Database {
         organizerID
         maxAttendees
         maxVolunteers
-        --Endpoints--
-        GET /events
-        POST /create
-        DELETE /event
-        POST /events
+        --
+        searchEvents(query)
+        getAllEvents()
+        getEventData(eventID)
+        createEvent(eventData)
+        deleteEvent(eventID)
     }
-    class Account
-    class EventBooking
+
+    class Account {
+        userID
+        userEmail
+        userPassword
+        firstName
+        lastName
+        --
+        createAccount(accountData)
+        authenticateLogin(email, password)
+        getAccountData(userID)
+    }
+
+    class EventBooking {
+        eventID
+        userID
+        eventType
+        timestamp
+        --
+        createBooking(eventID, userID)
+        getBooking(eventID, userID)
+        deleteBooking(eventID, userID)
+    }
+
+    EventBooking "\t\t1..*" o-- "\t\t1" Event
+    EventBooking "\t1..*" o-- "\t\t\t1" Account
+}
+
+package Frontend {
+
+    class Event {
+        eventID
+        title
+        description
+        startDate
+        endDate
+        location
+        cost
+        wellnessType
+        isOnline
+        maxAttendees
+        maxVolunteers
+        registeredAttendees
+        registeredVolunteers
+        registrationType
+    }
+
+    class Account {
+        userID
+        userEmail
+        firstName
+        lastName
+    }
 }
 @enduml
