@@ -1,0 +1,26 @@
+@startuml classDiagrams
+
+package Database {
+    class Event {
+        eventID
+        title
+        description
+        startDate
+        endDate
+        location
+        cost
+        wellnessType
+        isOnline
+        organizerID
+        maxAttendees
+        maxVolunteers
+        --Endpoints--
+        GET /events
+        POST /create
+        DELETE /event
+        POST /events
+    }
+    class Account
+    class EventBooking
+}
+@enduml
