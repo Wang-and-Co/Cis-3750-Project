@@ -2,6 +2,26 @@
 package events {
     package "GET /events" {
         json "Request" as GETEventsReq {
+            "userID": "number"
+        }
+        json "Response" as GETEventsResp {
+            "eventsList": [
+                {
+                    "title": "string", 
+                    "startTime": "number",
+                    "endTime": "number", 
+                    "location": "string", 
+                    "description": "string", 
+                    "maxAttendees": "number", 
+                    "maxVolunteers": "number", 
+                    "wellnessType": "string", 
+                    "isOnline": "boolean", 
+                    "organizerId": "number", 
+                    "cost": "number", 
+                    "image": "string",
+                    "registrationType": "string"
+                }
+            ]
         }
     }
     package "POST /events" {
@@ -16,7 +36,7 @@ package events {
             "maxVolunteers": "number", 
             "wellnessType": "string", 
             "isOnline": "boolean", 
-            "organized_id": "number", 
+            "organizerId": "number", 
             "cost": "number", 
             "image": "string"
         }
