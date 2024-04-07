@@ -43,45 +43,109 @@ AppRoutes *-- SearchPage
 AppRoutes *-- HostingPage
 AppRoutes *-- CreateEventPage
 
-class NavBarLeft {
-    width
-    homepageLink
-    hostingpageLink
+package Navigation {
+    class NavBarLeft {
+        width
+        homepageLink
+        hostingpageLink
+    }
+
+    class NavBarTop {
+        homepageLink
+        searchBar
+        signupButton
+        loginButton
+        logoutButton
+        --
+        search()
+        openLoginModal()
+        openSignupModal()
+        logOut()
+    }
+    class Footer {
+        termsAndConditionsLink
+    }
 }
 
-class NavBarTop {
-    homepageLink
-    searchBar
-    signupButton
-    loginButton
-    logoutButton
-    --
-    search()
-    openLoginModal()
-    openSignupModal()
-    logOut()
+
+package Generic {
+    class GenericModal {
+        name
+        title
+        body
+        id
+        onClose
+        open
+        disabled
+        showExitButton
+    }
+    
 }
 
-class Footer {
-    termsAndConditionsLink
+package Accounts {
+    class LoginModal
+    class SignupModal 
+    
+}
+
+package Events {
+    class SidebarRight {
+        width
+    }
+
+    class MyEventsStack {
+        registeredEvents
+    }
+    class EventDescription {
+        eventData
+        --
+        register()
+        cancelRegistration()
+        cancelEvent()
+    }
+    class EventCard {
+        eventData
+        --
+        showEventDescription()
+    }
+    class MinimizedEventCard
+    class EventsGrid {
+        events
+    }
+    
+}
+
+package Forms {
+    class CreateEventForm {
+        eventData
+        --
+        createEvent()
+    }
+    class SignupForm {
+        termsAndConditionsLink
+        --
+        signUp()
+    }
+
+    class LoginForm {
+        termsAndConditionsLink
+        --
+        logIn()
+    }
+}
+package "Form Components" {
+    class DatePickerField
+    class FileInputField
+    class InputField
+    class NumberField
+    class RadioGroupField
+    class TimePickerField
 }
 
 Layout *-- NavBarLeft
 Layout *-- NavBarTop
 Layout *-- Footer
 
-class GenericModal {
-    name
-    title
-    body
-    id
-    onClose
-    open
-    disabled
-    showExitButton
-}
-class LoginModal
-class SignupModal 
 
 GenericModal <|-- LoginModal
 GenericModal <|-- SignupModal
@@ -89,25 +153,7 @@ GenericModal <|-- SignupModal
 NavBarTop o-- LoginModal
 NavBarTop o-- SignupModal
 
-class SidebarRight {
-    width
-}
-class MyEventsStack {
-    registeredEvents
-}
-class EventDescription {
-    eventData
-    --
-    register()
-    cancelRegistration()
-    cancelEvent()
-}
-class EventCard {
-    eventData
-    --
-    showEventDescription()
-}
-class MinimizedEventCard
+
 
 EventCard <|-- MinimizedEventCard
 MyEventsStack *-- MinimizedEventCard
@@ -115,9 +161,6 @@ MyEventsStack *-- MinimizedEventCard
 SidebarRight *-- MyEventsStack
 SidebarRight *-- EventDescription
 
-class EventsGrid {
-    events
-}
 
 EventsGrid *-- EventCard
 
@@ -127,36 +170,12 @@ HomePage *-- EventsGrid
 SearchPage *-- SidebarRight
 SearchPage *-- EventsGrid
 
-class CreateEventForm {
-    eventData
-    --
-    createEvent()
-}
 
-class SignupForm {
-    termsAndConditionsLink
-    --
-    signUp()
-}
-
-class LoginForm {
-    termsAndConditionsLink
-    --
-    logIn()
-}
 
 SignupModal *-- SignupForm
 LoginModal *-- LoginForm
 CreateEventPage *-- CreateEventForm
 
-package "Form Components" {
-    class DatePickerField
-    class FileInputField
-    class InputField
-    class NumberField
-    class RadioGroupField
-    class TimePickerField
-}
 
 CreateEventForm *-- DatePickerField
 CreateEventForm *-- FileInputField
